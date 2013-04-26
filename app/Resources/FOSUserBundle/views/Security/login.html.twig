@@ -4,7 +4,11 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets '../app/Resources/FOSUserBundle/public/css/login.css'  %}
+    {% stylesheets 
+        filter='cssrewrite,yui_css'
+        output='css/login.css'        
+        '../app/Resources/FOSUserBundle/public/css/login.css'
+    %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet"  />
     {% endstylesheets %}
 {% endblock %}

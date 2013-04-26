@@ -8,6 +8,9 @@
         
         {% block stylesheets %}
             {% stylesheets
+              filter='cssrewrite,yui_css'
+              output='css/main.css'
+              combine=true
               '../app/Resources/public/css/bootstrap.min.css' 
               '../app/Resources/public/css/bootstrap-responsive.min.css' 
             %}
@@ -19,8 +22,14 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-
-            {% javascripts "../app/Resources/public/js/jquery.min.js" "../app/Resources/public/js/bootstrap.min.js" "../app/Resources/public/js/angular.min.js" %}
+            {% javascripts 
+              filter='yui_js'
+              output='js/main.js'
+              combine=true
+              "../app/Resources/public/js/jquery.min.js" 
+              "../app/Resources/public/js/bootstrap.min.js" 
+              "../app/Resources/public/js/angular.min.js"
+            %}
             <script src="{{ asset_url }}" type="text/javascript"></script>
             {% endjavascripts %}
     </body>
