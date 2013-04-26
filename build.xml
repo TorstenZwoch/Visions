@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="name-of-project" default="">
-    <target name="Dependencies" depends="DropCreateUpdateDatabase"/>
- 
+    
+    <target name="InitEnviroment" depends="Initialize Enviroment"/>
+    <target name="Dependencies" depends="Dependencies, DropCreateUpdateDatabase"/>
     <target name="DropCreateUpdateDatabase" depends="DropCreateUpdateDatabase"/>
+    
+    <target name="InitEnviroment" description="Copy parameters">
+        <exec executable="cp" failonerror="true">
+            <arg path="app/config/parameters.template.yml" />
+            <arg path="app/config/parameters.yml" />
+        </exec>
+        <exec executable="wget" failonerror="true">
+            <arg value="-nc" />
+            <arg value="http://getcomposer.org/composer.phar" />
+        </exec>
+    </target>
     
     <target name="Dependencies" description="Install Dependencies">
         <exec executable="php">
