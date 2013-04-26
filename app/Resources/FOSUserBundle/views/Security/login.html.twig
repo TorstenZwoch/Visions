@@ -2,9 +2,12 @@
 
 {% block title %}Login{% endblock title  %}
 
-{% stylesheets '../app/Resources/FOSUserBundle/public/css/login.css' %}
-<link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
-{% endstylesheets %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '../app/Resources/FOSUserBundle/public/css/login.css'  %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet"  />
+    {% endstylesheets %}
+{% endblock %}
 
 {% block fos_user_content %}
 {% if error %}
