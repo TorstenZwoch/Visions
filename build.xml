@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="name-of-project" default="">
+    <target name="Dependencies" depends="DropCreateUpdateDatabase"/>
+ 
+    <target name="DropCreateUpdateDatabase" depends="DropCreateUpdateDatabase"/>
+    
+    <target name="Dependencies" description="Install Dependencies">
+        <exec executable="php">
+            <arg value="composer.phar" />
+            <arg value="install" />
+        </exec>      
+    </target>
+    
+    <target name="DropCreateUpdateDatabase" description="Drop, Create and Update Database">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="doctrine:database:drop" />
+            <arg value="-n" />
+            <arg value="--force" />
+        </exec>
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="doctrine:database:create" />
+            <arg value="-n" />
+        </exec>
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="doctrine:schema:update" />
+            <arg value="-n" />
+            <arg value="--complete" />
+            <arg value="--force" />
+        </exec>
+    </target>
+</project>
