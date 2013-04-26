@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="name-of-project" default="">
     
-    <target name="InitEnviroment" depends="Initialize Enviroment"/>
-    <target name="Dependencies" depends="Dependencies, DropCreateUpdateDatabase"/>
+    <target name="InitEnviroment" depends="CopyParameters, GetComposer"/>
+    <target name="InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
+    <target name="UpdateDependencies" depends="ComposerUpdate, UpdateDatabase"/>
     <target name="DropCreateUpdateDatabase" depends="DropCreateUpdateDatabase"/>
     
-    <target name="InitEnviroment" description="Copy parameters">
+    <target name="CopyParameters" description="Copy Parameters">
         <exec executable="cp" failonerror="true">
             <arg path="app/config/parameters.template.yml" />
             <arg path="app/config/parameters.yml" />
         </exec>
+    </target>
+    
+    <target name="GetComposer" description="Get Composer">
         <exec executable="wget" failonerror="true">
             <arg value="-nc" />
             <arg value="http://getcomposer.org/composer.phar" />
         </exec>
     </target>
     
-    <target name="Dependencies" description="Install Dependencies">
+    <target name="ComposerInstall" description="Install Dependencies">
         <exec executable="php">
             <arg value="composer.phar" />
             <arg value="install" />
+        </exec>      
+    </target>
+    
+    <target name="ComposerUpdate" description="Update Dependencies">
+        <exec executable="php">
+            <arg value="composer.phar" />
+            <arg value="update" />
         </exec>      
     </target>
     
@@ -35,6 +46,16 @@
             <arg value="doctrine:database:create" />
             <arg value="-n" />
         </exec>
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="doctrine:schema:update" />
+            <arg value="-n" />
+            <arg value="--complete" />
+            <arg value="--force" />
+        </exec>
+    </target>
+    
+    <target name="UpdateDatabase" description="Update Database">
         <exec executable="php">
             <arg value="app/console" />
             <arg value="doctrine:schema:update" />
