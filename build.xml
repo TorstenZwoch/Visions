@@ -8,10 +8,7 @@
     <target name="UpdateDependencies" depends="ComposerUpdate, UpdateFieldsInDatabase"/>
     
     <target name="CopyParameters" description="Copy Parameters">
-        <exec executable="cp" failonerror="true">
-            <arg path="app/config/parameters.template.yml" />
-            <arg path="app/config/parameters.yml" />
-        </exec>
+        <copy file="app/config/parameters.template.yml" tofile="app/config/parameters.yml"/>
     </target>
     
     <target name="GetComposer" description="Get Composer">
@@ -36,8 +33,8 @@
     </target>
     
     <target name="DropCreateUpdateDatabase" description="Drop, Create and Update Database">
-       <echo message="DB löschen" level="info" />
-       <exec executable="php">
+        <echo message="DB löschen" level="info" />
+        <exec executable="php">
             <arg value="app/console" />
             <arg value="doctrine:database:drop" />
             <arg value="-n" />
