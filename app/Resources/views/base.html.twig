@@ -1,11 +1,17 @@
 {# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Bootstrap -->
         <title>{% block title %}Welcome!{% endblock %} | Libetto</title>
-        
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
         {% block stylesheets %}
             {% stylesheets
               filter='cssrewrite,yui_css'
@@ -13,24 +19,110 @@
               combine=true
               '../app/Resources/public/css/bootstrap.min.css' 
               '../app/Resources/public/css/bootstrap-responsive.min.css' 
+              '../app/Resources/public/css/font-awesome.min.css'
+              '../app/Resources/public/css/bootswatch.css'
             %}
-                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+
+    <body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="0">
+                <div class="container">
+
+                    <!-- Navbar
+                    ================================================== -->
+                    <!--<section id="navbar">-->
+                        <div class="navbar navbar-inverse">
+                            <div class="navbar-inner">
+                                <div class="container" style="width: auto;">
+                                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </a>
+                                    <a class="brand" href="#">Project name</a>
+                                    <div class="nav-collapse">
+                                        <ul class="nav">
+                                            <li class="active"><a href="#">Home</a></li>
+                                            <li><a href="#">Link</a></li>
+                                            <li><a href="#">Link</a></li>
+                                            <li><a href="#">Link</a></li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <form class="navbar-search pull-left" action="">
+                                            <input type="text" class="search-query span2" placeholder="Search">
+                                        </form>
+                                        <ul class="nav pull-right">
+                                            <li><a href="#">Link</a></li>
+                                            <li class="divider-vertical"></li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div><!-- /.nav-collapse -->
+                                </div>
+                            </div><!-- /navbar-inner -->
+                        </div><!-- /navbar -->
+
+                    <!--</section>-->
+
         {% block body %}{% endblock %}
+                    
+                    <br><br><br><br>
+
+                    <!-- Footer
+                     ================================================== -->
+                    <hr>
+
+                    <footer id="footer">
+                        <p class="pull-right"><a href="#top">Back to top</a></p>
+                        <div class="links">
+                            <a href="">Link 1</a>
+                            <a href="">Link 2</a>
+                            <a href="">Link 3</a>
+                            </div>
+                            test
+                            </p>
+                        </footer>
+
+                    </div><!-- /container -->
+
+
+
+                    <!-- javascript
+                    ================================================== -->
             {% javascripts 
               filter='yui_js'
               output='js/main.js'
               combine=true
               "../app/Resources/public/js/jquery.min.js" 
+              "../app/Resources/public/js/jquery.smooth-scroll.min.js"
               "../app/Resources/public/js/bootstrap.min.js" 
+              "../app/Resources/public/js/bootswatch.js"
               "../app/Resources/public/js/angular.min.js"
             %}
-            <script src="{{ asset_url }}" type="text/javascript"></script>
+                    <script src="{{ asset_url }}" type="text/javascript"></script>
             {% endjavascripts %}
-    </body>
-</html>
+
+
+                </body>
+            </html>

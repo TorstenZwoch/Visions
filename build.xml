@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="name-of-project" default="">
+<project name="Libetto" default="">
     
-    <target name="InitEnviroment" depends="CopyParameters, GetComposer"/>
-    <target name="InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
-    <target name="UpdateDependencies" depends="ComposerUpdate, UpdateDatabase"/>
-    <target name="DropCreateUpdateDatabase" depends="DropCreateUpdateDatabase"/>
+    <target name="1_InitEnviroment" depends="CopyParameters, GetComposer"/>
+    <target name="2_InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
+
+    <target name="UpdateDependencies" depends="ComposerUpdate, UpdateFieldsInDatabase"/>
     
     <target name="CopyParameters" description="Copy Parameters">
         <exec executable="cp" failonerror="true">
@@ -35,17 +35,20 @@
     </target>
     
     <target name="DropCreateUpdateDatabase" description="Drop, Create and Update Database">
-        <exec executable="php">
+       <echo message="DB löschen" level="info" />
+       <exec executable="php">
             <arg value="app/console" />
             <arg value="doctrine:database:drop" />
             <arg value="-n" />
             <arg value="--force" />
         </exec>
+        <echo message="DB erstellen" level="info" />
         <exec executable="php">
             <arg value="app/console" />
             <arg value="doctrine:database:create" />
             <arg value="-n" />
         </exec>
+        <echo message="Update Schema" level="info" />
         <exec executable="php">
             <arg value="app/console" />
             <arg value="doctrine:schema:update" />
@@ -55,7 +58,7 @@
         </exec>
     </target>
     
-    <target name="UpdateDatabase" description="Update Database">
+    <target name="UpdateFieldsInDatabase" description="Update fields in Database">
         <exec executable="php">
             <arg value="app/console" />
             <arg value="doctrine:schema:update" />
@@ -65,3 +68,4 @@
         </exec>
     </target>
 </project>
+
