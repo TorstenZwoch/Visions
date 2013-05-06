@@ -3,6 +3,7 @@
     
     <target name="1_InitEnviroment" depends="CopyParameters, GetComposer"/>
     <target name="2_InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
+    <target name="2_InstallDependenciesWithUser" depends="ComposerInstall, DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser"/>
 
     <target name="UpdateDependencies" depends="ComposerUpdate, UpdateFieldsInDatabase"/>
     
@@ -65,6 +66,27 @@
             <arg value="-n" />
             <arg value="--complete" />
             <arg value="--force" />
+        </exec>
+    </target>
+    
+    <target name="CreateDemoUser" description="Create a Demouser">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="fos:user:create" />
+            <arg value="demo" />
+            <arg value="test@example.com" />
+            <arg value="demo" />
+        </exec>
+    </target>
+    
+    <target name="CreateAdminUser" description="Create a Adminuser">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="fos:user:create" />
+            <arg value="--super-admin" />
+            <arg value="admin" />
+            <arg value="admin@example.com" />
+            <arg value="admin" />
         </exec>
     </target>
 </project>

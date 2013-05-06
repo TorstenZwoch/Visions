@@ -11,16 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-class User extends BaseUser
-{
+class User extends BaseUser {
     /**
+     * @ORM\Column(type="guid", nullable=false)
      * @ORM\Id
-     * @ORM\Column(type="guid")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         // your own logic
     }
@@ -28,10 +27,10 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return guid 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
+
 }

@@ -1,6 +1,6 @@
 {# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Bootstrap -->
@@ -43,7 +43,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </a>
-                                    <a class="brand" href="#">Project name</a>
+                                    <a class="brand" href="#">Libetto</a>
                                     <div class="nav-collapse">
                                         <ul class="nav">
                                             <li class="active"><a href="#">Home</a></li>
@@ -68,13 +68,14 @@
                                             <li><a href="#">Link</a></li>
                                             <li class="divider-vertical"></li>
                                             <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mein Konto <b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Another action</a></li>
-                                                    <li><a href="#">Something else here</a></li>
+                                                    <li><a href="{{ path('fos_user_registration_register') }}">Registrierung</a></li>
+                                                    <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                                                    <li><a href="{{ path('fos_user_profile_edit') }}">Profil bearbeiten</a></li>
+                                                    <li><a href="{{ path('fos_user_profile_show') }}">Profil anzeigen</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a></li>
+                                                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                                                 </ul>
                                             </li>
                                         </ul>

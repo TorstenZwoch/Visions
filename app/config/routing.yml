@@ -1,27 +1,14 @@
+_welcome:
+    pattern:   /
+    defaults:  { _controller: FOSUserBundle:Security:login }
+
+
 libetto_user:
     resource: "@LibettoUserBundle/Controller/"
     type:     annotation
     prefix:   /
 
-#m_user:
-#    resource: "@MUserBundle/Controller/"
-#    type:     annotation
-#    prefix:   /m
-#
-#m_company:
-#    resource: "@MCompanyBundle/Controller/"
-#    type:     annotation
-#    prefix:   /m
-#
-#m_customer:
-#    resource: "@MCustomerBundle/Controller/"
-#    type:     annotation
-#    prefix:   /m
-#
-#m_product:
-#    resource: "@MProductBundle/Controller/"
-#    type:     annotation
-#    prefix:   /m
+
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

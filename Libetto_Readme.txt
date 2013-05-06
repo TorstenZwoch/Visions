@@ -13,9 +13,18 @@ Composer heruntergeladen. Im Anschluss muss, bevor der 2. Task gestartet wird,
 in der parameters.yml die Datenbankverbindung für den eigenen PC angepasst 
 werden.
 
-Task 2: 2_InstallDependencies
+Task 2: 2_InstallDependencies oder 2_InstallDependenciesWithUser
 In diesem Task werden die benötigten Symfony Bundles heruntergeladen und die 
-Datenbank eingerichtet.
+Datenbank eingerichtet. Auf Wunsch können auch direkt die folgenden zwei Benutzer
+mit angelegt werden.
+
+Benutzername: admin
+Passwort: admin
+Benutzergruppe: ROLE_SUPER_ADMIN
+
+Benutzername: demo
+Passwort: demo
+Benutzergruppe: (keine)
 
 Hiernach sollte die Applikation über die folgende URL erreichbar sein.
 http://localhost/path/to/your/project/web/app_dev.php (Demo-Seite)
