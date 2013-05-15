@@ -22,3 +22,4 @@ web/images/*
 web/js/*
 web/media/cache/*
 *~
+/php-cs-fixer.phar
