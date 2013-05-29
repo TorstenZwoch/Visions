@@ -1,16 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Libetto" default="">
     
-    <target name="1_InitEnviroment" depends="CopyParameters, GetComposer"/>
+    <target name="1_InitEnviroment" depends="CopyParameters, GetComposer, GetPHP-CS-Fixer"/>
     <target name="2_InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
     <target name="2_InstallDependenciesWithUser" depends="ComposerInstall, DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser"/>
 
     <target name="UpdateDependencies" depends="ComposerUpdate, UpdateFieldsInDatabase"/>
     
+    
+    <!-- Symfony Config -->
     <target name="CopyParameters" description="Copy Parameters">
         <copy file="app/config/parameters.template.yml" tofile="app/config/parameters.yml"/>
     </target>
     
+    
+    <!-- PHP-CS-Fixer -->
+    <target name="GetPHP-CS-Fixer" description="Get PHP CS Fixer from sensiolabs">
+        <exec executable="wget" failonerror="true">
+            <arg value="-nc" />
+            <arg value="http://cs.sensiolabs.org/get/php-cs-fixer.phar" />
+        </exec>
+    </target>
+    
+    <target name="UpdatePHP-CS-Fixer" description="Update PHP CS Fixer itself from sensiolabs">
+        <exec executable="php" failonerror="true">
+            <arg value="php-cs-fixer.phar" />
+            <arg value="self-update" />
+        </exec>
+    </target>
+    
+    <target name="RunPHP-CS-Fixer_psr0" description="Run PHP-CS-Fixer with psr0-Level">
+        <exec executable="php" failonerror="true">
+            <arg value="php-cs-fixer.phar" />
+            <arg value="fix" />
+            <arg value="${basedir}\src\Libetto" />
+            <arg value="--level=psr0" />
+        </exec>
+    </target>
+    
+    <target name="RunPHP-CS-Fixer_psr1" description="Run PHP-CS-Fixer with psr1-Level">
+        <exec executable="php" failonerror="true">
+            <arg value="php-cs-fixer.phar" />
+            <arg value="fix" />
+            <arg value="${basedir}\src\Libetto" />
+            <arg value="--level=psr1" />
+        </exec>
+    </target>
+    
+    <target name="RunPHP-CS-Fixer_psr2" description="Run PHP-CS-Fixer with psr2-Level">
+        <exec executable="php" failonerror="true">
+            <arg value="php-cs-fixer.phar" />
+            <arg value="fix" />
+            <arg value="${basedir}\src\Libetto" />
+            <arg value="--level=psr2" />
+        </exec>
+    </target>
+    
+    <target name="RunPHP-CS-Fixer_all" description="Run PHP-CS-Fixer with all (psr0, psr2 and psr2)">
+        <exec executable="php" failonerror="true">
+            <arg value="php-cs-fixer.phar" />
+            <arg value="fix" />
+            <arg value="${basedir}\src\Libetto" />
+            <arg value="--level=all" />
+        </exec>
+    </target>
+    
+    <target name="RunPHP-CS-Fixer_dry-run" description="Run PHP-CS-Fixer with dry-run and without any changes">
+        <exec executable="php" failonerror="true">
+            <arg value="php-cs-fixer.phar" />
+            <arg value="fix" />
+            <arg value="${basedir}\src\Libetto" />
+            <arg value="--dry-run" />
+        </exec>
+    </target>
+
+    
+    
+    <!-- Composer -->
     <target name="GetComposer" description="Get Composer">
         <exec executable="wget" failonerror="true">
             <arg value="-nc" />
@@ -32,6 +98,8 @@
         </exec>      
     </target>
     
+    
+    <!-- Database -->
     <target name="DropCreateUpdateDatabase" description="Drop, Create and Update Database">
         <echo message="DB löschen" level="info" />
         <exec executable="php">
@@ -87,4 +155,3 @@
         </exec>
     </target>
 </project>
-

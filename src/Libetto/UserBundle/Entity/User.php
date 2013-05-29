@@ -7,11 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
- * 
+ *
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-class User extends BaseUser {
+class User extends BaseUser
+{
     /**
      * @ORM\Column(type="guid", nullable=false, length=36)
      * @ORM\Id
@@ -19,7 +20,8 @@ class User extends BaseUser {
      */
     protected $id;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         // your own logic
     }
@@ -27,9 +29,10 @@ class User extends BaseUser {
     /**
      * Get id
      *
-     * @return guid 
+     * @return guid
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
