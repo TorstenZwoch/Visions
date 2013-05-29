@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Libetto-Maintenance{% endblock %}
+
+{% block body %}
+<form action="{{ path('master_edit') }}" method="post" {{ form_enctype(form) }} >
+        {{ form_errors(form) }}
+
+        {{ form_row(form.tablename) }}
+        {{ form_row(form.fieldname) }}
+        {{ form_row(form.type) }}
+        {{ form_row(form.isunique) }}
+        {{ form_row(form.isindex) }}
+        {{ form_row(form.orderid) }}
+
+        {{ form_rest(form) }}
+
+        <button type="button" class="btn-warning" onclick="location.href='{{ path('master_list') }}'">Abbrechen</button>
+        <input type="submit" value="Submit" class="btn-success" />
+    </form>
+
+
+{% endblock %}

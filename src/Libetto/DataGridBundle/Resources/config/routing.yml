@@ -1,0 +1,3 @@
+libetto_data_grid_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: LibettoDataGridBundle:Default:index }
