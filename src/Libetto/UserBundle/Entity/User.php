@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends BaseUser
 {
     /**
-     * @ORM\Column(type="guid", nullable=false)
+     * @ORM\Column(type="guid", nullable=false, length=36)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      */

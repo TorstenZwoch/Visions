@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Maintenance{% endblock %}
+
+{% block body %}
+    <h2>Verwaltung</h2>
+
+   <button class="btn btn-primary" type="button" onclick="location.href ='{{ path('master_list') }}' ">Master Tabelle</button>
+{% endblock %}

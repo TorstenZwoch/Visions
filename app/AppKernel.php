@@ -15,12 +15,16 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new APY\DataGridBundle\APYDataGridBundle(),
             new Libetto\UserBundle\LibettoUserBundle(),
+            new Libetto\MaintenanceBundle\LibettoMaintenanceBundle(),
+            new Libetto\CoreBundle\LibettoCoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

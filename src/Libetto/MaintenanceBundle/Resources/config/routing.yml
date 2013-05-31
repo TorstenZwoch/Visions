@@ -1,0 +1,15 @@
+libetto_maintenance_homepage:
+    pattern:  /
+    defaults: { _controller: LibettoMaintenanceBundle:Default:index }
+
+master_list:
+    pattern: /master/list
+    defaults: { _controller: LibettoMaintenanceBundle:Master:list }
+
+master_edit:
+    pattern: /master/edit/{id}
+    defaults: { _controller: LibettoMaintenanceBundle:Master:edit,id:null }
+
+master_refresh:
+    pattern: /master/refresh
+    defaults: { _controller: LibettoMaintenanceBundle:Master:refresh }
