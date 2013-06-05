@@ -154,4 +154,19 @@
             <arg value="admin" />
         </exec>
     </target>
+    
+    <target name="GenerateComposerPackage" description="Generate Composer Package">
+        <exec executable="php">
+            <arg value="composer.phar" />
+            <arg value="create-project" />
+            <arg value="composer/satis" />
+            <arg value="--stability=dev" />
+        </exec>
+        <exec executable="php">
+            <arg value="satis/bin/satis" />
+            <arg value="build" />
+            <arg value="satis.json" />
+            <arg value="./" />
+        </exec>
+    </target>
 </project>

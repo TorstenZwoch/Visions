@@ -1,0 +1,11 @@
+{
+    "name": "Libetto",
+    "homepage": "http://192.168.18.220:8090",
+    "repositories": [
+        {"packagist": false},
+        {"type": "git", "url": "http://composer:composer@192.168.18.220:8090/scm/git/Libetto"}
+    ],
+    "require": {
+        "Libetto": "dev-master"
+        }
+}
