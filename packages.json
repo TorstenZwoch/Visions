@@ -1,8 +1,8 @@
 {
     "packages": {
-        "libetto": {
+        "Libetto": {
             "1.0.0": {
-                "name": "libetto",
+                "name": "Libetto",
                 "version": "1.0.0",
                 "version_normalized": "1.0.0.0",
                 "source": {
@@ -40,7 +40,7 @@
                 },
                 "autoload": {
                     "psr-0": {
-                        "libetto": "src/"
+                        "Libetto": "src/"
                     }
                 },
                 "scripts": {
@@ -60,7 +60,7 @@
                 "description": "The \"Symfony Standard Edition\" distribution"
             },
             "dev-master": {
-                "name": "libetto",
+                "name": "Libetto",
                 "version": "dev-master",
                 "version_normalized": "9999999-dev",
                 "source": {
@@ -98,7 +98,7 @@
                 },
                 "autoload": {
                     "psr-0": {
-                        "libetto": "src/"
+                        "Libetto": "src/"
                     }
                 },
                 "scripts": {
