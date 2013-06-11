@@ -1,3 +1,7 @@
+libetto_contact:
+    resource: "@LibettoContactBundle/Resources/config/routing.yml"
+    prefix:   /contact/
+
 libetto_core:
     resource: "@LibettoCoreBundle/Resources/config/routing.yml"
     prefix:   /

@@ -7,8 +7,8 @@ master_list:
     defaults: { _controller: LibettoMaintenanceBundle:Master:list }
 
 master_edit:
-    pattern: /master/edit/{id}
-    defaults: { _controller: LibettoMaintenanceBundle:Master:edit,id:null }
+    pattern: /master/edit/{cId}
+    defaults: { _controller: LibettoMaintenanceBundle:Master:edit,cId:null }
 
 master_refresh:
     pattern: /master/refresh

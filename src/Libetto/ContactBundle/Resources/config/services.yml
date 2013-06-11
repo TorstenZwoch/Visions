@@ -1,0 +1,7 @@
+parameters:
+#    libetto_contact.example.class: Libetto\ContactBundle\Example
+
+services:
+#    libetto_contact.example:
+#        class: %libetto_contact.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

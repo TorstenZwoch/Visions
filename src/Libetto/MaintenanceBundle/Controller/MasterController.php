@@ -19,11 +19,11 @@ class MasterController extends Controller {
 
         $grid = $this->get('grid');
         $grid->setSource($source);
-        $grid->hideColumns(array('id'/* ,'creationDate','modifyDate','creationUser','modifyUser' */));
+        $grid->hideColumns(array('cId'/* ,'creationDate','modifyDate','creationUser','modifyUser' */));
         // Set the selector of the number of items per page
         $grid->setLimits(array(25, 50, 100));
         // Set the default order of the grid
-        $grid->setDefaultOrder('tablename', 'asc');
+        $grid->setDefaultOrder('cTableName', 'asc');
 
         
         $rowAction = new RowAction('Edit', 'master_edit');
@@ -40,35 +40,51 @@ class MasterController extends Controller {
         return $grid->getGridResponse('LibettoMaintenanceBundle:Master:list.html.twig');
     }
 
-    public function editAction($id = null) {
+    
+    public function editAction($cId = null) {
+       
         $em = $this->getDoctrine()->getManager();
-        if($id!=null){
-            
-            $masterTab = $em->getRepository('LibettoMaintenanceBundle:Master')->find($id);
+        if($cId!=null){
+            $masterTab = $em->getRepository('LibettoMaintenanceBundle:Master')->find($cId);
         }else{
             $masterTab = new Master(); //Entity
         }
+        $mt = new MasterType();
+        $mt->setBackUrl($this->generateUrl('master_list'));
+        $form = $this->createForm($mt, $masterTab);
         
-        $form = $this->createForm(new MasterType(), $masterTab);
-
         $request = $this->getRequest();
+        $form->handleRequest($request);
         
         if ($request->getMethod() == 'POST') {
-            
-            $form->bindRequest($request);
+           
+        //    $form->bindRequest($request);
             if ($form->isValid()) {
                
                
-                $masterTab->setTablename($this->cleanTablename($masterTab->getTablename()));
-                $masterTab->setFieldname($this->cleanTablename($masterTab->getFieldname()));
+                $masterTab->setCTableName($this->cleanTablename($masterTab->getCTablename()));
+                $masterTab->setCFieldName($this->cleanTablename($masterTab->getCFieldName()));
+                if( $form->get("cId")->getData()!= "" ){
+                    $masterTab->setCId($form->get("cId")->getData());
+                }
+                ##$this->get('session')->getFlashBag()->add('success', 'die ID aus der Form ist '. $masterTab->getCId());
+                
                 //Persiting to Database
                 //$em->persist($masterTab);
                 $em->merge($masterTab);
                 $em->flush();
+                
 
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
-                return $this->redirect($this->generateUrl('master_list'));
+                if ($form->get('btSaveExit')->isClicked() ) {
+                    return $this->redirect($this->generateUrl('master_list'));
+                }else{
+                   // $form->get("cOrderId")->setData($form->get("cOrderId")->getData()+1);
+                }
+                $this->get('session')->getFlashBag()->add('success', sprintf('Datensatz %s -> %s gespeichert!',
+                                                                                            $masterTab->getCTableName(),
+                                                                                            $masterTab->getCFieldName()));
             }
         }
 

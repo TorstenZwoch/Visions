@@ -18,37 +18,38 @@ abstract class BaseTable
      * @ORM\GeneratedValue(strategy="UUID")
      * 
      */
-    private $id;
+    private $cId;
 
     
      /**
+     * Conpany/Client ID
      * @ORM\Column(type="guid", nullable=false, length=36)
      * 
      */
-    private $client;
+    private $cComp;
 
     
     /**
      * @ORM\Column(type="datetime")
      */
-    private $creationDate;
+    private $cCreationDate;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $modifyDate;
+    private $cModifyDate;
     
      
     /**
      * @ORM\Column(type="guid", nullable=false, length=36)
      * 
      */
-    private $creationUser;
+    private $cCreationUser;
 
     /**
      * @ORM\Column(type="guid", nullable=false, length=36)
      */
-    private $modifyUser;
+    private $cModifyUser;
 
     /**
      * @ORM\Column(type="boolean")
@@ -57,145 +58,147 @@ abstract class BaseTable
     
     
      public function __construct() {
-        $this->setCreationDate(new \DateTime());
-        $this->setModifyDate(new \DateTime());
-        $this->setIsDeleted(false);
-        $this->setClient("");
-        $this->setModifyUser("");
-        $this->setCreationUser("");
+        $this->setCCreationDate(new \DateTime());
+        $this->setCModifyDate(new \DateTime());
+        $this->setCIsDeleted(false);
+        $this->setCClient("");
+        $this->setCModifyUser("");
+        $this->setCCreationUser("");
     }
     
     /**
      * @ORM\PreUpdate
      */
     public function setUpdatedValue() {
-        $this->setModifyDate(new \DateTime());
+        $this->setCModifyDate(new \DateTime());
     }
 
 
+  
+
     /**
-     * Get id
+     * Get cId
      *
      * @return guid 
      */
-    public function getId()
+    public function getCId()
     {
-        return $this->id;
+        return $this->cId;
     }
 
     /**
-     * Set client
+     * Set cComp
      *
-     * @param guid $client
+     * @param guid $cComp
      * @return BaseTable
      */
-    public function setClient($client)
+    public function setCComp($cComp)
     {
-        $this->client = $client;
+        $this->cComp = $cComp;
 
         return $this;
     }
 
     /**
-     * Get client
+     * Get cComp
      *
      * @return guid 
      */
-    public function getClient()
+    public function getCComp()
     {
-        return $this->client;
+        return $this->cComp;
     }
 
     /**
-     * Set creationDate
+     * Set cCreationDate
      *
-     * @param \DateTime $creationDate
+     * @param \datetimetz  $cCreationDate
      * @return BaseTable
      */
-    public function setCreationDate($creationDate)
+    public function setCCreationDate(\datetimetz  $cCreationDate)
     {
-        $this->creationDate = $creationDate;
+        $this->cCreationDate = $cCreationDate;
 
         return $this;
     }
 
     /**
-     * Get creationDate
+     * Get cCreationDate
+     *
+     * @return \datetimetz  
+     */
+    public function getCCreationDate()
+    {
+        return $this->cCreationDate;
+    }
+
+    /**
+     * Set cModifyDate
+     *
+     * @param \DateTime $cModifyDate
+     * @return BaseTable
+     */
+    public function setCModifyDate($cModifyDate)
+    {
+        $this->cModifyDate = $cModifyDate;
+
+        return $this;
+    }
+
+    /**
+     * Get cModifyDate
      *
      * @return \DateTime 
      */
-    public function getCreationDate()
+    public function getCModifyDate()
     {
-        return $this->creationDate;
+        return $this->cModifyDate;
     }
 
     /**
-     * Set modifyDate
+     * Set cCreationUser
      *
-     * @param \DateTime $modifyDate
+     * @param guid $cCreationUser
      * @return BaseTable
      */
-    public function setModifyDate($modifyDate)
+    public function setCCreationUser($cCreationUser)
     {
-        $this->modifyDate = $modifyDate;
+        $this->cCreationUser = $cCreationUser;
 
         return $this;
     }
 
     /**
-     * Get modifyDate
-     *
-     * @return \DateTime 
-     */
-    public function getModifyDate()
-    {
-        return $this->modifyDate;
-    }
-
-    /**
-     * Set creationUser
-     *
-     * @param guid $creationUser
-     * @return BaseTable
-     */
-    public function setCreationUser($creationUser)
-    {
-        $this->creationUser = $creationUser;
-
-        return $this;
-    }
-
-    /**
-     * Get creationUser
+     * Get cCreationUser
      *
      * @return guid 
      */
-    public function getCreationUser()
+    public function getCCreationUser()
     {
-        return $this->creationUser;
+        return $this->cCreationUser;
     }
 
     /**
-     * Set modifyUser
+     * Set cModifyUser
      *
-     * @param guid $modifyUser
+     * @param guid $cModifyUser
      * @return BaseTable
      */
-    public function setModifyUser($modifyUser)
+    public function setCModifyUser($cModifyUser)
     {
-        $this->modifyUser = $modifyUser;
+        $this->cModifyUser = $cModifyUser;
 
         return $this;
     }
 
     /**
-     * Get modifyUser
+     * Get cModifyUser
      *
      * @return guid 
      */
-    public function getModifyUser()
+    public function getCModifyUser()
     {
-        return $this->modifyUser;
+        return $this->cModifyUser;
     }
 
     /**
