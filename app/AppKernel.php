@@ -25,10 +25,10 @@ class AppKernel extends Kernel
             new Libetto\UserBundle\LibettoUserBundle(),
             new Libetto\MaintenanceBundle\LibettoMaintenanceBundle(),
             new Libetto\CoreBundle\LibettoCoreBundle(),
+            new Libetto\ContactBundle\LibettoContactBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

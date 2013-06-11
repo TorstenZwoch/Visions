@@ -1,17 +1,16 @@
 <?php
-
 namespace Libetto\MaintenanceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Master
+ * tMaster
  *
- * @ORM\Table()
+ * @ORM\Table(name="tMaster")
  * @ORM\Entity(repositoryClass="Libetto\MaintenanceBundle\Entity\MasterRepository")
  */
-class Master //extends \Libetto\CoreBundle\Entity\BaseTable
+class Master
 {
     /**
      *
@@ -34,12 +33,12 @@ class Master //extends \Libetto\CoreBundle\Entity\BaseTable
      * @ORM\GeneratedValue(strategy="UUID")
      * 
      */
-    private $id;
+    private $cId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tablename", type="string", length=255)
+     * @ORM\Column(name="cTableName", type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3",
@@ -47,214 +46,211 @@ class Master //extends \Libetto\CoreBundle\Entity\BaseTable
      *      minMessage="Your name must have at least {{ limit }} characters."
      * )
      */
-    private $tablename;
+    private $cTableName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fieldname", type="string", length=255)
+     * @ORM\Column(name="cFieldName", type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $fieldname;
+    private $cFieldName;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="type", type="string", length=64)
+     * @ORM\Column(name="cType", type="string", length=64)
      * @Assert\NotBlank()
      * 
      */
-    private $type;
+    private $cType;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="isindex", type="boolean")
+     * @ORM\Column(name="cIsIndex", type="boolean")
      */
-    private $isindex;
+    private $cIsIndex;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="isunique", type="boolean")
+     * @ORM\Column(name="tIsUnique", type="boolean")
      */
-    private $isunique;
+    private $cIsUnique;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="orderid", type="integer")
+     * @ORM\Column(name="cOrderId", type="integer")
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "1",
      *      max = "255"
      * )
      */
-    private $orderid;
+    private $cOrderId;
 
-    
 
     /**
-     * Get id
+     * Get cId
      *
-     * @return integer 
+     * @return guid 
      */
-    public function getId()
+    public function getCId()
     {
-        return $this->id;
+        return $this->cId;
     }
     
-    /**
+     /**
      * Set id
      *
      * @param guid $id
      * @return Master
      */
-    public function setId($id)
+    public function setCId($id)
     {
         if($id!=null && $id!=""){
-            $this->id = $id;
+            $this->cId = $id;
         }
     }
 
     /**
-     * Set tablename
+     * Set cTableName
      *
-     * @param string $tablename
+     * @param string $cTableName
      * @return Master
      */
-    public function setTablename($tablename)
+    public function setCTableName($cTableName)
     {
-        $this->tablename = $tablename;
+        $this->cTableName = strtolower($cTableName);
 
         return $this;
     }
 
     /**
-     * Get tablename
+     * Get cTableName
      *
      * @return string 
      */
-    public function getTablename()
+    public function getCTableName()
     {
-        return $this->tablename;
+        return $this->cTableName;
     }
 
     /**
-     * Set fieldname
+     * Set cFieldName
      *
-     * @param string $fieldname
+     * @param string $cFieldName
      * @return Master
      */
-    public function setFieldname($fieldname)
+    public function setCFieldName($cFieldName)
     {
-        $this->fieldname = $fieldname;
+        $this->cFieldName = $cFieldName;
 
         return $this;
     }
 
     /**
-     * Get fieldname
+     * Get cFieldName
      *
      * @return string 
      */
-    public function getFieldname()
+    public function getCFieldName()
     {
-        return $this->fieldname;
+        return $this->cFieldName;
     }
 
     /**
-     * Set type
+     * Set cType
      *
-     * @param integer $type
+     * @param string $cType
      * @return Master
      */
-    public function setType($type)
+    public function setCType($cType)
     {
-        $this->type = $type;
+        $this->cType = $cType;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get cType
      *
-     * @return integer 
+     * @return string 
      */
-    public function getType()
+    public function getCType()
     {
-        return $this->type;
+        return $this->cType;
     }
 
     /**
-     * Set isindex
+     * Set cIsIndex
      *
-     * @param integer $isindex
+     * @param boolean $cIsIndex
      * @return Master
      */
-    public function setIsindex($isindex)
+    public function setCIsIndex($cIsIndex)
     {
-        $this->isindex = $isindex;
+        $this->cIsIndex = $cIsIndex;
 
         return $this;
     }
 
     /**
-     * Get isindex
-     *
-     * @return integer 
-     */
-    public function getIsindex()
-    {
-        return $this->isindex;
-    }
-
-    /**
-     * Set isunique
-     *
-     * @param boolean $isunique
-     * @return Master
-     */
-    public function setIsunique($isunique)
-    {
-        $this->isunique = $isunique;
-
-        return $this;
-    }
-
-    /**
-     * Get isunique
+     * Get cIsIndex
      *
      * @return boolean 
      */
-    public function getIsunique()
+    public function getCIsIndex()
     {
-        return $this->isunique;
+        return $this->cIsIndex;
     }
 
     /**
-     * Set orderid
+     * Set cIsUnique
      *
-     * @param integer $orderid
+     * @param boolean $cIsUnique
      * @return Master
      */
-    public function setOrderid($orderid)
+    public function setCIsUnique($cIsUnique)
     {
-        $this->orderid = $orderid;
+        $this->cIsUnique = $cIsUnique;
 
         return $this;
     }
 
     /**
-     * Get orderid
+     * Get cIsUnique
+     *
+     * @return boolean 
+     */
+    public function getCIsUnique()
+    {
+        return $this->cIsUnique;
+    }
+
+    /**
+     * Set cOrderId
+     *
+     * @param integer $cOrderId
+     * @return Master
+     */
+    public function setCOrderId($cOrderId)
+    {
+        $this->cOrderId = $cOrderId;
+
+        return $this;
+    }
+
+    /**
+     * Get cOrderId
      *
      * @return integer 
      */
-    public function getOrderid()
+    public function getCOrderId()
     {
-        return $this->orderid;
+        return $this->cOrderId;
     }
-    
-    
-    
+   
 }
