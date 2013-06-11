@@ -1,16 +1,12 @@
 {# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" ng-app>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Bootstrap -->
         <title>{% block title %}Welcome!{% endblock %} | Libetto</title>
         <meta name="description" content="">
         <meta name="author" content="">
-
-        <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
 
         {% block stylesheets %}
             {% stylesheets
@@ -26,7 +22,7 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
-
+        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
@@ -66,7 +62,9 @@
                                 <input type="text" class="search-query span2" placeholder="Search">
                             </form>
                             <ul class="nav pull-right">
-                                <li><a href="#">Link</a></li>
+                                {% block nav_maintenance %}
+                                    <li><a href="#">Link</a></li>
+                                {% endblock %}
                                 <li class="divider-vertical"></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mein Konto <b class="caret"></b></a>
@@ -139,6 +137,7 @@
               "../app/Resources/public/js/angular.min.js"
             %}
             <script src="{{ asset_url }}" type="text/javascript"></script>
+        
             {% endjavascripts %}
 
 

@@ -110,9 +110,9 @@ class Master
      */
     public function setCId($id)
     {
-        if($id!=null && $id!=""){
+        #if($id!=null && $id!=""){
             $this->cId = $id;
-        }
+        #}
     }
 
     /**

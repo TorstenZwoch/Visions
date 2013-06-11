@@ -42,15 +42,16 @@ class MasterController extends Controller {
 
     
     public function editAction($cId = null) {
-       
+        $mt = new MasterType();
+        $mt->setBackUrl($this->generateUrl('master_list'));
         $em = $this->getDoctrine()->getManager();
         if($cId!=null){
             $masterTab = $em->getRepository('LibettoMaintenanceBundle:Master')->find($cId);
+            $mt->setIsNew(false);
         }else{
             $masterTab = new Master(); //Entity
         }
-        $mt = new MasterType();
-        $mt->setBackUrl($this->generateUrl('master_list'));
+        
         $form = $this->createForm($mt, $masterTab);
         
         $request = $this->getRequest();
@@ -63,7 +64,7 @@ class MasterController extends Controller {
                
                
                 $masterTab->setCTableName($this->cleanTablename($masterTab->getCTablename()));
-                $masterTab->setCFieldName($this->cleanTablename($masterTab->getCFieldName()));
+                $masterTab->setCFieldName($this->cleanFieldname($masterTab->getCFieldName()));
                 if( $form->get("cId")->getData()!= "" ){
                     $masterTab->setCId($form->get("cId")->getData());
                 }
@@ -79,8 +80,13 @@ class MasterController extends Controller {
                 // the form if they refresh the page
                 if ($form->get('btSaveExit')->isClicked() ) {
                     return $this->redirect($this->generateUrl('master_list'));
-                }else{
-                   // $form->get("cOrderId")->setData($form->get("cOrderId")->getData()+1);
+                }
+                if ($form->get('btSaveNew')->isClicked() ) {
+                   
+                   $mt->setIsNew(false);
+                   $masterTab->setCId(null);
+                   $masterTab->setCOrderId($masterTab->getCOrderId()+1);
+                   $form = $this->createForm($mt, $masterTab);
                 }
                 $this->get('session')->getFlashBag()->add('success', sprintf('Datensatz %s -> %s gespeichert!',
                                                                                             $masterTab->getCTableName(),
@@ -119,6 +125,11 @@ class MasterController extends Controller {
 
     private function cleanTablename($name){
         $name = strtolower($name);
+        $name = str_replace(" ","",$name);
+        return $name;
+    }
+    
+    private function cleanFieldname($name){
         $name = str_replace(" ","",$name);
         return $name;
     }
