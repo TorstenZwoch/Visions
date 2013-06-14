@@ -2,22 +2,14 @@
 
 namespace Libetto\MaintenanceBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Libetto\MaintenanceBundle\Controller\MasterController;
 
-class MasterControllerTest extends WebTestCase
+class MasterControllerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testList()
-    {
-        $client = static::createClient();
+    public function testCleanTablename() {
+        $mc = new MasterController();
 
-        $crawler = $client->request('GET', '/list');
+        $this->assertEquals('helloworld', $mc->cleanTablename('Hello World'));
+        $this->assertEquals('adaywithsymfony2', $mc->cleanTablename('A Day With Symfony2'));
     }
-
-    public function testEdit()
-    {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/edit');
-    }
-
 }
