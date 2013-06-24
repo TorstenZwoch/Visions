@@ -18,6 +18,8 @@
               '../app/Resources/public/css/bootstrap-responsive.min.css' 
               '../app/Resources/public/css/font-awesome.min.css'
               '../app/Resources/public/css/bootswatch.css'
+              'bundles/bmatznerjqueryui/css/start/jquery-ui.css'
+              'bundles/bmatznerjqueryui/css/start/jquery.ui.theme.css'
             %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
@@ -130,11 +132,11 @@
               output='js/main.js'
               combine=true
               debug=false
-              "../app/Resources/public/js/jquery.min.js" 
-              "../app/Resources/public/js/jquery.smooth-scroll.min.js"
+              "bundles/bmatznerjquery/js/jquery.min.js" 
+              "bundles/bmatznerjqueryui/js/minified/jquery-ui.min.js"
               "../app/Resources/public/js/bootstrap.min.js" 
               "../app/Resources/public/js/bootswatch.js"
-              "../app/Resources/public/js/angular.min.js"
+              
             %}
             <script src="{{ asset_url }}" type="text/javascript"></script>
         

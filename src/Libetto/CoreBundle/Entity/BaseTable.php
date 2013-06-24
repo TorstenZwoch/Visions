@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class BaseTable
 {
     /**
-     * @ORM\Column(type="guid", nullable=false, length=36)
+     * @ORM\Column(type="gcReuid", nullable=false, length=36)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      * 
@@ -30,12 +30,12 @@ abstract class BaseTable
 
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetimetz")
      */
     private $cCreationDate;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetimetz")
      */
     private $cModifyDate;
     
@@ -54,12 +54,12 @@ abstract class BaseTable
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDeleted;
+    private $deleted;
     
     
      public function __construct() {
-        $this->setCCreationDate(new \DateTime());
-        $this->setCModifyDate(new \DateTime());
+        $this->setCCreationDate(new \DateTimeZone());
+        $this->setCModifyDate(new \DateTimeZone());
         $this->setCIsDeleted(false);
         $this->setCClient("");
         $this->setCModifyUser("");
@@ -112,10 +112,10 @@ abstract class BaseTable
     /**
      * Set cCreationDate
      *
-     * @param \datetimetz  $cCreationDate
+     * @param \DateTimeZone  $cCreationDate
      * @return BaseTable
      */
-    public function setCCreationDate(\datetimetz  $cCreationDate)
+    public function setCCreationDate(\DateTimeZone  $cCreationDate)
     {
         $this->cCreationDate = $cCreationDate;
 
@@ -125,7 +125,7 @@ abstract class BaseTable
     /**
      * Get cCreationDate
      *
-     * @return \datetimetz  
+     * @return \DateTimeZone  
      */
     public function getCCreationDate()
     {

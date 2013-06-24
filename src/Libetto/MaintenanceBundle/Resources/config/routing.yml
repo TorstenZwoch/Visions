@@ -10,6 +10,14 @@ master_edit:
     pattern: /master/edit/{cId}
     defaults: { _controller: LibettoMaintenanceBundle:Master:edit,cId:null }
 
+master_delete:
+    pattern: /master/delete/{cId}
+    defaults: { _controller: LibettoMaintenanceBundle:Master:delete }
+
+master_import:
+    pattern: /master/import
+    defaults: { _controller: LibettoMaintenanceBundle:Master:import }
+
 master_refresh:
     pattern: /master/refresh
     defaults: { _controller: LibettoMaintenanceBundle:Master:refresh }
