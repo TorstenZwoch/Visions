@@ -5,12 +5,9 @@ namespace Libetto\MaintenanceBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Libetto\MaintenanceBundle\Entity\Master;
 use Libetto\MaintenanceBundle\Form\MasterType;
-
 use Libetto\MaintenanceBundle\Grid\Export\XMLExport;
 use Libetto\MaintenanceBundle\Grid\Export\EXPExport;
-
 use Doctrine\ORM\Query\ResultSetMapping;
-
 use APY\DataGridBundle\Grid\Source\Entity;
 //use APY\DataGridBundle\Grid\Export\XMLExport;
 use APY\DataGridBundle\Grid\Export\ExcelExport;
@@ -37,13 +34,14 @@ class MasterController extends Controller {
         //Grid holen
         $grid = $this->get('grid');
 
+
         //Quelle setzen
         $grid->setSource($source);
 
         //Palten für die Anzeige ausblenden
         $grid->hideColumns(array('cId'/* ,'creationDate','modifyDate','creationUser','modifyUser' */));
         // Set the selector of the number of items per page
-        $grid->setLimits(array(10,25, 50, 100));
+        $grid->setLimits(array(10, 25, 50, 100));
         // Set the default order of the grid
         $grid->setDefaultOrder('cTableName', 'asc');
 
@@ -60,7 +58,6 @@ class MasterController extends Controller {
         // Set the default page
         $grid->setPage(1);
         //Exporte setzen
-
         #$grid->addExport(new XMLExport('XML Export', "master"));
         #$grid->addExport(new ExcelExport('Excel Export', "master"));
         $grid->addExport(new EXPExport('EXP Export', "master"));
@@ -75,6 +72,10 @@ class MasterController extends Controller {
      * @return type
      */
     public function editAction($cId = null) {
+
+        ## $upload = $this->get('file_upload');
+        ##var_dump($upload->getName());
+
         $mt = new MasterType();
         $mt->setBackUrl($this->generateUrl('master_list'));
         $em = $this->getDoctrine()->getManager();
@@ -156,28 +157,28 @@ class MasterController extends Controller {
     public function refreshAction() {
         //Create the data structure according the master table definition
         $this->createDataStructure($this->getMasterDefinition());
-        return $this->render('LibettoMaintenanceBundle:Master:refresh.html.twig');
+        return $this->redirect($this->generateUrl('master_list'));
     }
 
     /**
      * EXP-Datei importieren
      */
-    public function importAction(){
+    public function importAction() {
         
     }
-    
+
     private function getMasterDefinition() {
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
         $qb->add('select', 'm')
                 ->add('from', 'LibettoMaintenanceBundle:Master m')
-                ->add('orderBy', 'm.tablename,m.orderid ');
+                ->add('orderBy', 'm.cTableName,m.cOrderId ');
 
         $query = $qb->getQuery();
         $array = $query->getArrayResult();
         $data = array();
         foreach ($array as $row) {
-            $data[$row['tablename']][$row['orderid']] = $row;
+            $data[$row['cTableName']][$row['cOrderId']] = $row;
         }
         unset($array);
         unset($query);
@@ -214,13 +215,17 @@ class MasterController extends Controller {
     private function createDataStructure($data) {
         $em = $this->getDoctrine()->getManager();
 
-        $this->checkTable("master", $em);
+        $this->checkTable("tmaster", $em);
         if (is_array($data) && count($data) > 0) {
             foreach ($data as $tablename => $rows) {
-                if ($this->checkTable($tablename, $em) === false) { //table does not exist
-                    $sql = $this->getCreateStatement($tablename, $rows, $this->container->getParameter('database_driver'));
-                    $stmt = $em->getConnection()->prepare($sql);
-                    $stmt->execute();
+                try {
+                    if ($this->checkTable($tablename, $em) === false) { //table does not exist
+                        $sql = $this->getCreateStatement($tablename, $rows, $this->container->getParameter('database_driver'));
+                        $stmt = $em->getConnection()->prepare($sql);
+                        $stmt->execute();
+                    }
+                } catch (\Doctrine\DBAL\DBALException $e) {
+                    $this->get('session')->getFlashBag()->add('error', "Fehler beim Anlegen der Tabelle $tablename:".$e->getMessage());
                 }
             }
         }
@@ -239,12 +244,12 @@ class MasterController extends Controller {
         try {
             $stmt->execute();
             // $master = $stmt->fetchAll();
-            echo "$tablename exists<br>";
+            ## echo "$tablename exists<br>";
             $sm = $conn->getSchemaManager();
             $columns = $sm->listTableColumns($tablename);
-            foreach ($columns as $column) {
-                echo $column->getName() . ': ' . $column->getType() . "\n";
-            }
+            ##foreach ($columns as $column) {
+            ##    echo $column->getName() . ': ' . $column->getType() . "\n";
+            ##}
             return $columns;
         } catch (\Doctrine\DBAL\DBALException $e) {
             return false;
@@ -257,23 +262,23 @@ class MasterController extends Controller {
         $unique = array();
 
         foreach ($rows as $row) {
-            $str = $row['fieldname'] . " " . $this->getSQLType($row['type'], $db_driver) . "";
-            if (strtolower($row['fieldname']) == "id") {
+            $str = $row['cFieldName'] . " " . $this->getSQLType($row['cType'], $db_driver) . "";
+            if (strtolower($row['cFieldName']) == "id") {
                 $str .= " PRIMARY KEY ";
             } else {
                 $str .= " NULL ";
             }
             $cols[] = $str;
-            if ($row['isindex'] == '1') {
-                $keys[] = "KEY idx_" . $row['tablename'] . "_" . $row['fieldname'] . " (" . $row['fieldname'] . ")";
+            if ($row['cIsIndex'] == true) {
+                $keys[] = "KEY idx_" . $row['cTableName'] . "_" . $row['cFieldName'] . " (" . $row['cFieldName'] . ")";
             }
-            if ($row['isunique'] == '1') {
-                $unique[] = $row['fieldname'];
+            if ($row['cIsUnique'] == true) {
+                $unique[] = $row['cFieldName'];
             }
         }
 
         if (count($unique) > 0) {
-            $cols[] = "UNIQUE uidx_" . $row['tablename'] . "_" . implode("_", $unique) . " (" . implode(",", $unique) . ") ";
+            $cols[] = "UNIQUE uidx_" . $row['cTableName'] . "_" . implode("_", $unique) . " (" . implode(",", $unique) . ") ";
         }
 
         if (count($keys) > 0) {

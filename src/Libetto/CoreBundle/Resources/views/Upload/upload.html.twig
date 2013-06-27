@@ -1,7 +1,7 @@
-{% extends "::base.html.twig" %}
-
-{% block title %}LibettoCoreBundle:Upload:upload{% endblock %}
-
-{% block body %}
-<h1>Welcome to the Upload:upload page</h1>
+{% block upload %}
+<form action="{{ path('file_upload') }}" method="post" {{ form_enctype(form) }} class="form-horizontal well">
+        {{ form_errors(form) }}
+        {{ form_row(form.file) }}
+        
+ </form>
 {% endblock %}

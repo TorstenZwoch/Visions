@@ -21,3 +21,15 @@ master_import:
 master_refresh:
     pattern: /master/refresh
     defaults: { _controller: LibettoMaintenanceBundle:Master:refresh }
+
+testpage_ajax:
+    pattern: /test
+    defaults: { _controller: LibettoMaintenanceBundle:JQUITest:test }
+
+load_ajax:
+    pattern: /loadAjax
+    defaults: { _controller: LibettoMaintenanceBundle:JQUITest:loadAjax }
+
+load_ajax_mastertable:
+    pattern: /loadAjaxMaster
+    defaults: { _controller: LibettoMaintenanceBundle:JQUITest:loadAjaxMaster }

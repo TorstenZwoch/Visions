@@ -1,3 +1,0 @@
-file_upload:
-    pattern: /upload
-    defaults: { _controller: LibettoCoreBundle:Upload:upload }

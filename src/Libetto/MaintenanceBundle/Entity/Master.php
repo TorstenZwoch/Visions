@@ -16,13 +16,13 @@ class Master
      *
      * @var type Datentypen 
      */
-    public static $sqlDataTypes = array("STR64" => "STRING64",
-                                        "STR255" => "STRING255",
+    public static $sqlDataTypes = array("STR64" => "STR64",
+                                        "STR255" => "STR255",
                                         "TEXT" => "TEXT",
-                                        "BOOL" => "BOOLEAN",
-                                        "INT" => "INTEGER",
-                                        "DEC" => "DECIMAL",
-                                        "DATE" => "DATETIME",
+                                        "BOOL" => "BOOL",
+                                        "INT" => "INT",
+                                        "DEC" => "DEC",
+                                        "DATE" => "DATE",
                                         "KEY" => "KEY");
     
     
@@ -96,6 +96,7 @@ class Master
      */
     private $cOrderId;
 
+   
 
     /**
      * Get cId
