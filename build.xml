@@ -169,4 +169,41 @@
             <arg value="./" />
         </exec>
     </target>
+    
+    <target name="CacheWrite" description="Create a Adminuser">
+        <exec executable="sudo">
+            <arg value="setfacl" />
+            <arg value="-R" />
+            <arg value="-m" />
+            <arg value="u:_www:rwX" />
+            <arg value="-m" />
+            <arg value="u:`whoami`:rwX" />
+            <arg value="app/cache" />
+            <arg value="app/logs" />
+        </exec>
+        
+        <exec executable="sudo">
+            <arg value="setfacl" />
+            <arg value="-dR" />
+            <arg value="-m" />
+            <arg value="u:_www:rwX" />
+            <arg value="-m" />
+            <arg value="u:`whoami`:rwX" />
+            <arg value="app/cache" />
+            <arg value="app/logs" />
+        </exec>
+    </target>
+    
+    
+   <target name="Assetics" description="assetic">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="cache:clear" />
+        </exec>
+     
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="assetic:dump" />
+        </exec>           
+    </target>        
 </project>

@@ -17,11 +17,11 @@
               filter='cssrewrite,yui_css'
               output='css/main.css'
               combine=true
-              debug=false
-              '../app/Resources/public/css/bootstrap.min.css' 
+              '../app/Resources/public/css/bootstrap.css' 
               '../app/Resources/public/css/bootstrap-responsive.min.css' 
               '../app/Resources/public/css/font-awesome.min.css'
               '../app/Resources/public/css/bootswatch.css'
+              '../app/Resources/public/css/main.css'
             %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
@@ -44,42 +44,18 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="#">Libetto</a>
+                        <a class="brand" href="{{ app.request.getBaseURL() }}" title="Libetto" alt="Libetto">Libetto</a>
                         <div class="nav-collapse">
-                            <ul class="nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <form class="navbar-search pull-left" action="">
+                            <div class="nav-collapse collapse navbar-responsive-collapse pull-left">   
+                                {{ knp_menu_render('LibettoMaintenanceBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                            </div> 
+                            
+                            <div class="nav-collapse collapse navbar-responsive-collapse pull-right">   
+                                {{ knp_menu_render('LibettoUserBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                            </div>                                
+                            <form class="navbar-search pull-right" action="">
                                 <input type="text" class="search-query span2" placeholder="Search">
                             </form>
-                            <ul class="nav pull-right">
-                                <li><a href="#">Link</a></li>
-                                <li class="divider-vertical"></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mein Konto <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path('fos_user_registration_register') }}">Registrierung</a></li>
-                                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                                        <li><a href="{{ path('fos_user_profile_edit') }}">Profil bearbeiten</a></li>
-                                        <li><a href="{{ path('fos_user_profile_show') }}">Profil anzeigen</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </div><!-- /.nav-collapse -->
                     </div>
                 </div><!-- /navbar-inner -->
@@ -131,7 +107,6 @@
               filter='yui_js'
               output='js/main.js'
               combine=true
-              debug=false
               "../app/Resources/public/js/jquery.min.js" 
               "../app/Resources/public/js/jquery.smooth-scroll.min.js"
               "../app/Resources/public/js/bootstrap.min.js" 
