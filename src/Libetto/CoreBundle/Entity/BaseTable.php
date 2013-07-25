@@ -112,10 +112,10 @@ abstract class BaseTable
     /**
      * Set cCreationDate
      *
-     * @param \datetimetz  $cCreationDate
+     * @param datetimetz  $cCreationDate
      * @return BaseTable
      */
-    public function setCCreationDate(\datetimetz  $cCreationDate)
+    public function setCCreationDate($cCreationDate)
     {
         $this->cCreationDate = $cCreationDate;
 
@@ -125,7 +125,7 @@ abstract class BaseTable
     /**
      * Get cCreationDate
      *
-     * @return \datetimetz  
+     * @return datetimetz  
      */
     public function getCCreationDate()
     {
@@ -135,7 +135,7 @@ abstract class BaseTable
     /**
      * Set cModifyDate
      *
-     * @param \DateTime $cModifyDate
+     * @param datetimetz $cModifyDate
      * @return BaseTable
      */
     public function setCModifyDate($cModifyDate)
@@ -148,7 +148,7 @@ abstract class BaseTable
     /**
      * Get cModifyDate
      *
-     * @return \DateTime 
+     * @return datetimetz 
      */
     public function getCModifyDate()
     {

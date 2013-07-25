@@ -27,6 +27,7 @@ class AppKernel extends Kernel {
             new Libetto\ContactBundle\LibettoContactBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
+            new Libetto\CustomerBundle\LibettoCustomerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

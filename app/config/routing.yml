@@ -1,3 +1,8 @@
+libetto_customer:
+    resource: "@LibettoCustomerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 libetto_contact:
     resource: "@LibettoContactBundle/Resources/config/routing.yml"
     prefix:   /contact

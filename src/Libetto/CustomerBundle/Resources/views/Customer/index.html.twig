@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Customer list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Cid</th>
+                <th>Ccomp</th>
+                <th>Ccreationdate</th>
+                <th>Cmodifydate</th>
+                <th>Ccreationuser</th>
+                <th>Cmodifyuser</th>
+                <th>Isdeleted</th>
+                <th>Cnumber</th>
+                <th>Cinfo</th>
+                <th>Rcontactgroup</th>
+                <th>Rtermsofpayment</th>
+                <th>Rpricelist</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('customer_show', { 'id': entity.cId }) }}">{{ entity.cId }}</a></td>
+                <td>{{ entity.cComp }}</td>
+                <td>{% if entity.cCreationDate %}{{ entity.cCreationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.cModifyDate %}{{ entity.cModifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.cCreationUser }}</td>
+                <td>{{ entity.cModifyUser }}</td>
+                <td>{{ entity.isDeleted }}</td>
+                <td>{{ entity.cNumber }}</td>
+                <td>{{ entity.cInfo }}</td>
+                <td>{{ entity.rContactGroup }}</td>
+                <td>{{ entity.rTermsOfPayment }}</td>
+                <td>{{ entity.rPricelist }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('customer_show', { 'id': entity.cId }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('customer_edit', { 'id': entity.cId }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('customer_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

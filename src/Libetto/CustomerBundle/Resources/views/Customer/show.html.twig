@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Customer</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Cid</th>
+                <td>{{ entity.cId }}</td>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ entity.cComp }}</td>
+            </tr>
+            <tr>
+                <th>CreationDate</th>
+                <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>ModifyDate</th>
+                <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>CreationUser</th>
+                <td>{{ entity.cCreationUser }}</td>
+            </tr>
+            <tr>
+                <th>ModifyUser</th>
+                <td>{{ entity.cModifyUser }}</td>
+            </tr>
+            <tr>
+                <th>Deleted</th>
+                <td>{{ entity.isDeleted }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ entity.cNumber }}</td>
+            </tr>
+            <tr>
+                <th>Info</th>
+                <td>{{ entity.cInfo }}</td>
+            </tr>
+            <tr>
+                <th>ContactGroup</th>
+                <td>{{ entity.rContactGroup }}</td>
+            </tr>
+            <tr>
+                <th>Terms of Payment</th>
+                <td>{{ entity.rTermsOfPayment }}</td>
+            </tr>
+            <tr>
+                <th>Pricelist</th>
+                <td>{{ entity.rPricelist }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ entity.invoiceContact.cLanguage }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('customer') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('customer_edit', { 'id': entity.cId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('customer_delete', { 'id': entity.cId }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

@@ -4,6 +4,7 @@
     <target name="1_InitEnviroment" depends="CopyParameters, GetComposer, GetPHP-CS-Fixer"/>
     <target name="2_InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
     <target name="2_InstallDependenciesWithUser" depends="ComposerInstall, DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser"/>
+    <target name="3_UpdateDatabaseAndClearCache" depends="DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser, ClearCache"/>
 
     <target name="UpdateDependencies" depends="ComposerUpdate, UpdateFieldsInDatabase"/>
     
@@ -121,8 +122,15 @@
             <arg value="-n" />
             <arg value="--complete" />
             <arg value="--force" />
-        </exec>
+        </exec>      
     </target>
+    
+    <target name="ClearCache" description="Clear Symfony cache">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="cache:clear" />
+        </exec>        
+    </target>    
     
     <target name="UpdateFieldsInDatabase" description="Update fields in Database">
         <exec executable="php">
