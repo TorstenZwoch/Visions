@@ -6,58 +6,57 @@
     <table class="record_properties">
         <tbody>
             <tr>
-                <th>Cid</th>
-                <td>{{ entity.cId }}</td>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Company</th>
+                <th>Ccomp</th>
                 <td>{{ entity.cComp }}</td>
             </tr>
             <tr>
-                <th>CreationDate</th>
+                <th>Ccreationdate</th>
                 <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>ModifyDate</th>
+                <th>Cmodifydate</th>
                 <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>CreationUser</th>
+                <th>Ccreationuser</th>
                 <td>{{ entity.cCreationUser }}</td>
             </tr>
             <tr>
-                <th>ModifyUser</th>
+                <th>Cmodifyuser</th>
                 <td>{{ entity.cModifyUser }}</td>
             </tr>
             <tr>
-                <th>Deleted</th>
+                <th>Isdeleted</th>
                 <td>{{ entity.isDeleted }}</td>
             </tr>
             <tr>
-                <th>Number</th>
+                <th>Cnumber</th>
                 <td>{{ entity.cNumber }}</td>
             </tr>
             <tr>
-                <th>Info</th>
+                <th>Invoicecontact</th>
+                <td>{{ entity.invoiceContact.cLanguage }}</td>
+            </tr>
+            <tr>
+                <th>Cinfo</th>
                 <td>{{ entity.cInfo }}</td>
             </tr>
             <tr>
-                <th>ContactGroup</th>
+                <th>Rcontactgroup</th>
                 <td>{{ entity.rContactGroup }}</td>
             </tr>
             <tr>
-                <th>Terms of Payment</th>
+                <th>Rtermsofpayment</th>
                 <td>{{ entity.rTermsOfPayment }}</td>
             </tr>
             <tr>
-                <th>Pricelist</th>
+                <th>Rpricelist</th>
                 <td>{{ entity.rPricelist }}</td>
             </tr>
-            <tr>
-                <th>Contact</th>
-                <td>{{ entity.invoiceContact.cLanguage }}</td>
-            </tr>
-            
         </tbody>
     </table>
 
@@ -68,12 +67,12 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('customer_edit', { 'id': entity.cId }) }}">
+        <a href="{{ path('customer_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('customer_delete', { 'id': entity.cId }) }}" method="post">
+        <form action="{{ path('customer_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>

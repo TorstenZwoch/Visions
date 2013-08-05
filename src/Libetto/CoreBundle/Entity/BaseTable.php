@@ -13,16 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class BaseTable
 {
     /**
-     * @ORM\Column(type="guid", nullable=false, length=36)
+     * @ORM\Column(type="guid", nullable=false, length=36, name="cId")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      * 
      */
-    private $cId;
+    private $id;
 
     
      /**
-     * Conpany/Client ID
+     * Company/Client ID
      * @ORM\Column(type="guid", nullable=false, length=36)
      * 
      */
@@ -52,7 +52,7 @@ abstract class BaseTable
     private $cModifyUser;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=false, options={"default":false} )
      */
     private $isDeleted;
     
@@ -77,13 +77,13 @@ abstract class BaseTable
   
 
     /**
-     * Get cId
+     * Get id
      *
      * @return guid 
      */
-    public function getCId()
+    public function getId()
     {
-        return $this->cId;
+        return $this->id;
     }
 
     /**

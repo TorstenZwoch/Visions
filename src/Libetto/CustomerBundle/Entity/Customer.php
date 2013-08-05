@@ -4,6 +4,7 @@ namespace Libetto\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Libetto\CoreBundle\Entity\BaseTable as BASE;
+use Libetto\ContactBundle\Entity\Contact as Contact;
 
 /**
  * Customer
@@ -17,14 +18,22 @@ class Customer extends BASE
     /**
      * @var string
      *
-     * @ORM\Column(name="cNumber", type="string", length=255)
+     * @ORM\Column(name="cNumber", type="string", length=255, nullable=true)
      */
-    private $cNumber;
+    private $cNumber;        
     
     /**
-     * @var Contact
+     * @var guid
      *
-     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
+     * @ORM\Column(name="rInvoiceContact", type="guid",nullable=true, length=36)
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $rInvoiceContact;    
+    
+    /**
+     * @var Contact|null
+     * 
+     * @ORM\ManyToOne(targetEntity="Libetto\ContactBundle\Entity\Contact", inversedBy="customer")
      * @ORM\JoinColumn(name="rInvoiceContact", referencedColumnName="cId")
      */
     private $invoiceContact;  
@@ -39,23 +48,30 @@ class Customer extends BASE
     /**
      * @var guid
      *
-     * @ORM\Column(name="rContactGroup", type="guid")
+     * @ORM\Column(name="rContactGroup", type="guid",nullable=true, length=36)
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $rContactGroup;
 
     /**
      * @var guid
      *
-     * @ORM\Column(name="rTermsOfPayment", type="guid")
+     * @ORM\Column(name="rTermsOfPayment", type="guid",nullable=true, length=36)
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $rTermsOfPayment;
 
     /**
      * @var guid
      *
-     * @ORM\Column(name="rPricelist", type="guid")
+     * @ORM\Column(name="rPricelist", type="guid",nullable=true, length=36)
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $rPricelist;
+    
+    public function __construct()
+    {
+    }    
 
 
     /**
@@ -79,6 +95,29 @@ class Customer extends BASE
     public function getCNumber()
     {
         return $this->cNumber;
+    }
+
+    /**
+     * Set rInvoiceContact
+     *
+     * @param guid $rInvoiceContact
+     * @return Customer
+     */
+    public function setRInvoiceContact($rInvoiceContact)
+    {
+        $this->rInvoiceContact = $rInvoiceContact;
+    
+        return $this;
+    }
+
+    /**
+     * Get rInvoiceContact
+     *
+     * @return guid 
+     */
+    public function getRInvoiceContact()
+    {
+        return $this->rInvoiceContact;
     }
 
     /**
@@ -185,16 +224,14 @@ class Customer extends BASE
     
         return $this;
     }
-    
+
     /**
-     * Set invoiceContact
+     * Get invoiceContact
      *
-     * @param \Libetto\ContactBundle\Entity\Contact $invoiceContact
-     * @return Customer
+     * @return \Libetto\ContactBundle\Entity\Contact 
      */
     public function getInvoiceContact()
-    {    
+    {
         return $this->invoiceContact;
-    }    
-    
+    }
 }
