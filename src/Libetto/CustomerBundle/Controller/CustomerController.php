@@ -28,7 +28,6 @@ class CustomerController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LibettoCustomerBundle:Customer')->findAll();
-       
 
         return array(
             'entities' => $entities,
@@ -47,7 +46,7 @@ class CustomerController extends Controller {
         $form = $this->createForm(new CustomerType(), $entity);
         $form->bind($request);
 
-        if ($form->isValid()) { 
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->getConnection()->getConfiguration()->setSQLLogger($logger);
             $em->persist($entity);
@@ -121,7 +120,7 @@ class CustomerController extends Controller {
 
         $editForm = $this->createForm(new CustomerType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-
+        //echo $this->get('translator')->trans('customer.Number') . "NEU";
         return array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),

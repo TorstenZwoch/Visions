@@ -1,22 +1,22 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-<h1>Customer list</h1>
+<h1>{% trans %}customer.customer.title.Customer list{% endtrans %}</h1>
 
-<table class="records_list">
+<table class="records_list table table-striped table-bordered table-hover">
     <thead>
         <tr>
-            <th>Cnumber</th>
-            <th>Rcontactgroup</th>
-            <th>Rtermsofpayment</th>
-            <th>Rpricelist</th>
-            <th>Ccomp</th>
+            <th>{% trans %}customer.customer.form.label.Number{% endtrans %}</th>
+            <th>{% trans %}customer.customer.form.label.ContactGroup{% endtrans %}</th>
+            <th>{% trans %}customer.customer.form.label.TermsOfPayment{% endtrans %}</th>
+            <th>{% trans %}customer.customer.form.label.PriceList{% endtrans %}</th>
+            <th>{% trans %}customer.customer.form.label.Comp{% endtrans %}</th>
             <th>
-                Cmodifydate
+                {% trans %}customer.customer.form.label.ModifyDate{% endtrans %}
             </th>
-            <th>Cmodifyuser</th>
-            <th>Isdeleted</th>                
-            <th>Actions</th>
+            <th>{% trans %}customer.customer.form.label.ModifyUser{% endtrans %}</th>
+            <th>{% trans %}customer.customer.form.label.IsDeleted{% endtrans %}</th>                
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -27,11 +27,11 @@
                 <td>{{ entity.rTermsOfPayment }}</td>
                 <td>{{ entity.rPricelist }}</td>
                 <td>{{ entity.cComp }}</td>
-                <td>{% if entity.cModifyDate %}{{ entity.cModifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.cModifyDate %}{{ entity.cModifyDate|date('d.m.Y H:i:s') }}{% endif %}</td>
                 <td>{{ entity.cModifyUser }}</td>
                 <td>{% if entity.isDeleted %}<i class="icon-remove"></i>{% endif %}</td>                
                 <td>
-                    <a href="{{ path('customer_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-pencil"></i> edit</a>
+                    <a href="{{ path('customer_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-pencil"></i> {% trans %}customer.customer.form.action.Edit{% endtrans %}</a>
                 </td>
             </tr>
         {% endfor %}
@@ -41,7 +41,8 @@
     <br />
     <a href="{{ path('customer_new') }}" class="btn btn-success">
         <i class="icon-plus"></i>
-        Create a new entry
+        {% trans %}customer.customer.form.action.CreateNewCustomer{% endtrans %}
+        
     </a>
 
     {% endblock %}

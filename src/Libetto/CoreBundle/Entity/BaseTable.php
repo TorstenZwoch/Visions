@@ -8,10 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
  * BaseTable
  *
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks 
  * 
  */
-abstract class BaseTable
-{
+abstract class BaseTable {
+
     /**
      * @ORM\Column(type="guid", nullable=false, length=36, name="cId")
      * @ORM\Id
@@ -20,15 +21,13 @@ abstract class BaseTable
      */
     private $id;
 
-    
-     /**
+    /**
      * Company/Client ID
      * @ORM\Column(type="guid", nullable=false, length=36)
      * 
      */
     private $cComp;
 
-    
     /**
      * @ORM\Column(type="datetime")
      */
@@ -38,8 +37,7 @@ abstract class BaseTable
      * @ORM\Column(type="datetime")
      */
     private $cModifyDate;
-    
-     
+
     /**
      * @ORM\Column(type="guid", nullable=false, length=36)
      * 
@@ -56,33 +54,50 @@ abstract class BaseTable
      */
     private $isDeleted;
     
-    
-     public function __construct() {
+
+    /**
+     * 
+     */
+    public function __construct() {
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
-        $this->setCIsDeleted(false);
+        $this->setIsDeleted(false);
         $this->setCClient("");
-        $this->setCModifyUser("");
-        $this->setCCreationUser("");
     }
-    
+
     /**
      * @ORM\PreUpdate
      */
     public function setUpdatedValue() {
+        global $kernel;
+        $user = $kernel->getContainer()->get('security.context')->getToken()->getUser();
+        $this->setCModifyUser($user->getId());
         $this->setCModifyDate(new \DateTime());
+        $this->setCComp("sus");
+        $this->setIsDeleted(false);
     }
 
-
-  
+    /**
+     * @ORM\prePersist
+     */
+    public function setPersistValue() {
+ 
+        global $kernel;
+        $user = $kernel->getContainer()->get('security.context')->getToken()->getUser();
+        $this->setCCreationUser($user->getId());
+        $this->setCModifyUser($user->getId());
+        $this->setCCreationDate(new \DateTime());
+        $this->setCModifyDate(new \DateTime());
+        $this->setCComp("sus");
+        $this->setIsDeleted(false);
+    }
 
     /**
      * Get id
      *
      * @return guid 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -92,8 +107,7 @@ abstract class BaseTable
      * @param guid $cComp
      * @return BaseTable
      */
-    public function setCComp($cComp)
-    {
+    public function setCComp($cComp) {
         $this->cComp = $cComp;
 
         return $this;
@@ -104,8 +118,7 @@ abstract class BaseTable
      *
      * @return guid 
      */
-    public function getCComp()
-    {
+    public function getCComp() {
         return $this->cComp;
     }
 
@@ -115,8 +128,7 @@ abstract class BaseTable
      * @param datetimetz  $cCreationDate
      * @return BaseTable
      */
-    public function setCCreationDate($cCreationDate)
-    {
+    public function setCCreationDate($cCreationDate) {
         $this->cCreationDate = $cCreationDate;
 
         return $this;
@@ -127,8 +139,7 @@ abstract class BaseTable
      *
      * @return datetimetz  
      */
-    public function getCCreationDate()
-    {
+    public function getCCreationDate() {
         return $this->cCreationDate;
     }
 
@@ -138,8 +149,7 @@ abstract class BaseTable
      * @param datetimetz $cModifyDate
      * @return BaseTable
      */
-    public function setCModifyDate($cModifyDate)
-    {
+    public function setCModifyDate($cModifyDate) {
         $this->cModifyDate = $cModifyDate;
 
         return $this;
@@ -150,8 +160,7 @@ abstract class BaseTable
      *
      * @return datetimetz 
      */
-    public function getCModifyDate()
-    {
+    public function getCModifyDate() {
         return $this->cModifyDate;
     }
 
@@ -161,8 +170,7 @@ abstract class BaseTable
      * @param guid $cCreationUser
      * @return BaseTable
      */
-    public function setCCreationUser($cCreationUser)
-    {
+    public function setCCreationUser($cCreationUser) {
         $this->cCreationUser = $cCreationUser;
 
         return $this;
@@ -173,8 +181,7 @@ abstract class BaseTable
      *
      * @return guid 
      */
-    public function getCCreationUser()
-    {
+    public function getCCreationUser() {
         return $this->cCreationUser;
     }
 
@@ -184,8 +191,7 @@ abstract class BaseTable
      * @param guid $cModifyUser
      * @return BaseTable
      */
-    public function setCModifyUser($cModifyUser)
-    {
+    public function setCModifyUser($cModifyUser) {
         $this->cModifyUser = $cModifyUser;
 
         return $this;
@@ -196,8 +202,7 @@ abstract class BaseTable
      *
      * @return guid 
      */
-    public function getCModifyUser()
-    {
+    public function getCModifyUser() {
         return $this->cModifyUser;
     }
 
@@ -207,8 +212,7 @@ abstract class BaseTable
      * @param boolean $isDeleted
      * @return BaseTable
      */
-    public function setIsDeleted($isDeleted)
-    {
+    public function setIsDeleted($isDeleted) {
         $this->isDeleted = $isDeleted;
 
         return $this;
@@ -219,8 +223,8 @@ abstract class BaseTable
      *
      * @return boolean 
      */
-    public function getIsDeleted()
-    {
+    public function getIsDeleted() {
         return $this->isDeleted;
     }
+
 }

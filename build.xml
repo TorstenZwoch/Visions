@@ -152,6 +152,16 @@
         </exec>
     </target>
     
+    <target name="CreateDemoUser2" description="Create a Demouser">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="fos:user:create" />
+            <arg value="demo2" />
+            <arg value="test2@example.com" />
+            <arg value="demo2" />
+        </exec>
+    </target>    
+    
     <target name="CreateAdminUser" description="Create a Adminuser">
         <exec executable="php">
             <arg value="app/console" />
@@ -162,6 +172,17 @@
             <arg value="admin" />
         </exec>
     </target>
+    
+    <target name="CreateAdminUser2" description="Create a Adminuser">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="fos:user:create" />
+            <arg value="--super-admin" />
+            <arg value="admin2" />
+            <arg value="admin2@example.com" />
+            <arg value="admin2" />
+        </exec>
+    </target>    
     
     <target name="GenerateComposerPackage" description="Generate Composer Package">
         <exec executable="php">

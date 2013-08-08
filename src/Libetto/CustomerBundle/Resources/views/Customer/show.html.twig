@@ -1,82 +1,78 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Customer</h1>
+    <h1>{% trans %}Customer{% endtrans %}</h1>
 
-    <table class="record_properties">
+    <table class="record_properties" >
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{% trans %}Id{% endtrans %}</th>
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Ccomp</th>
+                <th>{% trans %}customer.customer.form.label.Comp{% endtrans %}</th>
                 <td>{{ entity.cComp }}</td>
             </tr>
             <tr>
-                <th>Ccreationdate</th>
-                <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
+                <th>{% trans %}customer.customer.form.label.CreationDate{% endtrans %}</th>
+                <td>{{ entity.cCreationDate|date('d.m.Y H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Cmodifydate</th>
-                <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
+                <th>{% trans %}customer.customer.form.label.ModifyDate{% endtrans %}</th>
+                <td>{{ entity.cModifyDate|date('d.m.Y H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Ccreationuser</th>
+                <th>{% trans %}customer.customer.form.label.CreationUser{% endtrans %}</th>
                 <td>{{ entity.cCreationUser }}</td>
             </tr>
             <tr>
-                <th>Cmodifyuser</th>
+                <th>{% trans %}customer.customer.form.label.ModifyUser{% endtrans %}</th>
                 <td>{{ entity.cModifyUser }}</td>
             </tr>
             <tr>
-                <th>Isdeleted</th>
+                <th>{% trans %}customer.customer.form.label.IsDeleted{% endtrans %}</th>
                 <td>{{ entity.isDeleted }}</td>
             </tr>
             <tr>
-                <th>Cnumber</th>
+                <th>{% trans %}customer.customer.form.label.Number{% endtrans %}</th>
                 <td>{{ entity.cNumber }}</td>
             </tr>
             <tr>
-                <th>Invoicecontact</th>
+                <th>{% trans %}customer.customer.form.label.InvoiceContact{% endtrans %}</th>
                 <td>{{ entity.invoiceContact.cLanguage }}</td>
             </tr>
             <tr>
-                <th>Cinfo</th>
+                <th>{% trans %}customer.customer.form.label.Info{% endtrans %}</th>
                 <td>{{ entity.cInfo }}</td>
             </tr>
             <tr>
-                <th>Rcontactgroup</th>
+                <th>{% trans %}customer.customer.form.label.ContactGroup{% endtrans %}</th>
                 <td>{{ entity.rContactGroup }}</td>
             </tr>
             <tr>
-                <th>Rtermsofpayment</th>
+                <th>{% trans %}customer.customer.form.label.TermsOfPayment{% endtrans %}</th>
                 <td>{{ entity.rTermsOfPayment }}</td>
             </tr>
             <tr>
-                <th>Rpricelist</th>
+                <th>{% trans %}customer.customer.form.label.PriceList{% endtrans %}</th>
                 <td>{{ entity.rPricelist }}</td>
             </tr>
         </tbody>
     </table>
+    <p>
+        <a href="{{ path('customer') }}" class="btn btn-default">
+            <i class="icon-arrow-left"></i> 
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+        <a href="{{ path('customer_edit', { 'id': entity.id }) }}" class="btn btn-primary">
+            <i class="icon-edit"></i> 
+            {% trans %}Edit{% endtrans %}
+        </a>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('customer') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('customer_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
         <form action="{{ path('customer_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {% trans %}Delete{% endtrans %}</button>
         </form>
-    </li>
-</ul>
+   </p>
 {% endblock %}

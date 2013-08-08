@@ -12,24 +12,29 @@ class CustomerType extends AbstractType {
     // , 'hidden', array('data' => '501', 'property_path' => null)
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        $transPrafix = "customer.customer.form.label.";
         $builder
-                ->add('cComp')
-                ->add('cCreationDate')
-                ->add('cModifyDate')
-                ->add('cCreationUser')
-                ->add('cModifyUser')
-                ->add('isDeleted')
-                ->add('cNumber')
-                ->add('cInfo')
-                ->add('rInvoiceContact')
+                ->add('cNumber', null, array('label' => $transPrafix . 'Number'))
+                ->add('cInfo', null, array('label' => $transPrafix . 'Info'))
                 ->add('invoiceContact', 'entity', array(
                     'class' => 'LibettoContactBundle:Contact',
-                    'property' => 'cLanguage'
+                    'property' => 'cLanguage',
+                    'label' => $transPrafix . 'InvoiceContact'
                         )
                 )
-                ->add('rContactGroup')
-                ->add('rTermsOfPayment')
-                ->add('rPricelist')
+                ->add('rContactGroup', null, array('label' => $transPrafix . 'ContactGroup'))
+                ->add('rTermsOfPayment', null, array('label' => $transPrafix . 'TermsOfPayment'))
+                ->add('rPricelist', null, array('label' => $transPrafix . 'Pricelist'))
+        ;
+
+        $builder
+                ->remove('cComp')
+                ->remove('cCreationDate')
+                ->remove('cModifyDate')
+                ->remove('cCreationUser')
+                ->remove('cModifyUser')
+                ->remove('isDeleted')
+                ->remove('rInvoiceContact')
         ;
     }
 

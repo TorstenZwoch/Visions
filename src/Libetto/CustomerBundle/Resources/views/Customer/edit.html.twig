@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-<h1>Customer edit</h1>
+<h1>{% trans %}customer.customer.title.Customer edit{% endtrans %}</h1>
 
 <form action="{{ path('customer_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     <input type="hidden" name="_method" value="PUT" />
@@ -15,26 +15,18 @@
                 {{ form_row(edit_form.rContactGroup) }}
                 {{ form_row(edit_form.rTermsOfPayment) }}
                 {{ form_row(edit_form.rPricelist) }}
-    
-                <input type="submit" />
+            <a href="{{ path('customer') }}" class="btn btn-default">
+            <i class="icon-arrow-left"></i> 
+            {% trans %}customer.action.Back to the list{% endtrans %}
+        </a>
+                <button type="submit" class="btn btn-success"><i class="icon-save"></i> {% trans %}customer.customer.form.action.Save{% endtrans %}</button>                             
             {{ form_end(edit_form) }}
-    <p>
-        <button type="submit">Edit</button>
-    </p>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('customer') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
+
         <form action="{{ path('customer_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+            <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {% trans %}customer.customer.form.action.Delete{% endtrans %}</button>
+        </form> 
 {% endblock %}

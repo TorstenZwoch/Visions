@@ -1,7 +1,8 @@
-parameters:
-#    libetto_core.example.class: Libetto\CoreBundle\Example
+#parameters:
+#    libettosecuritycontext.class: Libetto\CoreBundle\Entity\BaseTable
 
-services:
-#    libetto_core.example:
-#        class: %libetto_core.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+#services:
+#    libettosecuritycontext:
+#        class:        "%libettosecuritycontext.class%"
+#        arguments:    ["@service_container"]
+        
