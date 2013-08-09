@@ -17,7 +17,7 @@ class Builder extends ContainerAware {
         if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED') === false) {
             //$menu->addChild('Anmelden', array('route' => 'fos_user_security_login'))->setAttribute('icon', 'icon-user');
         } else {
-            $menu->addChild('Customer')
+            $menu->addChild($this->container->get('translator')->trans('customer.customer.Customer', array(), 'navigation'))
                     ->setAttribute('dropdown', true)
                     ->setAttribute('divider_prepend', true);
 // ROLE USER OR ADMIN
@@ -25,7 +25,7 @@ class Builder extends ContainerAware {
 
 // ROLE ADMIN
             if ($this->container->get('security.context')->isGranted('ROLE_ADMIN') === true) {
-                $menu['Customer']->addChild('Verwaltung', array('route' => 'customer'))->setAttribute('icon', 'icon-home');
+                $menu[$this->container->get('translator')->trans('customer.customer.Customer', array(), 'navigation')]->addChild($this->container->get('translator')->trans('customer.customer.Customer list', array(), 'navigation'), array('route' => 'customer'))->setAttribute('icon', 'icon-home');
             }
         }
         return $menu;
