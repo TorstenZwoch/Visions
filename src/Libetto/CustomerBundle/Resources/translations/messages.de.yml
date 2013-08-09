@@ -8,6 +8,7 @@ customer: #the first key is always the bundle name
       Customer creation: Kunden erstellen
       Customer list: Kundenliste   
       Customer edit: Kunden bearbeiten   
+      Customer: Kunde 
     form: # here are the messages relative to a form 'question' (probably QuestionType class)
       help: #Choose the category which best describes your question
       label:

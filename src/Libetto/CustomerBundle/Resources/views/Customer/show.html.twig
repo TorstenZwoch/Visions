@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>{% trans %}Customer{% endtrans %}</h1>
+    <h1>{% trans %}customer.customer.title.Customer{% endtrans %}</h1>
 
     <table class="record_properties" >
         <tbody>
@@ -62,17 +62,17 @@
     <p>
         <a href="{{ path('customer') }}" class="btn btn-default">
             <i class="icon-arrow-left"></i> 
-            {% trans %}Back to the list{% endtrans %}
+            {% trans %}customer.action.Back to the list{% endtrans %}
         </a>
         <a href="{{ path('customer_edit', { 'id': entity.id }) }}" class="btn btn-primary">
             <i class="icon-edit"></i> 
-            {% trans %}Edit{% endtrans %}
+            {% trans %}customer.customer.form.action.Edit{% endtrans %}
         </a>
 
         <form action="{{ path('customer_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {% trans %}Delete{% endtrans %}</button>
+            <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {% trans %}customer.customer.form.action.Delete{% endtrans %}</button>
         </form>
    </p>
 {% endblock %}

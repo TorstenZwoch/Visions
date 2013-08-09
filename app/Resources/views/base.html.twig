@@ -31,8 +31,13 @@
     </head>
 
     <body id="top" data-spy="scroll" data-target=".subnav" data-offset="0">
+        <div class="container-fluid" style="width: auto;">
+            <div class="pull-right">{{ locale_switcher() }}</div>        
+        </div>
+        <div class="container-fluid" style="width: auto;">
+           &nbsp;    
+        </div>            
         <div class="container-fluid">
-
             <!-- Navbar
             ================================================== -->
             <!--<section id="navbar">-->
@@ -61,7 +66,7 @@
                             </div>
                         </div><!-- /navbar-inner -->
                     </div><!-- /navbar -->
-
+                    
                     <!--</section>-->
         {% for flashMessage in app.session.flashbag.get('error') %}
                     <div class="alert alert-error">

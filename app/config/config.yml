@@ -86,4 +86,21 @@ knp_menu:
        
 bc_bootstrap:
     less_filter: lessphp 
-    
+
+# lunetics/locale-bundle
+lunetics_locale:
+  allowed_locales:
+    - en
+    - de   
+  # query first when _locale parameter send as attribute/parameter in routes
+  guessing_order: 
+    - query
+    - router
+    - session
+    - cookie
+    - browser
+  #If you use the cookie guesser, it will be automatically read from the cookie and write changes into the cookie anytime the locale has changed (Even from another guesser)
+  cookie:
+    set_on_change: true
+  switcher:
+    show_current_locale: true    
