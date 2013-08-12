@@ -78,7 +78,7 @@ abstract class BaseTable {
     }
 
     /**
-     * @ORM\prePersist
+     * @ORM\PrePersist
      */
     public function setPersistValue() {
  
