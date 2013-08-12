@@ -22,7 +22,7 @@ _welcome:
 libetto_user:
     resource: "@LibettoUserBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /login
 
 
 fos_user_security:
@@ -43,3 +43,8 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+    
+libetto_user_rest:
+  type: rest
+  resource: Libetto\UserBundle\Controller\UserRestController
+  

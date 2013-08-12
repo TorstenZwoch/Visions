@@ -234,5 +234,12 @@
             <arg value="app/console" />
             <arg value="assetic:dump" />
         </exec>           
-    </target>        
+    </target> 
+    
+   <target name="router:debug" description="assetic">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="router:debug" />
+        </exec>          
+    </target>           
 </project>
