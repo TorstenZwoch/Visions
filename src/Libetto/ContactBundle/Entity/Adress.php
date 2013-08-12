@@ -13,7 +13,7 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
 class Adress extends BASE
 {
 
-        /**
+    /**
      * @var guid
      *
      * @ORM\Column(name="rPerson", type="guid")

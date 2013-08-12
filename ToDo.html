@@ -1,0 +1,7 @@
+Bundle anlegen: php app/console generate:bundle
+
+php app/console generate:doctrine:entity
+
+php app/console doctrine:schema:update -n --complete --force
+
+php app/console generate:doctrine:crud

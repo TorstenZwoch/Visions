@@ -1,0 +1,9 @@
+# Libetto\CustomerBundle\Resources\translations\navigation.en.yml
+customer: #the first key is always the bundle name
+  customer: #All navigations for customer controller
+    Customer: Customer
+    Customer list: Customer list
+  interestIn:
+  lead:
+    
+

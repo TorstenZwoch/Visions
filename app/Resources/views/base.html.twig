@@ -1,6 +1,6 @@
 {# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html lang="de" ng-app>
+<html lang="de">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Bootstrap -->
@@ -8,29 +8,36 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
         {% block stylesheets %}
             {% stylesheets
               filter='cssrewrite,yui_css'
               output='css/main.css'
               combine=true
-              debug=false
-              '../app/Resources/public/css/bootstrap.min.css' 
+              '../app/Resources/public/css/bootstrap.css' 
               '../app/Resources/public/css/bootstrap-responsive.min.css' 
               '../app/Resources/public/css/font-awesome.min.css'
               '../app/Resources/public/css/bootswatch.css'
-              'bundles/bmatznerjqueryui/css/start/jquery-ui.css'
-              'bundles/bmatznerjqueryui/css/start/jquery.ui.theme.css'
+              '../app/Resources/public/css/main.css'
             %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
-        
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
     <body id="top" data-spy="scroll" data-target=".subnav" data-offset="0">
+        <div class="container-fluid" style="width: auto;">
+            <div class="pull-right">{{ locale_switcher() }}</div>        
+        </div>
+        <div class="container-fluid" style="width: auto;">
+           &nbsp;    
+        </div>            
         <div class="container-fluid">
-
             <!-- Navbar
             ================================================== -->
             <!--<section id="navbar">-->
@@ -42,106 +49,79 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="#">Libetto</a>
+                        <a class="brand" href="{{ app.request.getBaseURL() }}" title="Libetto" alt="Libetto">Libetto</a>
                         <div class="nav-collapse">
-                            <ul class="nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <form class="navbar-search pull-left" action="">
-                                <input type="text" class="search-query span2" placeholder="Search">
-                            </form>
-                            <ul class="nav pull-right">
-                                {% block nav_maintenance %}
-                                    <li><a href="#">Link</a></li>
-                                {% endblock %}
-                                <li class="divider-vertical"></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mein Konto <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path('fos_user_registration_register') }}">Registrierung</a></li>
-                                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                                        <li><a href="{{ path('fos_user_profile_edit') }}">Profil bearbeiten</a></li>
-                                        <li><a href="{{ path('fos_user_profile_show') }}">Profil anzeigen</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- /.nav-collapse -->
-                    </div>
-                </div><!-- /navbar-inner -->
-            </div><!-- /navbar -->
+                            <div class="nav-collapse collapse navbar-responsive-collapse pull-left">   
+                                    {{ knp_menu_render('LibettoMaintenanceBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                                    {{ knp_menu_render('LibettoCustomerBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                                </div> 
 
-            <!--</section>-->
+                                <div class="nav-collapse collapse navbar-responsive-collapse pull-right">   
+                                {{ knp_menu_render('LibettoUserBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                                    </div>                                
+                                    <form class="navbar-search pull-right" action="">
+                                        <input type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
+                                    </form>
+                                </div><!-- /.nav-collapse -->
+                            </div>
+                        </div><!-- /navbar-inner -->
+                    </div><!-- /navbar -->
+                    
+                    <!--</section>-->
         {% for flashMessage in app.session.flashbag.get('error') %}
-        <div class="alert alert-error">
+                    <div class="alert alert-error">
                 {{ flashMessage }}
-            </div>
+                        </div>
         {% endfor %}  
         {% for flashMessage in app.session.flashbag.get('warning') %}
-        <div class="alert alert-warning">
+                        <div class="alert alert-warning">
                 {{ flashMessage }}
-            </div>
+                            </div>
         {% endfor %}  
         {% for flashMessage in app.session.flashbag.get('success') %}
-            <div class="alert alert-success">
+                            <div class="alert alert-success">
                 {{ flashMessage }}
-                </div>
+                                </div>
         {% endfor %}  
         {% block body %}
 
         {% endblock %}
-           <br><br><br><br>
+                                <br><br><br><br>
 
-                <!-- Footer
-                 ================================================== -->
-                <hr>
+                                <!-- Footer
+                                 ================================================== -->
+                                <hr>
 
-                <footer id="footer">
-                    <p class="pull-right"><a href="#top">Back to top</a></p>
-                    <!--  <div class="links">
-                          <a href="">Link 1</a>
-                          <a href="">Link 2</a>
-                          <a href="">Link 3</a>
-                          </div>
-                          test -->
-                    </p>
-                </footer>
+                                <footer id="footer">
+                                    <p class="pull-right"><a href="#top">{% trans %}default.action.Back to top{% endtrans %}</a></p>
+                                    <!--  <div class="links">
+                                          <a href="">Link 1</a>
+                                          <a href="">Link 2</a>
+                                          <a href="">Link 3</a>
+                                          </div>
+                                          test -->
+                                    </p>
+                                </footer>
 
-            </div><!-- /container -->
+                            </div><!-- /container -->
 
 
 
-            <!-- javascript
-            ================================================== -->
+                            <!-- javascript
+                            ================================================== -->
             {% javascripts 
               filter='yui_js'
               output='js/main.js'
               combine=true
-              debug=false
-              "bundles/bmatznerjquery/js/jquery.min.js" 
-              "bundles/bmatznerjqueryui/js/minified/jquery-ui.min.js"
+              "../app/Resources/public/js/jquery.min.js" 
+              "../app/Resources/public/js/jquery.smooth-scroll.min.js"
               "../app/Resources/public/js/bootstrap.min.js" 
               "../app/Resources/public/js/bootswatch.js"
-              
+              "../app/Resources/public/js/angular.min.js"
             %}
-            <script src="{{ asset_url }}" type="text/javascript"></script>
-        
+                            <script src="{{ asset_url }}" type="text/javascript"></script>
             {% endjavascripts %}
 
 
-        </body>
-    </html>
+                        </body>
+                    </html>

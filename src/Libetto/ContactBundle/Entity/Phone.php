@@ -53,7 +53,7 @@ class Phone extends BASE
      * @var guid
      *
      * @ORM\Column(name="rPerson", type="guid")
-     * @ORM\ManyToOne(targetEntity="tPerson", inversedBy="tPhone")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="Phone")
      * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId")
      *
      */
@@ -63,7 +63,7 @@ class Phone extends BASE
      * @var guid
      *
      * @ORM\Column(name="rCompany", type="guid")
-     * @ORM\ManyToOne(targetEntity="tCompany", inversedBy="tPhone")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="Phone")
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     private $rCompany;

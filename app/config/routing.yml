@@ -1,24 +1,28 @@
+libetto_customer:
+    resource: "@LibettoCustomerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 libetto_contact:
     resource: "@LibettoContactBundle/Resources/config/routing.yml"
-    prefix:   /contact/
+    prefix:   /contact
 
 libetto_core:
     resource: "@LibettoCoreBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /core
 
 libetto_maintenance:
     resource: "@LibettoMaintenanceBundle/Resources/config/routing.yml"
-    prefix:   /maintenance/
+    prefix:   /maintenance
 
 _welcome:
     pattern:   /
     defaults:  { _controller: FOSUserBundle:Security:login }
 
-
 libetto_user:
     resource: "@LibettoUserBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /login
 
 
 fos_user_security:
@@ -39,3 +43,8 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+    
+libetto_user_rest:
+  type: rest
+  resource: Libetto\UserBundle\Controller\UserRestController
+  

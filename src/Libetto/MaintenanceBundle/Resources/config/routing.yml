@@ -1,4 +1,4 @@
-libetto_maintenance_homepage:
+maintenance_homepage:
     pattern:  /
     defaults: { _controller: LibettoMaintenanceBundle:Default:index }
 

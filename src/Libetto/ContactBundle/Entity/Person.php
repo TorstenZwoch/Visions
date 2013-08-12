@@ -51,7 +51,7 @@ class Person extends BASE
      * @var rCompany
      *
      * @ORM\Column(name="rCompany", type="guid")
-     * @ORM\ManyToOne(targetEntity="tCompany", inversedBy="tPerson")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="Person")
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     private $rCompany;

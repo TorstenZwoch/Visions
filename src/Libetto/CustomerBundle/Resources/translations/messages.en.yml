@@ -1,0 +1,35 @@
+# Libetto\CustomerBundle\Resources\translations\messages.en.yml
+customer: #the first key is always the bundle name
+  action: #usually links or buttons in you application
+    Back to the list: Zurück zur Liste
+    Back to top: Nach oben
+  customer: #All messages for customer controller or entity
+    title: # titles (usually displayed in h1, h2, ... tags, or in a menu)
+      Customer creation: Customer creation
+      Customer list: Customer list   
+      Customer edit: Customer edit 
+    form: # here are the messages relative to a form 'question' (probably QuestionType class)
+      help: #Choose the category which best describes your question
+      label:
+        Number: Number
+        ContactGroup: Group
+        TermsOfPayment: Terms of payment
+        PriceList: Pricelist
+        Comp: Company
+        CreationDate: Creation date
+        CreationUser: Creation User  
+        ModifyDate: Modify date
+        ModifyUser: Modify user
+        IsDeleted: is deleted
+        InvoiceContact: Invoice contact
+        Info: Info        
+      placeholder:
+        question: Type your question here
+      action:
+        Delete: Delete
+        Create: Create
+        Edit: Edit
+        Save: Save
+        CreateNewCustomer: Create new customer
+    warn:
+      notFound: Der Kunde existiert nicht   

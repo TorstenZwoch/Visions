@@ -1,0 +1,19 @@
+<div class="btn-group">
+  <button class="btn btn-mini">
+    {% for locale in locales %}
+        {% if locale.locale == app.request.locale %}
+            {{ locale.locale_current_language }}
+        {% endif %}
+    {% endfor %}  
+  </button>
+  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">    
+    {% for locale in locales %}
+        {% if locale.locale != app.request.locale %}
+            <li><a href="{{ locale.link }}" title="{{ locale.locale_current_language }}">{{ locale.locale_current_language }}</a></li>
+        {% endif %}
+    {% endfor %}
+  </ul>
+</div>

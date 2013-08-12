@@ -4,6 +4,7 @@
     <target name="1_InitEnviroment" depends="CopyParameters, GetComposer, GetPHP-CS-Fixer"/>
     <target name="2_InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
     <target name="2_InstallDependenciesWithUser" depends="ComposerInstall, DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser"/>
+    <target name="3_UpdateDatabaseAndClearCache" depends="DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser, ClearCache"/>
 
     <target name="UpdateDependencies" depends="ComposerUpdate, UpdateFieldsInDatabase"/>
     
@@ -121,8 +122,15 @@
             <arg value="-n" />
             <arg value="--complete" />
             <arg value="--force" />
-        </exec>
+        </exec>      
     </target>
+    
+    <target name="ClearCache" description="Clear Symfony cache">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="cache:clear" />
+        </exec>        
+    </target>    
     
     <target name="UpdateFieldsInDatabase" description="Update fields in Database">
         <exec executable="php">
@@ -144,6 +152,16 @@
         </exec>
     </target>
     
+    <target name="CreateDemoUser2" description="Create a Demouser">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="fos:user:create" />
+            <arg value="demo2" />
+            <arg value="test2@example.com" />
+            <arg value="demo2" />
+        </exec>
+    </target>    
+    
     <target name="CreateAdminUser" description="Create a Adminuser">
         <exec executable="php">
             <arg value="app/console" />
@@ -154,6 +172,17 @@
             <arg value="admin" />
         </exec>
     </target>
+    
+    <target name="CreateAdminUser2" description="Create a Adminuser">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="fos:user:create" />
+            <arg value="--super-admin" />
+            <arg value="admin2" />
+            <arg value="admin2@example.com" />
+            <arg value="admin2" />
+        </exec>
+    </target>    
     
     <target name="GenerateComposerPackage" description="Generate Composer Package">
         <exec executable="php">
@@ -169,4 +198,48 @@
             <arg value="./" />
         </exec>
     </target>
+    
+    <target name="CacheWrite" description="Create a Adminuser">
+        <exec executable="sudo">
+            <arg value="setfacl" />
+            <arg value="-R" />
+            <arg value="-m" />
+            <arg value="u:_www:rwX" />
+            <arg value="-m" />
+            <arg value="u:`whoami`:rwX" />
+            <arg value="app/cache" />
+            <arg value="app/logs" />
+        </exec>
+        
+        <exec executable="sudo">
+            <arg value="setfacl" />
+            <arg value="-dR" />
+            <arg value="-m" />
+            <arg value="u:_www:rwX" />
+            <arg value="-m" />
+            <arg value="u:`whoami`:rwX" />
+            <arg value="app/cache" />
+            <arg value="app/logs" />
+        </exec>
+    </target>
+    
+    
+   <target name="Assetics" description="assetic">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="cache:clear" />
+        </exec>
+     
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="assetic:dump" />
+        </exec>           
+    </target> 
+    
+   <target name="router:debug" description="assetic">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="router:debug" />
+        </exec>          
+    </target>           
 </project>

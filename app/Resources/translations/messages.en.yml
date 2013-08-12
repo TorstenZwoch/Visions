@@ -1,0 +1,13 @@
+# messages.en.yml
+default: #the first key is always the bundle name
+    action:
+      Back to top: Back to top
+    form: # here are the messages relative to a form 'question' (probably QuestionType class)
+      help: #Choose the category which best describes your question
+      label:    
+      placeholder:
+        Search: Search
+      action:
+    warn:
+      notFound: Eintrag nicht gefunen
+

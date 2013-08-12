@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('LibettoCoreBundle:Default:index.html.twig', array('name' => $name));
     }
+    
+    public function getUser()
+    {
+        return $this->get('security.context')->getToken()->getUser();
+    }     
 }
