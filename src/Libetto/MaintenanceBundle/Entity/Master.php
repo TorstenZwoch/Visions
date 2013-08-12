@@ -3,7 +3,7 @@ namespace Libetto\MaintenanceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use APY\DataGridBundle\Grid\Mapping as GRID;
 /**
  * tMaster
  *
@@ -16,13 +16,13 @@ class Master
      *
      * @var type Datentypen 
      */
-    public static $sqlDataTypes = array("STR64" => "STRING64",
-                                        "STR255" => "STRING255",
+    public static $sqlDataTypes = array("STR64" => "STR64",
+                                        "STR255" => "STR255",
                                         "TEXT" => "TEXT",
-                                        "BOOL" => "BOOLEAN",
-                                        "INT" => "INTEGER",
-                                        "DEC" => "DECIMAL",
-                                        "DATE" => "DATETIME",
+                                        "BOOL" => "BOOL",
+                                        "INT" => "INT",
+                                        "DEC" => "DEC",
+                                        "DATE" => "DATE",
                                         "KEY" => "KEY");
     
     
@@ -45,6 +45,7 @@ class Master
      *      max = "255",
      *      minMessage="Your name must have at least {{ limit }} characters."
      * )
+     * @Grid\Column(title="Tabellen Name")
      */
     private $cTableName;
 
@@ -53,6 +54,7 @@ class Master
      *
      * @ORM\Column(name="cFieldName", type="string", length=255)
      * @Assert\NotBlank()
+     * @Grid\Column(title="Feld Name")
      */
     private $cFieldName;
 
@@ -61,7 +63,7 @@ class Master
      *
      * @ORM\Column(name="cType", type="string", length=64)
      * @Assert\NotBlank()
-     * 
+     * @Grid\Column(title="Datentyp")
      */
     private $cType;
 
@@ -69,6 +71,7 @@ class Master
      * @var integer
      *
      * @ORM\Column(name="cIsIndex", type="boolean")
+     * @Grid\Column(title="Index")
      */
     private $cIsIndex;
 
@@ -76,6 +79,7 @@ class Master
      * @var boolean
      *
      * @ORM\Column(name="tIsUnique", type="boolean")
+     * @Grid\Column(title="Eindeutig")
      */
     private $cIsUnique;
 
@@ -88,9 +92,11 @@ class Master
      *      min = "1",
      *      max = "255"
      * )
+     * @Grid\Column(title="Reihenfolge")
      */
     private $cOrderId;
 
+   
 
     /**
      * Get cId
@@ -110,9 +116,9 @@ class Master
      */
     public function setCId($id)
     {
-        if($id!=null && $id!=""){
+        #if($id!=null && $id!=""){
             $this->cId = $id;
-        }
+        #}
     }
 
     /**

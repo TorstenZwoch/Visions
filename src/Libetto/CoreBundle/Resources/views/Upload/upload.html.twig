@@ -1,0 +1,7 @@
+{% block upload %}
+<form action="{{ path('file_upload') }}" method="post" {{ form_enctype(form) }} class="form-horizontal well">
+        {{ form_errors(form) }}
+        {{ form_row(form.file) }}
+        
+ </form>
+{% endblock %}
