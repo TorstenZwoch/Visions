@@ -10,6 +10,39 @@ class JQUITestController extends Controller {
     public function testAction() {
         return $this->render('LibettoMaintenanceBundle:JQUITest:index.html.twig');
     }
+    
+    
+    public function loadFormAction(){
+        
+    }
+    
+    public function loadAjaxTableAction(){
+        $data = array(  'total' => 9,
+                            'page' => 1,
+                            'records' => 
+                                array( array('recid'=>11,'fname'=>'John','lname'=>'Doe','email'=>'jdoe@gmail.com','sdate'=>'4/3/12' ) ) 
+                        );
+                
+        /*
+        $return = "{
+	total: 9,
+	page: 1,
+	records: [
+		{ recid: 11, fname: 'John', lname: 'Doe', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 12, fname: 'Stuart', lname: 'Motzart', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 13, fname: 'Jin', lname: 'Franson', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 14, fname: 'Susan', lname: 'Ottie', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 15, fname: 'Kelly', lname: 'Silver', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 16, fname: 'Francis', lname: 'Gatos', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 17, fname: 'Mark', lname: 'Welldo', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 18, fname: 'Thomas', lname: 'Bahh', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+		{ recid: 19, fname: 'Sergei', lname: 'Rachmaninov', email: 'jdoe@gmail.com', sdate: '4/3/2012' }
+	]
+}";
+         * 
+         */
+        return new Response(json_encode($data), 200, array('Content-Type' => 'application/json'));
+    }
 
     public function loadAjaxAction() {
         $request = $this->get('request');

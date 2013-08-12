@@ -28,7 +28,7 @@ testpage_ajax:
 
 load_ajax:
     pattern: /loadAjax
-    defaults: { _controller: LibettoMaintenanceBundle:JQUITest:loadAjax }
+    defaults: { _controller: LibettoMaintenanceBundle:JQUITest:loadAjaxTable }
 
 load_ajax_mastertable:
     pattern: /loadAjaxMaster

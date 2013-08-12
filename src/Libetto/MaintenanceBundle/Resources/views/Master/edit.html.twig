@@ -4,6 +4,7 @@
 
 {% block body %}
 <form action="{{ path('master_edit') }}" method="post" {{ form_enctype(form) }} class="form-horizontal well">
+    
         {{ form_errors(form) }}
 
         {{ form_row(form.cTableName) }}
@@ -31,7 +32,7 @@
         
       //  <input type="submit" value="Speichern und Neu" name="bt_save_new" class="btn-success" /> #}
 
-     
+     {{ dump(form.cTableName)}}
     </form>
 
 
