@@ -1,3 +1,0 @@
-libetto_core_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: LibettoCoreBundle:Default:index }

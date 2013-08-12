@@ -85,7 +85,8 @@ knp_menu:
        template: "LibettoCoreBundle:Menu:menu.html.twig"
        
 bc_bootstrap:
-    less_filter: lessphp 
+    less_filter: lessphp
+    jquery_path: "%kernel.root_dir%/Resources/public/js/jquery.min.js"
 
 # lunetics/locale-bundle
 lunetics_locale:
