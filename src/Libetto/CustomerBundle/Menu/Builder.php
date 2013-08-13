@@ -22,10 +22,10 @@ class Builder extends ContainerAware {
                     ->setAttribute('divider_prepend', true);
 // ROLE USER OR ADMIN
 //            $menu['User']->addChild('Passwort ändern', array('route' => 'fos_user_change_password'))->setAttribute('icon', 'icon-edit');
-
 // ROLE ADMIN
             if ($this->container->get('security.context')->isGranted('ROLE_ADMIN') === true) {
                 $menu[$this->container->get('translator')->trans('customer.customer.Customer', array(), 'navigation')]->addChild($this->container->get('translator')->trans('customer.customer.Customer list', array(), 'navigation'), array('route' => 'customer'))->setAttribute('icon', 'icon-home');
+                $menu[$this->container->get('translator')->trans('customer.customer.Customer', array(), 'navigation')]->addChild($this->container->get('translator')->trans('customer.lead.Lead list', array(), 'navigation'), array('route' => 'lead'))->setAttribute('icon', 'icon-home');
             }
         }
         return $menu;

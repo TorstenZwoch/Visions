@@ -1,0 +1,78 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>{% trans %}customer.lead.title.Lead{% endtrans %}</h1>
+
+    <table class="record_properties" >
+        <tbody>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.Comp{% endtrans %}</th>
+                <td>{{ entity.cComp }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.CreationDate{% endtrans %}</th>
+                <td>{{ entity.cCreationDate|date('d.m.Y H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.ModifyDate{% endtrans %}</th>
+                <td>{{ entity.cModifyDate|date('d.m.Y H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.CreationUser{% endtrans %}</th>
+                <td>{{ entity.cCreationUser }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.ModifyUser{% endtrans %}</th>
+                <td>{{ entity.cModifyUser }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.IsDeleted{% endtrans %}</th>
+                <td>{{ entity.isDeleted }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.Number{% endtrans %}</th>
+                <td>{{ entity.cNumber }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.Contact{% endtrans %}</th>
+                <td>{{ entity.contact.cLanguage }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.Info{% endtrans %}</th>
+                <td>{{ entity.cInfo }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.ContactGroup{% endtrans %}</th>
+                <td>{{ entity.rContactGroup }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.TermsOfPayment{% endtrans %}</th>
+                <td>{{ entity.rTermsOfPayment }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}customer.lead.form.label.Pricelist{% endtrans %}</th>
+                <td>{{ entity.rPricelist }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <a href="{{ path('lead') }}" class="btn btn-default">
+            <i class="icon-arrow-left"></i> 
+            {% trans %}customer.action.Back to the list{% endtrans %}
+        </a>
+        <a href="{{ path('lead_edit', { 'id': entity.id }) }}" class="btn btn-primary">
+            <i class="icon-edit"></i> 
+            {% trans %}customer.lead.form.action.Edit{% endtrans %}
+        </a>
+
+        <form action="{{ path('lead_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {% trans %}customer.lead.form.action.Delete{% endtrans %}</button>
+        </form>
+   </p>
+{% endblock %}

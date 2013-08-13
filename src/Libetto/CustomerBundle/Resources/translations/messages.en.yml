@@ -22,6 +22,7 @@ customer: #the first key is always the bundle name
         ModifyUser: Modify user
         IsDeleted: is deleted
         InvoiceContact: Invoice contact
+        Contact: Contact        
         Info: Info        
       placeholder:
         question: Type your question here
@@ -33,3 +34,33 @@ customer: #the first key is always the bundle name
         CreateNewCustomer: Create new customer
     warn:
       notFound: Der Kunde existiert nicht   
+  lead: #All messages for customer controller or entity
+    title: # titles (usually displayed in h1, h2, ... tags, or in a menu)
+      Lead creation: Lead creation
+      Lead list: Lead list   
+      Lead edit: Lead edit 
+    form: # here are the messages relative to a form 'question' (probably QuestionType class)
+      help: #Choose the category which best describes your question
+      label:
+        Number: Number
+        ContactGroup: Group
+        TermsOfPayment: Terms of payment
+        Pricelist: Pricelist
+        Comp: Company
+        CreationDate: Creation date
+        CreationUser: Creation Lead  
+        ModifyDate: Modify date
+        ModifyUser: Modify user
+        IsDeleted: is deleted
+        Contact: Contact
+        Info: Info        
+      placeholder:
+        question: Type your question here
+      action:
+        Delete: Delete
+        Create: Create
+        Edit: Edit
+        Save: Save
+        CreateNewCustomer: Create new lead
+    warn:
+      notFound: Lead does not exist
