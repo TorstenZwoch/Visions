@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>{% trans %}supplier.supplier.title.SupplierLead creation{% endtrans %}</h1>
+
+    <form action="{{ path('supplierlead_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <a href="{{ path('supplierlead') }}" class="btn btn-default">
+                <i class="icon-arrow-left"></i>
+                {% trans %}supplier.action.Back to the list{% endtrans %}
+            </a> &nbsp;
+            <button type="submit" class="btn btn-success"><i class="icon-save"></i> {% trans %}supplier.supplier.form.action.Save{% endtrans %}</button>
+        </p>
+    </form>
+
+
+
+{% endblock %}

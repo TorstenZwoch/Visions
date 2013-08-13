@@ -1,0 +1,42 @@
+# Libetto\SupplierBundle\Resources\translations\messages.de.yml
+supplier: #the first key is always the bundle name
+  action: #usually links or buttons in you application
+    Back to the list: Zurück zur Liste
+    Back to top: Nach oben
+  supplier: #All messages for supplier controller or entity
+    title: # titles (usually displayed in h1, h2, ... tags, or in a menu)
+      Supplier creation: Lieferanten erstellen
+      Supplier list: Lieferantenliste   
+      Supplier edit: Lieferanten bearbeiten   
+      Supplier: Lieferanten
+      SupplierLead creation: Lieferanten erstellen
+      SupplierLead list: Lieferantenliste   
+      SupplierLead edit: Lieferanten bearbeiten   
+      SupplierLead: Lieferanten
+    form: # here are the messages relative to a form 'question' (probably QuestionType class)
+      help: #Choose the category which best describes your question
+      label:
+        Number: Nummer
+        ContactGroup: Gruppe
+        TermsOfPayment: Zahlmethoden
+        PriceList: Preisliste
+        Comp: Mandant
+        CreationDate: Erstelldatum
+        CreationUser: Ersteller  
+        ModifyDate: Bearbeitungsdatum
+        ModifyUser: Bearbeiter
+        IsDeleted: gelöscht
+        InvoiceContact: Rechnungsadresse
+        Contact: Adresse
+        Info: Info        
+      placeholder:
+        question: Type your question here
+      action:
+        Delete: Löschen
+        Create: Erstellen
+        Edit: Bearbeiten
+        Save: Speichern
+        CreateNewSupplier: Neuen Lieferanten erstellen
+        CreateNewSupplierLead: Neuen Lieferanten erstellen
+    warn:
+      notFound: Der Lieferant existiert nicht   

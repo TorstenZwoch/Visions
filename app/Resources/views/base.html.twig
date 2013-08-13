@@ -14,7 +14,7 @@
 
         {% block stylesheets %}
             {% stylesheets
-              filter='cssrewrite,yui_css'
+              filter='cssrewrite,?yui_css'
               output='Resources/css/main.css'
               combine=true
               '@LibettoCoreBundle/Resources/css/bootstrap.css' 
@@ -56,6 +56,7 @@
                             <div class="nav-collapse collapse navbar-responsive-collapse pull-left">   
                                     {{ knp_menu_render('LibettoMaintenanceBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
                                     {{ knp_menu_render('LibettoCustomerBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                                    {{ knp_menu_render('LibettoSupplierBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
                                 </div> 
 
                                 <div class="nav-collapse collapse navbar-responsive-collapse pull-right">   
@@ -112,7 +113,7 @@
                             <!-- javascript
                             ================================================== -->
             {% javascripts 
-              filter='yui_js'
+              filter='?yui_js'
               output='Resources/js/main.js'
               combine=true
               "@LibettoCoreBundle/Resources/js/jquery.min.js" 
