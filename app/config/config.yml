@@ -20,6 +20,7 @@ framework:
     trusted_proxies: ~
     session:         ~
     fragments:       ~
+    trusted_hosts:   localhost
 
 # Twig Configuration
 twig:
@@ -33,7 +34,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ 'FOSUserBundle', 'LibettoMaintenanceBundle', 'LibettoCustomerBundle' ]
+    bundles:        [ 'FOSUserBundle', 'LibettoMaintenanceBundle', 'LibettoCustomerBundle', 'LibettoCoreBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -86,7 +87,7 @@ knp_menu:
        
 bc_bootstrap:
     less_filter: lessphp
-    jquery_path: "%kernel.root_dir%/Resources/public/js/jquery.min.js"
+    jquery_path: "@LibettoCoreBundle/Resources/js/jquery.min.js"
 
 # lunetics/locale-bundle
 lunetics_locale:
