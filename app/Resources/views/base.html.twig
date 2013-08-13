@@ -14,9 +14,10 @@
 
         {% block stylesheets %}
             {% stylesheets
-              filter='cssrewrite,yui_css'
+              filter='cssrewrite,?yui_css'
               output='Resources/css/main.css'
               combine=true
+              debug=false
               '@LibettoCoreBundle/Resources/css/bootstrap.css' 
               '@LibettoCoreBundle/Resources/css/bootstrap-responsive.min.css' 
               '@LibettoCoreBundle/Resources/css/font-awesome.min.css'
@@ -112,9 +113,10 @@
                             <!-- javascript
                             ================================================== -->
             {% javascripts 
-              filter='yui_js'
+              filter='?yui_js'
               output='Resources/js/main.js'
               combine=true
+              debug=false
               "@LibettoCoreBundle/Resources/js/jquery.min.js" 
               "@LibettoCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
               "@LibettoCoreBundle/Resources/js/bootstrap.min.js" 
@@ -125,7 +127,7 @@
             {% javascripts 
               output='Resources/js/main2.js'
               combine=false
-              "@LibettoCoreBundle/Resources/js/w2ui-1.2.js"
+              "@LibettoCoreBundle/Resources/js/w2ui-1.2.min.js"
             %}
                             <script src="{{ asset_url }}" type="text/javascript"></script>
             {% endjavascripts %}
