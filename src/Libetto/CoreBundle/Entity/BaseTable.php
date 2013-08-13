@@ -62,7 +62,6 @@ abstract class BaseTable {
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
         $this->setIsDeleted(false);
- //       $this->setCClient("");
     }
 
     /**

@@ -12,31 +12,46 @@ use Libetto\ContactBundle\Entity\Contact as Contact;
  * @ORM\Table(name="tCustomer")
  * @ORM\Entity()
  */
-class Customer extends BASE
-{      
-    
+class Customer extends BASE {
+
     /**
      * @var string
      *
      * @ORM\Column(name="cNumber", type="string", length=255, nullable=true)
      */
-    private $cNumber;        
-    
+    private $cNumber;
+
     /**
      * @var guid
      *
      * @ORM\Column(name="rInvoiceContact", type="guid",nullable=true, length=36)
      * @ORM\GeneratedValue(strategy="UUID")
      */
-    private $rInvoiceContact;    
-    
+    private $rInvoiceContact;
+
     /**
      * @var Contact|null
      * 
-     * @ORM\ManyToOne(targetEntity="Libetto\ContactBundle\Entity\Contact", inversedBy="customer")
+     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
      * @ORM\JoinColumn(name="rInvoiceContact", referencedColumnName="cId")
      */
-    private $invoiceContact;  
+    private $invoiceContact;
+
+    /**
+     * @var guid
+     *
+     * @ORM\Column(name="rContact", type="guid",nullable=true, length=36)
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $rContact;
+
+    /**
+     * @var Contact|null
+     * 
+     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
+     * @ORM\JoinColumn(name="rContact", referencedColumnName="cId")
+     */
+    private $contact;
 
     /**
      * @var string
@@ -68,10 +83,6 @@ class Customer extends BASE
      * @ORM\GeneratedValue(strategy="UUID")
      */
     private $rPricelist;
-    
-    public function __construct()
-    {
-    }    
 
 
     /**
@@ -118,6 +129,29 @@ class Customer extends BASE
     public function getRInvoiceContact()
     {
         return $this->rInvoiceContact;
+    }
+
+    /**
+     * Set rContact
+     *
+     * @param guid $rContact
+     * @return Customer
+     */
+    public function setRContact($rContact)
+    {
+        $this->rContact = $rContact;
+    
+        return $this;
+    }
+
+    /**
+     * Get rContact
+     *
+     * @return guid 
+     */
+    public function getRContact()
+    {
+        return $this->rContact;
     }
 
     /**
@@ -233,5 +267,28 @@ class Customer extends BASE
     public function getInvoiceContact()
     {
         return $this->invoiceContact;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param \Libetto\ContactBundle\Entity\Contact $contact
+     * @return Customer
+     */
+    public function setContact(\Libetto\ContactBundle\Entity\Contact $contact = null)
+    {
+        $this->contact = $contact;
+    
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \Libetto\ContactBundle\Entity\Contact 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

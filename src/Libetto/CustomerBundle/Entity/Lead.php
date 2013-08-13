@@ -4,12 +4,13 @@ namespace Libetto\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Libetto\CoreBundle\Entity\BaseTable as BASE;
+use Libetto\ContactBundle\Entity\Contact as Contact;
 
 /**
  * Lead
  *
  * @ORM\Table(name="tLead")
- * @ORM\Entity(repositoryClass="Libetto\CustomerBundle\Entity\LeadRepository")
+ * @ORM\Entity()
  */
 class Lead extends BASE
 {
@@ -21,12 +22,23 @@ class Lead extends BASE
      */
     private $cNumber;
 
+    
     /**
      * @var guid
      *
-     * @ORM\Column(name="rContact", type="guid")
+     * @ORM\Column(name="rContact", type="guid",nullable=true, length=36)
+     * @ORM\GeneratedValue(strategy="UUID")
      */
-    private $rContact;
+    private $rContact;    
+    
+   /**
+     * @var Contact|null
+     * 
+     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
+     * @ORM\JoinColumn(name="rContact", referencedColumnName="cId")
+     */
+    private $contact;     
+    
 
     /**
      * @var string
@@ -56,16 +68,6 @@ class Lead extends BASE
      */
     private $rPricelist;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set cNumber
@@ -203,5 +205,28 @@ class Lead extends BASE
     public function getRPricelist()
     {
         return $this->rPricelist;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param \Libetto\ContactBundle\Entity\Contact $contact
+     * @return Lead
+     */
+    public function setContact(\Libetto\ContactBundle\Entity\Contact $contact = null)
+    {
+        $this->contact = $contact;
+    
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \Libetto\ContactBundle\Entity\Contact 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

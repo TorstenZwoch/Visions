@@ -27,13 +27,6 @@ class Contact extends BASE
      * @ORM\Column(name="cLanguage", type="string", length=10,nullable=true)
      */
     private $cLanguage;
-    
-    /**
-     * 
-     * @ORM\OneToMany(targetEntity="\Libetto\CustomerBundle\Entity\Customer", mappedBy="invoiceContact")
-     * @var Collection
-     */
-    private $customer;
 
     /**
      * @var guid
@@ -118,28 +111,5 @@ class Contact extends BASE
     public function getRCompanyOrPerson()
     {
         return $this->rCompanyOrPerson;
-    }
-
-    /**
-     * Add customer
-     *
-     * @param \Libetto\CustomerBundle\Entity\Customer $customer
-     * @return Contact
-     */
-    public function addCustomer(\Libetto\CustomerBundle\Entity\Customer $customer)
-    {
-        $this->customer[] = $customer;
-    
-        return $this;
-    }
-
-    /**
-     * Remove customer
-     *
-     * @param \Libetto\CustomerBundle\Entity\Customer $customer
-     */
-    public function removeCustomer(\Libetto\CustomerBundle\Entity\Customer $customer)
-    {
-        $this->customer->removeElement($customer);
     }
 }
