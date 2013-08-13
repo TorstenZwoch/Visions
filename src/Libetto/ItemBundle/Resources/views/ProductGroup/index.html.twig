@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<h1>{% trans %}ItemBundle.ProductGroup.List{% endtrans %}</h1>
+
+<table class="records_list table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{% trans %}ItemBundle.ProductGroup.Number{% endtrans %}</th>
+            <th>{% trans %}ItemBundle.ProductGroup.Name{% endtrans %}</th>
+            <th>{% trans %}ItemBundle.ProductGroup.Sort{% endtrans %}</th>
+            <th>{% trans %}ItemBundle.ProductGroup.IsSalesDiscountable{% endtrans %}</th>
+            <th>{% trans %}ItemBundle.ProductGroup.IsCashDiscountable{% endtrans %}</th>
+            <th>{% trans %}ItemBundle.ProductGroup.TaxId{% endtrans %}</th>
+            <th>{% trans %}ItemBundle.ProductGroup.DecimalPlacePrice{% endtrans %}</th>
+            <th>{% trans %}ItemBundle.ProductGroup.DecimalPlaceQuantity{% endtrans %}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('productgroup_show', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-zoom-in"></i></a></td>
+                <td>{{ entity.cNumber }}</td>
+                <td>{{ entity.cName }}</td>
+                <td>{{ entity.cSort }}</td>
+                <td>{{ entity.cIsSalesDiscountable }}</td>
+                <td>{{ entity.cIsCashDiscountable }}</td>
+                <td>{{ entity.rTaxId }}</td>
+                <td>{{ entity.cDecimalPlacePrice }}</td>
+                <td>{{ entity.cDecimalPlaceQuantity }}</td>
+                <td>
+                    <a href="{{ path('productgroup_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-edit"></i></a>
+                    <a href="{{ path('productgroup_delete', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-remove"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br />
+    <a href="{{ path('productgroup_new') }}" class="btn btn-success">
+        <i class="icon-plus"></i>
+        {% trans %}ItemBundle.ProductGroup.Create{% endtrans %}
+    </a>
+    {% endblock %}

@@ -32,7 +32,7 @@ class AppKernel extends Kernel {
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            
+            new Libetto\ItemBundle\LibettoItemBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
-           
+
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -37,7 +37,7 @@
             <div class="pull-right">{{ locale_switcher() }}</div>        
         </div>
         <div class="container-fluid" style="width: auto;">
-           &nbsp;    
+            &nbsp;    
         </div>            
         <div class="container-fluid">
             <!-- Navbar
@@ -55,6 +55,7 @@
                         <div class="nav-collapse">
                             <div class="nav-collapse collapse navbar-responsive-collapse pull-left">   
                                     {{ knp_menu_render('LibettoMaintenanceBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                                    {{ knp_menu_render('LibettoItemBundle:Builder:mainMenu', {'currentClass': 'active'}) }}                                    
                                     {{ knp_menu_render('LibettoCustomerBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
                                 </div> 
 
@@ -68,7 +69,7 @@
                             </div>
                         </div><!-- /navbar-inner -->
                     </div><!-- /navbar -->
-                    
+
                     <!--</section>-->
         {% for flashMessage in app.session.flashbag.get('error') %}
                     <div class="alert alert-error">

@@ -1,3 +1,8 @@
+libetto_item:
+    resource: "@LibettoItemBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 libetto_customer:
     resource: "@LibettoCustomerBundle/Controller/"
     type:     annotation

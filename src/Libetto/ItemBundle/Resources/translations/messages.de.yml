@@ -1,0 +1,31 @@
+# Libetto\ItemBundle\Resources\translations\lang.de.yml
+ItemBundle: #the first key is always the bundle name
+  Back to the list: Zurück zur Liste
+  Back to top: Nach oben
+  Navigation:
+    Product: Artikel
+    ProductList: Artikelliste
+    CategoryList: Kategorien
+    ProductGroupList: Artikelgruppen
+    MediaList: Dateien
+    ProductTextList: Texte
+  Product:
+    List: Artikelliste
+    Create: Neuen Artikel erstellen
+    Number: Nr.
+    Name: Bezeichnung
+    ShortName: Kurzbez.
+    Description: Beschreibung
+    Group: Gruppe
+    Category: Kategorie
+  ProductGroup:
+    List: Artikelgruppenliste
+    Create: Neue Artikelgruppe erstellen
+    Number: Nr.
+    Name: Bezeichnung
+    Sort: Reihenfolge
+    IsSalesDiscountable: VK-Rabatt
+    IsCashDiscountable: Bar-Rabatt
+    TaxId: Steuer
+    DecimalPlacePrice: Preisstellen
+    DecimalPlaceQuantity: Mengenstellen

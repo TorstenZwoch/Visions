@@ -1,0 +1,63 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ProductText list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ccomp</th>
+                <th>Ccreationdate</th>
+                <th>Cmodifydate</th>
+                <th>Ccreationuser</th>
+                <th>Cmodifyuser</th>
+                <th>Isdeleted</th>
+                <th>Rproduct</th>
+                <th>Clanguage</th>
+                <th>Cname</th>
+                <th>Cshortname</th>
+                <th>Cdescription</th>
+                <th>Cdescriptiontype</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('producttext_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.cComp }}</td>
+                <td>{% if entity.cCreationDate %}{{ entity.cCreationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.cModifyDate %}{{ entity.cModifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.cCreationUser }}</td>
+                <td>{{ entity.cModifyUser }}</td>
+                <td>{{ entity.isDeleted }}</td>
+                <td>{{ entity.rProduct }}</td>
+                <td>{{ entity.cLanguage }}</td>
+                <td>{{ entity.cName }}</td>
+                <td>{{ entity.cShortName }}</td>
+                <td>{{ entity.cDescription }}</td>
+                <td>{{ entity.cDescriptionType }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('producttext_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('producttext_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('producttext_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

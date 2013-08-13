@@ -45,7 +45,7 @@ abstract class BaseTable {
     private $cCreationUser;
 
     /**
-     * @ORM\Column(type="guid", nullable=false, length=36)
+     * @ORM\Column(type="guid", nullable=true, length=36)
      */
     private $cModifyUser;
 
@@ -62,7 +62,6 @@ abstract class BaseTable {
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
         $this->setIsDeleted(false);
-        $this->setCClient("");
     }
 
     /**
@@ -73,7 +72,7 @@ abstract class BaseTable {
         $user = $kernel->getContainer()->get('security.context')->getToken()->getUser();
         $this->setCModifyUser($user->getId());
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("sus");
+        $this->setCComp("LIBETTO");
         $this->setIsDeleted(false);
     }
 
@@ -88,7 +87,7 @@ abstract class BaseTable {
         $this->setCModifyUser($user->getId());
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("sus");
+        $this->setCComp("LIBETTO");
         $this->setIsDeleted(false);
     }
 
