@@ -20,7 +20,7 @@ framework:
     trusted_proxies: ~
     session:         ~
     fragments:       ~
-    trusted_hosts:   localhost
+    trusted_hosts:   ~
 
 # Twig Configuration
 twig:

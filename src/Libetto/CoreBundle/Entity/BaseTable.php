@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class BaseTable {
 
     /**
+     * Allgemeine UID
      * @ORM\Column(type="guid", nullable=false, length=36, name="cId")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
@@ -29,27 +30,33 @@ abstract class BaseTable {
     private $cComp;
 
     /**
+     * Erstelldatum
+     * Mandant / Frima
      * @ORM\Column(type="datetime")
      */
     private $cCreationDate;
 
     /**
+     * Änderungsdatum
      * @ORM\Column(type="datetime")
      */
     private $cModifyDate;
 
     /**
+     * Erstell-Benutzer
      * @ORM\Column(type="guid", nullable=false, length=36)
      * 
      */
     private $cCreationUser;
 
     /**
+     * Änderungs-Benutzer
      * @ORM\Column(type="guid", nullable=false, length=36)
      */
     private $cModifyUser;
 
     /**
+     * Löschkennzeichen
      * @ORM\Column(type="boolean", nullable=false, options={"default":false} )
      */
     private $isDeleted;

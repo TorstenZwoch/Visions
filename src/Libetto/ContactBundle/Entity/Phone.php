@@ -53,8 +53,6 @@ class Phone extends BASE
      * @var guid
      *
      * @ORM\Column(name="rPerson", type="guid")
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="Phone")
-     * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId")
      *
      */
     private $rPerson;
@@ -63,31 +61,43 @@ class Phone extends BASE
      * @var guid
      *
      * @ORM\Column(name="rCompany", type="guid")
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="Phone")
-     * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     private $rCompany;
-
-
+    
+   /**
+     *
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="phones")
+     * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
+     */
+    protected $company;
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="phones")
+     * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId")
+     */
+    protected $person;
    
+
+    
 
     /**
      * Set cCountryCode
      *
-     * @param integer $cCountryCode
-     * @return tPhone
+     * @param string $cCountryCode
+     * @return Phone
      */
     public function setCCountryCode($cCountryCode)
     {
         $this->cCountryCode = $cCountryCode;
-
+    
         return $this;
     }
 
     /**
      * Get cCountryCode
      *
-     * @return integer 
+     * @return string 
      */
     public function getCCountryCode()
     {
@@ -97,20 +107,20 @@ class Phone extends BASE
     /**
      * Set cRegion
      *
-     * @param integer $cRegion
-     * @return tPhone
+     * @param string $cRegion
+     * @return Phone
      */
     public function setCRegion($cRegion)
     {
         $this->cRegion = $cRegion;
-
+    
         return $this;
     }
 
     /**
      * Get cRegion
      *
-     * @return integer 
+     * @return string 
      */
     public function getCRegion()
     {
@@ -121,12 +131,12 @@ class Phone extends BASE
      * Set cNumber
      *
      * @param string $cNumber
-     * @return tPhone
+     * @return Phone
      */
     public function setCNumber($cNumber)
     {
         $this->cNumber = $cNumber;
-
+    
         return $this;
     }
 
@@ -144,12 +154,12 @@ class Phone extends BASE
      * Set cOfficeNumber
      *
      * @param string $cOfficeNumber
-     * @return tPhone
+     * @return Phone
      */
     public function setCOfficeNumber($cOfficeNumber)
     {
         $this->cOfficeNumber = $cOfficeNumber;
-
+    
         return $this;
     }
 
@@ -167,12 +177,12 @@ class Phone extends BASE
      * Set cType
      *
      * @param integer $cType
-     * @return tPhone
+     * @return Phone
      */
     public function setCType($cType)
     {
         $this->cType = $cType;
-
+    
         return $this;
     }
 
@@ -190,12 +200,12 @@ class Phone extends BASE
      * Set rPerson
      *
      * @param guid $rPerson
-     * @return tPhone
+     * @return Phone
      */
     public function setRPerson($rPerson)
     {
         $this->rPerson = $rPerson;
-
+    
         return $this;
     }
 
@@ -213,12 +223,12 @@ class Phone extends BASE
      * Set rCompany
      *
      * @param guid $rCompany
-     * @return tPhone
+     * @return Phone
      */
     public function setRCompany($rCompany)
     {
         $this->rCompany = $rCompany;
-
+    
         return $this;
     }
 
@@ -230,5 +240,51 @@ class Phone extends BASE
     public function getRCompany()
     {
         return $this->rCompany;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Libetto\ContactBundle\Entity\Company $company
+     * @return Phone
+     */
+    public function setCompany(\Libetto\ContactBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+    
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Libetto\ContactBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set person
+     *
+     * @param \Libetto\ContactBundle\Entity\Person $person
+     * @return Phone
+     */
+    public function setPerson(\Libetto\ContactBundle\Entity\Person $person = null)
+    {
+        $this->person = $person;
+    
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return \Libetto\ContactBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
     }
 }
