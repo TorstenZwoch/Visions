@@ -49,7 +49,10 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
     
+    
+#API Routes    
 libetto_user_rest:
+  prefix: /api
   type: rest
   resource: Libetto\UserBundle\Controller\UserRestController
   
