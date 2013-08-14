@@ -33,7 +33,7 @@ class AppKernel extends Kernel {
             new FOS\RestBundle\FOSRestBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Libetto\SupplierBundle\LibettoSupplierBundle(),
-            new Libetto\SupplierBundle\LibettoItemBundle()
+            new Libetto\ItemBundle\LibettoItemBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

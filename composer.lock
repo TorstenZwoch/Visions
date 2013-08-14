@@ -992,12 +992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "500b46cc3670c826b08e274ded4df20ce41ce257"
+                "reference": "133b8168d7c35b237b65307b4eb3d3c308490e89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/500b46cc3670c826b08e274ded4df20ce41ce257",
-                "reference": "500b46cc3670c826b08e274ded4df20ce41ce257",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/133b8168d7c35b237b65307b4eb3d3c308490e89",
+                "reference": "133b8168d7c35b237b65307b4eb3d3c308490e89",
                 "shasum": ""
             },
             "require": {
@@ -1058,7 +1058,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2013-08-11 18:08:42"
+            "time": "2013-08-13 16:48:18"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1211,7 +1211,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1253,7 +1253,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1369,7 +1369,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -2060,7 +2060,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
