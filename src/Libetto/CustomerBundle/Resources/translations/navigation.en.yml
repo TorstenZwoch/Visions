@@ -5,5 +5,7 @@ customer: #the first key is always the bundle name
     Customer list: Customer list
   interestIn:
   lead:
+    Lead: Lead
+    Lead list: Lead list      
     
 

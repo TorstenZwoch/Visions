@@ -22,6 +22,12 @@ class CustomerType extends AbstractType {
                     'label' => $transPrafix . 'InvoiceContact'
                         )
                 )
+                ->add('contact', 'entity', array(
+                    'class' => 'LibettoContactBundle:Contact',
+                    'property' => 'cLanguage',
+                    'label' => $transPrafix . 'Contact'
+                        )
+                )                
                 ->add('rContactGroup', null, array('label' => $transPrafix . 'ContactGroup'))
                 ->add('rTermsOfPayment', null, array('label' => $transPrafix . 'TermsOfPayment'))
                 ->add('rPricelist', null, array('label' => $transPrafix . 'Pricelist'))
@@ -35,6 +41,7 @@ class CustomerType extends AbstractType {
                 ->remove('cModifyUser')
                 ->remove('isDeleted')
                 ->remove('rInvoiceContact')
+                ->remove('rContact')
         ;
     }
 

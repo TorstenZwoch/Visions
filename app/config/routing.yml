@@ -1,5 +1,5 @@
-libetto_item:
-    resource: "@LibettoItemBundle/Controller/"
+libetto_supplier:
+    resource: "@LibettoSupplierBundle/Controller/"
     type:     annotation
     prefix:   /
 

@@ -7,7 +7,7 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
 
 /**
  * Contact
- *
+ 
  * @ORM\Table(name="tContact")
  * @ORM\Entity()
  */
@@ -15,7 +15,7 @@ class Contact extends BASE
 {
 
     /**
-     * @var string
+     * @var integer
      *
      * @ORM\Column(name="cType", type="string", length=255,nullable=true)
      */
@@ -28,12 +28,6 @@ class Contact extends BASE
      */
     private $cLanguage;
     
-    /**
-     * 
-     * @ORM\OneToMany(targetEntity="\Libetto\CustomerBundle\Entity\Customer", mappedBy="invoiceContact")
-     * @var Collection
-     */
-    private $customer;
 
     /**
      * @var guid
@@ -43,14 +37,27 @@ class Contact extends BASE
      */
     private $rCompanyOrPerson;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Person", mappedBy="contact")
+     */
+    protected $persons;
 
-    public function __construct() {
-        //Initializing collection. Doctrine recognizes Collections, not arrays!
-        $this->customer = new ArrayCollection();
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Company", mappedBy="contact")
+     */
+    protected $companies;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->persons = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
     }
-     
-    //Getters and setters
-
+    
     /**
      * Set cType
      *
@@ -121,25 +128,68 @@ class Contact extends BASE
     }
 
     /**
-     * Add customer
+     * Add persons
      *
-     * @param \Libetto\CustomerBundle\Entity\Customer $customer
+     * @param \Libetto\ContactBundle\Entity\Person $persons
      * @return Contact
      */
-    public function addCustomer(\Libetto\CustomerBundle\Entity\Customer $customer)
+    public function addPerson(\Libetto\ContactBundle\Entity\Person $persons)
     {
-        $this->customer[] = $customer;
+        $this->persons[] = $persons;
     
         return $this;
     }
 
     /**
-     * Remove customer
+     * Remove persons
      *
-     * @param \Libetto\CustomerBundle\Entity\Customer $customer
+     * @param \Libetto\ContactBundle\Entity\Person $persons
      */
-    public function removeCustomer(\Libetto\CustomerBundle\Entity\Customer $customer)
+    public function removePerson(\Libetto\ContactBundle\Entity\Person $persons)
     {
-        $this->customer->removeElement($customer);
+        $this->persons->removeElement($persons);
+    }
+
+    /**
+     * Get persons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPersons()
+    {
+        return $this->persons;
+    }
+
+    /**
+     * Add companies
+     *
+     * @param \Libetto\ContactBundle\Entity\Company $companies
+     * @return Contact
+     */
+    public function addCompanie(\Libetto\ContactBundle\Entity\Company $companies)
+    {
+        $this->companies[] = $companies;
+    
+        return $this;
+    }
+
+    /**
+     * Remove companies
+     *
+     * @param \Libetto\ContactBundle\Entity\Company $companies
+     */
+    public function removeCompanie(\Libetto\ContactBundle\Entity\Company $companies)
+    {
+        $this->companies->removeElement($companies);
+    }
+
+    /**
+     * Get companies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCompanies()
+    {
+        return $this->companies;
     }
 }

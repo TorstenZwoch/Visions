@@ -1,0 +1,10 @@
+# Libetto\SupplierBundle\Resources\translations\navigation.de.yml
+supplier: #the first key is always the bundle name
+  supplier: #All navigations for supplier controller
+    Supplier: Lieferanten
+    Supplier list: Lieferantenliste
+  interestIn:
+  lead:
+    SupplierLead: Lieferanten (Interessenten)
+    SupplierLead list: Lieferantenliste (Interessenten)    
+    

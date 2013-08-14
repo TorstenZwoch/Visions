@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<h1>{% trans %}supplier.supplier.title.SupplierLead list{% endtrans %}</h1>
+
+<table class="records_list table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>{% trans %}supplier.supplier.form.label.Number{% endtrans %}</th>
+            <th>{% trans %}supplier.supplier.form.label.Contact{% endtrans %}</th>
+            <th>{% trans %}supplier.supplier.form.label.TermsOfPayment{% endtrans %}</th>
+            <th>{% trans %}supplier.supplier.form.label.PriceList{% endtrans %}</th>
+            <th>{% trans %}supplier.supplier.form.label.Info{% endtrans %}</th>
+            <th>
+                {% trans %}supplier.supplier.form.label.ContactGroup{% endtrans %}
+            </th>             
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+    <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('supplierlead_show', { 'id': entity.id }) }}">{{ entity.cNumber }}</a></td>
+                <td>{{ entity.rContact }}</td>
+                <td>{{ entity.rTermsOfPayment }}</td>
+                <td>{{ entity.rPricelist }}</td>
+                <td>{{ entity.cInfo }}</td>
+                <td>{{ entity.rContactGroup }}</td>              
+                <td>
+                    <a href="{{ path('supplierlead_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-pencil"></i> {% trans %}supplier.supplier.form.action.Edit{% endtrans %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br />
+    <a href="{{ path('supplierlead_new') }}" class="btn btn-success">
+        <i class="icon-plus"></i>
+        {% trans %}supplier.supplier.form.action.CreateNewSupplierLead{% endtrans %}
+        
+    </a>
+
+    {% endblock %}
+

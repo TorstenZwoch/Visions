@@ -31,8 +31,9 @@ class AppKernel extends Kernel {
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Libetto\ItemBundle\LibettoItemBundle()
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
+,
+            new Libetto\SupplierBundle\LibettoSupplierBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
