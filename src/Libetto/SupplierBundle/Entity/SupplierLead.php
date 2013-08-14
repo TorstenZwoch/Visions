@@ -26,11 +26,19 @@ class SupplierLead extends BASE
      * @ORM\Column(name="rContact", type="guid")
      */
     private $rContact;
-
+    
+    /**
+     * @var Contact|null
+     * 
+     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
+     * @ORM\JoinColumn(name="rContact", referencedColumnName="cId")
+     */
+    private $contact;  
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="cInfo", type="string", length=255)
+     * @ORM\Column(name="cInfo", type="text")
      */
     private $cInfo;
 
@@ -193,5 +201,51 @@ class SupplierLead extends BASE
     public function getRPricelist()
     {
         return $this->rPricelist;
+    }
+    
+    /**
+     * Set invoiceContact
+     *
+     * @param \Libetto\ContactBundle\Entity\Contact $invoiceContact
+     * @return Customer
+     */
+    public function setInvoiceContact(\Libetto\ContactBundle\Entity\Contact $invoiceContact = null)
+    {
+        $this->invoiceContact = $invoiceContact;
+    
+        return $this;
+    }
+
+    /**
+     * Get invoiceContact
+     *
+     * @return \Libetto\ContactBundle\Entity\Contact 
+     */
+    public function getInvoiceContact()
+    {
+        return $this->invoiceContact;
+    }
+    
+    /**
+     * Set contact
+     *
+     * @param \Libetto\ContactBundle\Entity\Contact $contact
+     * @return Customer
+     */
+    public function setContact(\Libetto\ContactBundle\Entity\Contact $contact = null)
+    {
+        $this->contact = $contact;
+    
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \Libetto\ContactBundle\Entity\Contact 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

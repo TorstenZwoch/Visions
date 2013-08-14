@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Media list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ccomp</th>
+                <th>Ccreationdate</th>
+                <th>Cmodifydate</th>
+                <th>Ccreationuser</th>
+                <th>Cmodifyuser</th>
+                <th>Isdeleted</th>
+                <th>Rrefid</th>
+                <th>Cpath</th>
+                <th>Ctype</th>
+                <th>Ctext</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('media_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.cComp }}</td>
+                <td>{% if entity.cCreationDate %}{{ entity.cCreationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.cModifyDate %}{{ entity.cModifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.cCreationUser }}</td>
+                <td>{{ entity.cModifyUser }}</td>
+                <td>{{ entity.isDeleted }}</td>
+                <td>{{ entity.rRefId }}</td>
+                <td>{{ entity.cPath }}</td>
+                <td>{{ entity.cType }}</td>
+                <td>{{ entity.cText }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('media_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('media_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('media_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

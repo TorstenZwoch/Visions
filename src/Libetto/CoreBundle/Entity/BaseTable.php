@@ -79,7 +79,7 @@ abstract class BaseTable {
         $user = $kernel->getContainer()->get('security.context')->getToken()->getUser();
         $this->setCModifyUser($user->getId());
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("sus");
+        $this->setCComp("LIBETTO");
         $this->setIsDeleted(false);
     }
 
@@ -94,7 +94,7 @@ abstract class BaseTable {
         $this->setCModifyUser($user->getId());
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("sus");
+        $this->setCComp("LIBETTO");
         $this->setIsDeleted(false);
     }
 

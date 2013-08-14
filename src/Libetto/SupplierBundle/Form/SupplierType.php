@@ -17,8 +17,18 @@ class SupplierType extends AbstractType
         $transPrafix = "supplier.supplier.form.label.";
         $builder
             ->add('cNumber',null, array('label' => $transPrafix . 'Number'))
-            ->add('rContact',null, array('label' => $transPrafix . 'Contact'))
-            ->add('rInvoiceContact',null, array('label' => $transPrafix . 'InvoiceContact'))
+            ->add('contact', 'entity', array(
+                    'class' => 'LibettoContactBundle:Contact',
+                    'property' => 'cLanguage',
+                    'label' => $transPrafix . 'Contact'
+                        )
+                    )
+            ->add('invoiceContact', 'entity', array(
+                    'class' => 'LibettoContactBundle:Contact',
+                    'property' => 'cLanguage',
+                    'label' => $transPrafix . 'InvoiceContact'
+                        )
+                    )
             ->add('cInfo',null, array('label' => $transPrafix . 'Info'))
             ->add('rContactGroup',null, array('label' => $transPrafix . 'ContactGroup'))
             ->add('rTermsOfPayment',null, array('label' => $transPrafix . 'TermsOfPayment'))

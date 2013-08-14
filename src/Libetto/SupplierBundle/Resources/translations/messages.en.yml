@@ -10,9 +10,9 @@ supplier: #the first key is always the bundle name
       Supplier edit: Lieferanten bearbeiten   
       Supplier: Lieferanten
       SupplierLead creation: Lieferanten erstellen
-      SupplierLead list: Lieferantenliste   
+      SupplierLead list: Lieferantenliste (Interessenten)
       SupplierLead edit: Lieferanten bearbeiten   
-      SupplierLead: Lieferanten
+      SupplierLead: Lieferanten (Interessenten)
     form: # here are the messages relative to a form 'question' (probably QuestionType class)
       help: #Choose the category which best describes your question
       label:
@@ -37,6 +37,6 @@ supplier: #the first key is always the bundle name
         Edit: Bearbeiten
         Save: Speichern
         CreateNewSupplier: Neuen Lieferanten erstellen
-        CreateNewSupplierLead: Neuen Lieferanten erstellen
+        CreateNewSupplierLead: Neuen Lieferanten (Interessenten) erstellen
     warn:
       notFound: Der Lieferant existiert nicht   
