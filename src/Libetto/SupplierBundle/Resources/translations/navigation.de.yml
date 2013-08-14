@@ -5,6 +5,6 @@ supplier: #the first key is always the bundle name
     Supplier list: Lieferantenliste
   interestIn:
   lead:
-    SupplierLead: Lieferanten I
-    SupplierLead list: Lieferantenliste I    
+    SupplierLead: Lieferanten (Interessenten)
+    SupplierLead list: Lieferantenliste (Interessenten)    
     
