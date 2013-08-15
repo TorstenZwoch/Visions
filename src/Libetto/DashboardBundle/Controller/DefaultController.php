@@ -1,19 +1,25 @@
 <?php
 
-namespace Libetto\CustomerBundle\Controller;
+namespace Libetto\DashboardBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+
+/**
+ * Libetto Default controller.
+ *
+ * @Route("/")
+ */
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/hello/{name}")
-     * @Template()
-     */
-    public function indexAction($name)
+   /**
+    * @Route("/")
+    * @Template()
+    **/
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array('leer'=>'Nix');
     }
 }
