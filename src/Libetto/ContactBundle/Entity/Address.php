@@ -14,21 +14,6 @@ class Address extends BASE
 {
 
     /**
-     * @var guid
-     *
-     * @ORM\Column(name="rPerson", type="guid")
-     *
-     */
-    private $rPerson;
-
-    /**
-     * @var guid
-     *
-     * @ORM\Column(name="rCompany", type="guid")
-     */
-    private $rCompany;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="cStreet", type="string", length=255)
@@ -41,6 +26,14 @@ class Address extends BASE
      * @ORM\Column(name="cZipCode", type="string", length=64)
      */
     private $cZipCode;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cCity", type="string", length=255)
+     */
+    private $cCity;
+
 
     /**
      * @var string
@@ -65,65 +58,19 @@ class Address extends BASE
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="addresses")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="addresses",cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     protected $company;
     
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="addresses")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="addresses",cascade={"persist"})
      * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId")
      */
     protected $person;
     
     
-
-    /**
-     * Set rPerson
-     *
-     * @param guid $rPerson
-     * @return Address
-     */
-    public function setRPerson($rPerson)
-    {
-        $this->rPerson = $rPerson;
-    
-        return $this;
-    }
-
-    /**
-     * Get rPerson
-     *
-     * @return guid 
-     */
-    public function getRPerson()
-    {
-        return $this->rPerson;
-    }
-
-    /**
-     * Set rCompany
-     *
-     * @param guid $rCompany
-     * @return Address
-     */
-    public function setRCompany($rCompany)
-    {
-        $this->rCompany = $rCompany;
-    
-        return $this;
-    }
-
-    /**
-     * Get rCompany
-     *
-     * @return guid 
-     */
-    public function getRCompany()
-    {
-        return $this->rCompany;
-    }
 
     /**
      * Set cStreet
@@ -284,5 +231,28 @@ class Address extends BASE
     public function getPerson()
     {
         return $this->person;
+    }
+
+    /**
+     * Set cCity
+     *
+     * @param string $cCity
+     * @return Address
+     */
+    public function setCCity($cCity)
+    {
+        $this->cCity = $cCity;
+    
+        return $this;
+    }
+
+    /**
+     * Get cCity
+     *
+     * @return string 
+     */
+    public function getCCity()
+    {
+        return $this->cCity;
     }
 }
