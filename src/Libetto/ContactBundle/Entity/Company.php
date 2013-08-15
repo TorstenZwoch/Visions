@@ -59,7 +59,7 @@ class Company extends BASE
     private $child_companies;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="child_companies")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="child_companies", cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     private $parent_company;
