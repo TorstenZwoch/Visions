@@ -46,3 +46,18 @@
     </a>
 
     {% endblock %}
+    
+{% block javascript %}
+            {{ parent() }}
+            {% javascripts 
+              filter='?yui_js'
+              output='Resources/js/customer_index.js'
+              combine=true
+              debug=false
+              "@LibettoCustomerBundle/Resources/public/js/customer_index.js"
+            %}
+                            <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+{% endblock %}
+ 
+

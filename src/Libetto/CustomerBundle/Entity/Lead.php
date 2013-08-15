@@ -34,7 +34,7 @@ class Lead extends BASE
    /**
      * @var Contact|null
      * 
-     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
+     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact", cascade={"persist"})
      * @ORM\JoinColumn(name="rContact", referencedColumnName="cId")
      */
     private $contact;     
