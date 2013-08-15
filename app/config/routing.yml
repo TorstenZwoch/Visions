@@ -55,6 +55,7 @@ fos_user_change_password:
     prefix: /profile
     
 libetto_user_rest:
+  prefix: /api
   type: rest
   resource: Libetto\UserBundle\Controller\UserRestController
   

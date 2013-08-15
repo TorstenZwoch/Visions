@@ -60,7 +60,6 @@ abstract class BaseTable {
      * @ORM\Column(type="boolean", nullable=false, options={"default":false} )
      */
     private $isDeleted;
-    
 
     /**
      * 
@@ -75,9 +74,14 @@ abstract class BaseTable {
      * @ORM\PreUpdate
      */
     public function setUpdatedValue() {
+        $userId = "auto generated";
         global $kernel;
-        $user = $kernel->getContainer()->get('security.context')->getToken()->getUser();
-        $this->setCModifyUser($user->getId());
+        $securityToken = $kernel->getContainer()->get('security.context')->getToken();
+        if ($securityToken != null) {
+            $user = $securityToken->getUser();
+            $userId = $user->getId();
+        }
+        $this->setCModifyUser($userId);
         $this->setCModifyDate(new \DateTime());
         $this->setCComp("LIBETTO");
         $this->setIsDeleted(false);
@@ -87,11 +91,15 @@ abstract class BaseTable {
      * @ORM\PrePersist
      */
     public function setPersistValue() {
- 
+        $userId = "auto generated";
         global $kernel;
-        $user = $kernel->getContainer()->get('security.context')->getToken()->getUser();
-        $this->setCCreationUser($user->getId());
-        $this->setCModifyUser($user->getId());
+        $securityToken = $kernel->getContainer()->get('security.context')->getToken();
+        if ($securityToken != null) {
+            $user = $securityToken->getUser();
+            $userId = $user->getId();
+        }
+        $this->setCCreationUser($userId);
+        $this->setCModifyUser($userId);
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
         $this->setCComp("LIBETTO");
