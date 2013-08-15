@@ -47,16 +47,9 @@ class Person extends BASE
      */
     private $cEMail;
     
-     /**
-     * @var rCompany
-     *
-     * @ORM\Column(name="rCompany", type="guid",nullable=true)
-     * 
-     */
-    private $rCompany;
 
     /*
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="employees")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="employees", cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     
@@ -66,7 +59,7 @@ class Person extends BASE
     
     /**
      *
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="person")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="person", cascade={"persist"})
      */
     protected $adresses;
     
@@ -75,7 +68,7 @@ class Person extends BASE
         
     /**
      *
-     * @ORM\OneToMany(targetEntity="Phone", mappedBy="person")
+     * @ORM\OneToMany(targetEntity="Phone", mappedBy="person", cascade={"persist"})
      */
     protected $phones;
    
@@ -203,28 +196,6 @@ class Person extends BASE
         return $this->cEMail;
     }
 
-    /**
-     * Set rCompany
-     *
-     * @param guid $rCompany
-     * @return Person
-     */
-    public function setRCompany($rCompany)
-    {
-        $this->rCompany = $rCompany;
-    
-        return $this;
-    }
-
-    /**
-     * Get rCompany
-     *
-     * @return guid 
-     */
-    public function getRCompany()
-    {
-        return $this->rCompany;
-    }
 
     /**
      * Add adresses
