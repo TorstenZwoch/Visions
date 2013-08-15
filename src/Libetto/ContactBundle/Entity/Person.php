@@ -50,7 +50,7 @@ class Person extends BASE
      /**
      * @var rCompany
      *
-     * @ORM\Column(name="rCompany", type="guid")
+     * @ORM\Column(name="rCompany", type="guid",nullable=true)
      * 
      */
     private $rCompany;
@@ -70,11 +70,6 @@ class Person extends BASE
      */
     protected $adresses;
     
-     /**
-     * @ORM\OneToOne(targetEntity="Contact")
-     * @ORM\JoinColumn(name="rCompanyOrPerson", referencedColumnName="cId")
-     */
-    private $contact;
     
     
         

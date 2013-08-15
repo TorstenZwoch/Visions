@@ -14,12 +14,6 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
 class Contact extends BASE
 {
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="cType", type="string", length=255,nullable=true)
-     */
-    private $cType;
 
     /**
      * @var string
@@ -28,58 +22,33 @@ class Contact extends BASE
      */
     private $cLanguage;
     
-
-    /**
-     * @var guid
+     /**
+     * @var string
      *
-     * @ORM\Column(name="rCompanyOrPerson", type="guid")
-     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(name="cCurrency", type="string", length=10,nullable=true)
      */
-    private $rCompanyOrPerson;
-
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="Person", mappedBy="contact")
-     */
-    protected $persons;
-
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="Company", mappedBy="contact")
-     */
-    protected $companies;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->persons = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $cCurrency;
+    
+    
     
     /**
-     * Set cType
      *
-     * @param string $cType
-     * @return Contact
+     * @var type 
+     * 
+     * @ORM\OneToOne(targetEntity="Company",cascade={"persist"})
+     * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId",nullable=true)
      */
-    public function setCType($cType)
-    {
-        $this->cType = $cType;
+    protected $company;
     
-        return $this;
-    }
-
     /**
-     * Get cType
      *
-     * @return string 
+     * @var type 
+     * 
+     * @ORM\OneToOne(targetEntity="Person",cascade={"persist"})
+     * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId",nullable=true)
      */
-    public function getCType()
-    {
-        return $this->cType;
-    }
+    protected $person;
+
 
     /**
      * Set cLanguage
@@ -103,93 +72,74 @@ class Contact extends BASE
     {
         return $this->cLanguage;
     }
-
+    
     /**
-     * Set rCompanyOrPerson
+     * Set cCurrency
      *
-     * @param guid $rCompanyOrPerson
+     * @param string $cCurrency
      * @return Contact
      */
-    public function setRCompanyOrPerson($rCompanyOrPerson)
+    public function setCCurrency($cCurrency)
     {
-        $this->rCompanyOrPerson = $rCompanyOrPerson;
+        $this->cCurrency = $cCurrency;
     
         return $this;
     }
 
     /**
-     * Get rCompanyOrPerson
+     * Get cCurrency
      *
-     * @return guid 
+     * @return string 
      */
-    public function getRCompanyOrPerson()
+    public function getCCurrency()
     {
-        return $this->rCompanyOrPerson;
+        return $this->cCurrency;
     }
 
     /**
-     * Add persons
+     * Set company
      *
-     * @param \Libetto\ContactBundle\Entity\Person $persons
+     * @param \Libetto\ContactBundle\Entity\Company $company
      * @return Contact
      */
-    public function addPerson(\Libetto\ContactBundle\Entity\Person $persons)
+    public function setCompany(\Libetto\ContactBundle\Entity\Company $company = null)
     {
-        $this->persons[] = $persons;
+        $this->person = null;
+        $this->company = $company;
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Libetto\ContactBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set person
+     *
+     * @param \Libetto\ContactBundle\Entity\Person $person
+     * @return Contact
+     */
+    public function setPerson(\Libetto\ContactBundle\Entity\Person $person = null)
+    {
+        $this->company = null;
+        $this->person = $person;
     
         return $this;
     }
 
     /**
-     * Remove persons
+     * Get person
      *
-     * @param \Libetto\ContactBundle\Entity\Person $persons
+     * @return \Libetto\ContactBundle\Entity\Person 
      */
-    public function removePerson(\Libetto\ContactBundle\Entity\Person $persons)
+    public function getPerson()
     {
-        $this->persons->removeElement($persons);
-    }
-
-    /**
-     * Get persons
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPersons()
-    {
-        return $this->persons;
-    }
-
-    /**
-     * Add companies
-     *
-     * @param \Libetto\ContactBundle\Entity\Company $companies
-     * @return Contact
-     */
-    public function addCompanie(\Libetto\ContactBundle\Entity\Company $companies)
-    {
-        $this->companies[] = $companies;
-    
-        return $this;
-    }
-
-    /**
-     * Remove companies
-     *
-     * @param \Libetto\ContactBundle\Entity\Company $companies
-     */
-    public function removeCompanie(\Libetto\ContactBundle\Entity\Company $companies)
-    {
-        $this->companies->removeElement($companies);
-    }
-
-    /**
-     * Get companies
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCompanies()
-    {
-        return $this->companies;
+        return $this->person;
     }
 }
