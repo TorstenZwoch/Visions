@@ -18,9 +18,6 @@ class LoadCustomerData implements FixtureInterface {
 
     public function load(ObjectManager $manager) {
         $object = new Customer();
-        $object->setCCreationUser("tz");
-        $object->setCModifyUser("tz");
-        $object->setCComp("sus");
         $object->setCNumber("12345678");
         $object->setCInfo("Super");
 
@@ -30,9 +27,6 @@ class LoadCustomerData implements FixtureInterface {
         $user = $manager->getRepository('Libetto\CustomerBundle\Entity\Customer')->findOneBy(array('cNumber' => '12345678'));
 
         $object2 = new Customer();
-        $object2->setCCreationUser("tz");
-        $object2->setCModifyUser("tz");
-        $object2->setCComp('sus');
         $object2->setCNumber("12345678");
         $object2->setCInfo("Super" . $user->getId() . "te");
 

@@ -15,8 +15,7 @@ use Libetto\ItemBundle\Form\ProductGroupType;
  *
  * @Route("/productgroup")
  */
-class ProductGroupController extends Controller
-{
+class ProductGroupController extends Controller {
 
     /**
      * Lists all ProductGroup entities.
@@ -25,16 +24,16 @@ class ProductGroupController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LibettoItemBundle:ProductGroup')->findAll();
+        $entities = $em->getRepository('LibettoItemBundle:ProductGroup')->findBy(array(), array('cSort' => 'asc'));
 
         return array(
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new ProductGroup entity.
      *
@@ -42,9 +41,8 @@ class ProductGroupController extends Controller
      * @Method("POST")
      * @Template("LibettoItemBundle:ProductGroup:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new ProductGroup();
+    public function createAction(Request $request) {
+        $entity = new ProductGroup();
         $form = $this->createForm(new ProductGroupType(), $entity);
         $form->submit($request);
 
@@ -58,7 +56,7 @@ class ProductGroupController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -69,14 +67,13 @@ class ProductGroupController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new ProductGroup();
-        $form   = $this->createForm(new ProductGroupType(), $entity);
+        $form = $this->createForm(new ProductGroupType(), $entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -87,8 +84,7 @@ class ProductGroupController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:ProductGroup')->find($id);
@@ -100,7 +96,7 @@ class ProductGroupController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -112,8 +108,7 @@ class ProductGroupController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:ProductGroup')->find($id);
@@ -126,8 +121,8 @@ class ProductGroupController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -139,8 +134,7 @@ class ProductGroupController extends Controller
      * @Method("PUT")
      * @Template("LibettoItemBundle:ProductGroup:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:ProductGroup')->find($id);
@@ -157,23 +151,23 @@ class ProductGroupController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('productgroup_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('productgroup_show', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a ProductGroup entity.
      *
      * @Route("/{id}", name="productgroup_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->submit($request);
 
@@ -199,11 +193,17 @@ class ProductGroupController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
+
+//        return $this->renderView('LibettoCoreBundle::ConfirmDelete.html.twig', array(
+//                    'path' => 'productgroup_delete',
+//                    'entityid' => $id,
+//                    'buttontext' => "item.productgroup.action.Delete"
+//                        ));
     }
+
 }
