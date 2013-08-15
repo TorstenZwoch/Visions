@@ -15,8 +15,7 @@ use Libetto\ItemBundle\Form\CategoryType;
  *
  * @Route("/category")
  */
-class CategoryController extends Controller
-{
+class CategoryController extends Controller {
 
     /**
      * Lists all Category entities.
@@ -25,16 +24,16 @@ class CategoryController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LibettoItemBundle:Category')->findAll();
+        $entities = $em->getRepository('LibettoItemBundle:Category')->findBy(array(), array('rParentCategory' => 'asc', 'cSort' => 'asc'));
 
         return array(
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new Category entity.
      *
@@ -42,9 +41,8 @@ class CategoryController extends Controller
      * @Method("POST")
      * @Template("LibettoItemBundle:Category:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new Category();
+    public function createAction(Request $request) {
+        $entity = new Category();
         $form = $this->createForm(new CategoryType(), $entity);
         $form->submit($request);
 
@@ -58,7 +56,7 @@ class CategoryController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -69,14 +67,13 @@ class CategoryController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Category();
-        $form   = $this->createForm(new CategoryType(), $entity);
+        $form = $this->createForm(new CategoryType(), $entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -87,8 +84,7 @@ class CategoryController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:Category')->find($id);
@@ -100,7 +96,7 @@ class CategoryController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -112,8 +108,7 @@ class CategoryController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:Category')->find($id);
@@ -126,8 +121,8 @@ class CategoryController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -139,8 +134,7 @@ class CategoryController extends Controller
      * @Method("PUT")
      * @Template("LibettoItemBundle:Category:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:Category')->find($id);
@@ -157,23 +151,23 @@ class CategoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('category_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('category_show', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Category entity.
      *
      * @Route("/{id}", name="category_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->submit($request);
 
@@ -199,11 +193,11 @@ class CategoryController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
     }
+
 }

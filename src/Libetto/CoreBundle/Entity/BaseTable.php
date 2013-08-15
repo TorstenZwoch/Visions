@@ -65,9 +65,8 @@ abstract class BaseTable {
      * 
      */
     public function __construct() {
-        $this->setCCreationDate(new \DateTime());
-        $this->setCModifyDate(new \DateTime());
         $this->setIsDeleted(false);
+        $this->setCComp("LIBETTO");
     }
 
     /**
@@ -83,8 +82,6 @@ abstract class BaseTable {
         }
         $this->setCModifyUser($userId);
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("LIBETTO");
-        $this->setIsDeleted(false);
     }
 
     /**
@@ -102,8 +99,6 @@ abstract class BaseTable {
         $this->setCModifyUser($userId);
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("LIBETTO");
-        $this->setIsDeleted(false);
     }
 
     /**
