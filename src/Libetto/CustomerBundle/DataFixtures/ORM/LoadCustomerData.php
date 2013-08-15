@@ -22,6 +22,7 @@ class LoadCustomerData implements FixtureInterface {
     //put your code here
 
     public function load(ObjectManager $manager) {
+<<<<<<< HEAD
         
         // Firmenkontakt
         $company = new Company();
@@ -94,7 +95,7 @@ class LoadCustomerData implements FixtureInterface {
         $customer->setCInfo("Kommunikation nur über Frau Müller");
         $customer->setContact($contact);
         $customer->setInvoiceContact($contact);
-
+            
         $manager->persist($customer);
         $manager->flush();      
     }

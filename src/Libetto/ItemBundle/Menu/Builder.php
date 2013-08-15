@@ -21,12 +21,12 @@ class Builder extends ContainerAware {
         } else {
             // ROLE USER OR ADMIN
 
-            $itemMenu = $factory->createItem($this->container->get('translator')->trans('ItemBundle.Navigation.Product'));
-            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('ItemBundle.Navigation.ProductList'),array('route' => 'product'))->setAttribute('icon', 'icon-thumbs-up'));
-            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('ItemBundle.Navigation.ProductGroupList'),array('route' => 'productgroup'))->setAttribute('icon', 'icon-thumbs-up'));
-            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('ItemBundle.Navigation.CategoryList'),array('route' => 'category'))->setAttribute('icon', 'icon-thumbs-up'));
-            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('ItemBundle.Navigation.ProductTextList'),array('route' => 'producttext'))->setAttribute('icon', 'icon-thumbs-up'));
-            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('ItemBundle.Navigation.MediaList'),array('route' => 'media'))->setAttribute('icon', 'icon-thumbs-up'));
+            $itemMenu = $factory->createItem($this->container->get('translator')->trans('item.navigation.Product'));
+            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.ProductList'),array('route' => 'product'))->setAttribute('icon', 'icon-thumbs-up'));
+            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.ProductGroupList'),array('route' => 'productgroup'))->setAttribute('icon', 'icon-thumbs-up'));
+            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.CategoryList'),array('route' => 'category'))->setAttribute('icon', 'icon-thumbs-up'));
+            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.ProductTextList'),array('route' => 'producttext'))->setAttribute('icon', 'icon-thumbs-up'));
+            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.MediaList'),array('route' => 'media'))->setAttribute('icon', 'icon-thumbs-up'));
             $menu->addChild($itemMenu);
 
             if ($this->container->get('security.context')->isGranted('ROLE_ADMIN') === true) {

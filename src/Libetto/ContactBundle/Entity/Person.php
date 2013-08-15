@@ -46,10 +46,9 @@ class Person extends BASE
      * @ORM\Column(name="cEMail", type="string", length=255)
      */
     private $cEMail;
-    
 
     /*
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="employees", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="employees",cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     
@@ -59,7 +58,7 @@ class Person extends BASE
     
     /**
      *
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="person",cascade={"persist"})
      */
     protected $adresses;
     
@@ -68,7 +67,7 @@ class Person extends BASE
         
     /**
      *
-     * @ORM\OneToMany(targetEntity="Phone", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Phone", mappedBy="person",cascade={"persist"})
      */
     protected $phones;
    
@@ -77,6 +76,7 @@ class Person extends BASE
      */
     public function __construct()
     {
+        parent::__construct();
         $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
     }

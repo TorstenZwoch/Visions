@@ -48,7 +48,7 @@ class Phone extends BASE
      * @ORM\Column(name="cType", type="integer")
      */
     private $cType;
-    
+
    /**
      * @var guid
      *
@@ -226,5 +226,24 @@ class Phone extends BASE
     public function getPerson()
     {
         return $this->person;
+    }
+    
+    /**
+     * Setzt die Telefonnummer, wobei die einzelnen Blöcke mit Leerzeichen
+     * getrennt sind
+     * 
+     * @param string $completeNr Vollständige Telefonnummer
+     */
+    public function setWholeNumber($completeNr) {
+        list($this->cCountryCode,$this->cRegion,$this->cNumber,$this->cOfficeNumber) = explode(" ",$completeNr);
+    }
+    
+    /**
+     * Gibt die Telefonnummer als String zurück (Leerzeichen getrennt)
+     * 
+     * @return string
+     */
+    public function getWholeNumber() {
+        return implode(" ",array($this->cCountryCode,$this->cRegion,$this->cNumber,$this->cOfficeNumber));
     }
 }
