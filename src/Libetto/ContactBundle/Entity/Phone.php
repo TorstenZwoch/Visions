@@ -48,32 +48,18 @@ class Phone extends BASE
      * @ORM\Column(name="cType", type="integer")
      */
     private $cType;
-
-    /**
-     * @var guid
-     *
-     * @ORM\Column(name="rPerson", type="guid")
-     *
-     */
-    private $rPerson;
-
-    /**
-     * @var guid
-     *
-     * @ORM\Column(name="rCompany", type="guid")
-     */
-    private $rCompany;
     
    /**
+     * @var guid
      *
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="phones")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="phones", cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     protected $company;
     
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="phones")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="phones", cascade={"persist"})
      * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId")
      */
     protected $person;
@@ -194,52 +180,6 @@ class Phone extends BASE
     public function getCType()
     {
         return $this->cType;
-    }
-
-    /**
-     * Set rPerson
-     *
-     * @param guid $rPerson
-     * @return Phone
-     */
-    public function setRPerson($rPerson)
-    {
-        $this->rPerson = $rPerson;
-    
-        return $this;
-    }
-
-    /**
-     * Get rPerson
-     *
-     * @return guid 
-     */
-    public function getRPerson()
-    {
-        return $this->rPerson;
-    }
-
-    /**
-     * Set rCompany
-     *
-     * @param guid $rCompany
-     * @return Phone
-     */
-    public function setRCompany($rCompany)
-    {
-        $this->rCompany = $rCompany;
-    
-        return $this;
-    }
-
-    /**
-     * Get rCompany
-     *
-     * @return guid 
-     */
-    public function getRCompany()
-    {
-        return $this->rCompany;
     }
 
     /**
