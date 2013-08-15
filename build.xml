@@ -3,8 +3,8 @@
     
     <target name="1_InitEnviroment" depends="CopyParameters, GetComposer, GetPHP-CS-Fixer"/>
     <target name="2_InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
-    <target name="2_InstallDependenciesWithUser" depends="ComposerInstall, DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser"/>
-    <target name="3_UpdateDatabaseAndClearCache" depends="DropCreateUpdateDatabase, CreateAdminUser, CreateDemoUser, ClearCache"/>
+    <target name="2_InstallDependenciesWithUser" depends="ComposerInstall, DropCreateUpdateDatabase, LoadFixtures"/>
+    <target name="3_UpdateDatabaseAndClearCache" depends="DropCreateUpdateDatabase, LoadFixtures"/>
 
     <target name="UpdateDependencies" depends="ComposerUpdate, UpdateFieldsInDatabase"/>
     
@@ -142,48 +142,6 @@
         </exec>
     </target>
     
-    <target name="CreateDemoUser" description="Create a Demouser">
-        <exec executable="php">
-            <arg value="app/console" />
-            <arg value="fos:user:create" />
-            <arg value="demo" />
-            <arg value="test@example.com" />
-            <arg value="demo" />
-        </exec>
-    </target>
-    
-    <target name="CreateDemoUser2" description="Create a Demouser">
-        <exec executable="php">
-            <arg value="app/console" />
-            <arg value="fos:user:create" />
-            <arg value="demo2" />
-            <arg value="test2@example.com" />
-            <arg value="demo2" />
-        </exec>
-    </target>    
-    
-    <target name="CreateAdminUser" description="Create a Adminuser">
-        <exec executable="php">
-            <arg value="app/console" />
-            <arg value="fos:user:create" />
-            <arg value="--super-admin" />
-            <arg value="admin" />
-            <arg value="admin@example.com" />
-            <arg value="admin" />
-        </exec>
-    </target>
-    
-    <target name="CreateAdminUser2" description="Create a Adminuser">
-        <exec executable="php">
-            <arg value="app/console" />
-            <arg value="fos:user:create" />
-            <arg value="--super-admin" />
-            <arg value="admin2" />
-            <arg value="admin2@example.com" />
-            <arg value="admin2" />
-        </exec>
-    </target>    
-    
     <target name="GenerateComposerPackage" description="Generate Composer Package">
         <exec executable="php">
             <arg value="composer.phar" />
@@ -241,5 +199,13 @@
             <arg value="app/console" />
             <arg value="router:debug" />
         </exec>          
-    </target>           
+    </target>
+    
+    <target name="LoadFixtures" description="Load Demo Data">
+        <exec executable="php">
+            <arg value="app/console" />
+            <arg value="doctrine:fixtures:load" />
+            <arg value="-n" />
+        </exec>
+    </target>
 </project>

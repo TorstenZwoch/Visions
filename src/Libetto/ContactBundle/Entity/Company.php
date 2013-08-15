@@ -64,11 +64,6 @@ class Company extends BASE
      */
     private $parent_company;
 
-    /**
-     * @ORM\OneToOne(targetEntity="Contact")
-     * @ORM\JoinColumn(name="rCompanyOrPerson", referencedColumnName="cId")
-     */
-    private $contact;
   
     
     
