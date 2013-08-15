@@ -22,13 +22,12 @@ class LoadCustomerData implements FixtureInterface {
     //put your code here
 
     public function load(ObjectManager $manager) {
-<<<<<<< HEAD
         
         // Firmenkontakt
         $company = new Company();
         $company->setCName("Müller AG");
         $company->setCEMail("info@mueller-ag.de");
-        //$manager->persist($company);
+        $manager->persist($company);
         
         // Person
         $person = new Person();
