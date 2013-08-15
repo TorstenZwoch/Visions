@@ -16,7 +16,7 @@ class Address extends BASE
     /**
      * @var guid
      *
-     * @ORM\Column(name="rPerson", type="guid")
+     * @ORM\Column(name="rPerson", type="guid",nullable=true)
      *
      */
     private $rPerson;
@@ -24,7 +24,7 @@ class Address extends BASE
     /**
      * @var guid
      *
-     * @ORM\Column(name="rCompany", type="guid")
+     * @ORM\Column(name="rCompany", type="guid",nullable=true)
      */
     private $rCompany;
 
@@ -52,7 +52,7 @@ class Address extends BASE
     /**
      * @var integer
      *
-     * @ORM\Column(name="cType", type="integer")
+     * @ORM\Column(name="cType", type="integer", nullable=true, options={"default":"0"})
      */
     private $cType;
 
@@ -65,14 +65,14 @@ class Address extends BASE
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="addresses")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="addresses", cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     protected $company;
     
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="addresses")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="addresses", cascade={"persist"})
      * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId")
      */
     protected $person;
