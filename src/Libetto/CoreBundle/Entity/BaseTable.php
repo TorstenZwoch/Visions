@@ -48,12 +48,14 @@ abstract class BaseTable {
      * 
      */
     private $cCreationUser;
+    private $creationUser;
 
     /**
      * Änderungs-Benutzer
      * @ORM\Column(type="guid", nullable=false, length=36)
      */
     private $cModifyUser;
+    private $modifyUser;
 
     /**
      * Löschkennzeichen
@@ -65,9 +67,8 @@ abstract class BaseTable {
      * 
      */
     public function __construct() {
-        $this->setCCreationDate(new \DateTime());
-        $this->setCModifyDate(new \DateTime());
         $this->setIsDeleted(false);
+        $this->setCComp("LIBETTO");
     }
 
     /**
@@ -83,8 +84,6 @@ abstract class BaseTable {
         }
         $this->setCModifyUser($userId);
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("LIBETTO");
-        $this->setIsDeleted(false);
     }
 
     /**
@@ -102,8 +101,28 @@ abstract class BaseTable {
         $this->setCModifyUser($userId);
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
-        $this->setCComp("LIBETTO");
-        $this->setIsDeleted(false);
+    }
+
+    public function getModifyUser() {
+        if ($this->modifyUser == null) {
+            $user = $this->getDoctrine()->getRepository('LibettoUserBundle:User')->find($this->getCModifyUser());
+            $this->modifyUser = $user;
+        }
+        return $this->modifyUser;
+    }
+
+    public function setModifyUser($user) {
+        $u = new \Libetto\UserBundle\Entity\User();
+        $u = null;
+        $u = $user;
+        if ($u != null) {
+            $this->cModifyUser = $u->getId();
+            $this->modifyUser = $u;
+        }
+        else
+            $this->cModifyUser = $user;
+
+        return $this;
     }
 
     /**

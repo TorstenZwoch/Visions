@@ -35,6 +35,10 @@ class Category extends BASE {
         $this->childCategories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->getCNumber() . " - " . $this->getCName();
+    }
+
     /**
      * @var string
      *
@@ -52,7 +56,7 @@ class Category extends BASE {
     /**
      * @var guid
      *
-     * @ORM\Column(name="rParentCategory", type="guid", nullable=true)
+     * @ORM\Column(name="rParentCategory", type="guid", nullable=true, options={"default":null})
      */
     private $rParentCategory;
 
@@ -147,17 +151,15 @@ class Category extends BASE {
         return $this->cSort;
     }
 
-
     /**
      * Add products
      *
      * @param \Libetto\ItemBundle\Entity\Product $products
      * @return Category
      */
-    public function addProduct(\Libetto\ItemBundle\Entity\Product $products)
-    {
+    public function addProduct(\Libetto\ItemBundle\Entity\Product $products) {
         $this->products[] = $products;
-    
+
         return $this;
     }
 
@@ -166,8 +168,7 @@ class Category extends BASE {
      *
      * @param \Libetto\ItemBundle\Entity\Product $products
      */
-    public function removeProduct(\Libetto\ItemBundle\Entity\Product $products)
-    {
+    public function removeProduct(\Libetto\ItemBundle\Entity\Product $products) {
         $this->products->removeElement($products);
     }
 
@@ -176,8 +177,7 @@ class Category extends BASE {
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getProducts()
-    {
+    public function getProducts() {
         return $this->products;
     }
 
@@ -187,10 +187,9 @@ class Category extends BASE {
      * @param \Libetto\ItemBundle\Entity\Category $parentCategory
      * @return Category
      */
-    public function setParentCategory(\Libetto\ItemBundle\Entity\Category $parentCategory = null)
-    {
+    public function setParentCategory(\Libetto\ItemBundle\Entity\Category $parentCategory = null) {
         $this->parentCategory = $parentCategory;
-    
+
         return $this;
     }
 
@@ -199,8 +198,7 @@ class Category extends BASE {
      *
      * @return \Libetto\ItemBundle\Entity\Category 
      */
-    public function getParentCategory()
-    {
+    public function getParentCategory() {
         return $this->parentCategory;
     }
 
@@ -210,10 +208,9 @@ class Category extends BASE {
      * @param \Libetto\ItemBundle\Entity\Category $childCategories
      * @return Category
      */
-    public function addChildCategorie(\Libetto\ItemBundle\Entity\Category $childCategories)
-    {
+    public function addChildCategorie(\Libetto\ItemBundle\Entity\Category $childCategories) {
         $this->childCategories[] = $childCategories;
-    
+
         return $this;
     }
 
@@ -222,8 +219,7 @@ class Category extends BASE {
      *
      * @param \Libetto\ItemBundle\Entity\Category $childCategories
      */
-    public function removeChildCategorie(\Libetto\ItemBundle\Entity\Category $childCategories)
-    {
+    public function removeChildCategorie(\Libetto\ItemBundle\Entity\Category $childCategories) {
         $this->childCategories->removeElement($childCategories);
     }
 
@@ -232,8 +228,8 @@ class Category extends BASE {
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getChildCategories()
-    {
+    public function getChildCategories() {
         return $this->childCategories;
     }
+
 }

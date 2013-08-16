@@ -1,90 +1,76 @@
 {% extends '::base.html.twig' %}
-
+{% block title %}{{ entity }}{% endblock title  %}
 {% block body -%}
-    <h1>ProductGroup</h1>
+<h1>{% trans %}item.productgroup.title.Show{% endtrans %} {{ entity }}</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Ccomp</th>
-                <td>{{ entity.cComp }}</td>
-            </tr>
-            <tr>
-                <th>Ccreationdate</th>
-                <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Cmodifydate</th>
-                <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Ccreationuser</th>
-                <td>{{ entity.cCreationUser }}</td>
-            </tr>
-            <tr>
-                <th>Cmodifyuser</th>
-                <td>{{ entity.cModifyUser }}</td>
-            </tr>
-            <tr>
-                <th>Isdeleted</th>
-                <td>{{ entity.isDeleted }}</td>
-            </tr>
-            <tr>
-                <th>Cnumber</th>
-                <td>{{ entity.cNumber }}</td>
-            </tr>
-            <tr>
-                <th>Cname</th>
-                <td>{{ entity.cName }}</td>
-            </tr>
-            <tr>
-                <th>Csort</th>
-                <td>{{ entity.cSort }}</td>
-            </tr>
-            <tr>
-                <th>Cissalesdiscountable</th>
-                <td>{{ entity.cIsSalesDiscountable }}</td>
-            </tr>
-            <tr>
-                <th>Ciscashdiscountable</th>
-                <td>{{ entity.cIsCashDiscountable }}</td>
-            </tr>
-            <tr>
-                <th>Rtaxid</th>
-                <td>{{ entity.rTaxId }}</td>
-            </tr>
-            <tr>
-                <th>Cdecimalplaceprice</th>
-                <td>{{ entity.cDecimalPlacePrice }}</td>
-            </tr>
-            <tr>
-                <th>Cdecimalplacequantity</th>
-                <td>{{ entity.cDecimalPlaceQuantity }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('productgroup') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('productgroup_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('productgroup_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>{% trans %}core.label.Company{% endtrans %}</th>
+            <td>{{ entity.cComp }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.CreationDate{% endtrans %}</th>
+            <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.ModifyDate{% endtrans %}</th>
+            <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.CreationUser{% endtrans %}</th>
+            <td>{{ entity.cCreationUser }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.ModifyUser{% endtrans %}</th>
+            <td>{{ entity.cModifyUser }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.Number{% endtrans %}</th>
+            <td>{{ entity.cNumber }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.Name{% endtrans %}</th>
+            <td>{{ entity.cName }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.Sort{% endtrans %}</th>
+            <td>{{ entity.cSort }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.IsSalesDiscountable{% endtrans %}</th>
+            <td><input type="checkbox" disabled="true" {% if entity.cIsSalesDiscountable == 1 %} checked {% endif %}></td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.IsCashDiscountable{% endtrans %}</th>
+            <td><input type="checkbox" disabled="true" {% if entity.cIsCashDiscountable == 1 %} checked {% endif %}></td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.TaxId{% endtrans %}</th>
+            <td>{{ entity.rTaxId }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.DecimalPlacePrice{% endtrans %}</th>
+            <td>{{ entity.cDecimalPlacePrice }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.productgroup.label.DecimalPlaceQuantity{% endtrans %}</th>
+            <td>{{ entity.cDecimalPlaceQuantity }}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{{ path('productgroup') }}" class="btn">
+    <li class="icon-backward"></li> {% trans %}core.Back to the list{% endtrans %}
+</a>
+<hr/>
+<a href="{{ path('productgroup_edit', { 'id': entity.id }) }}" class="btn btn-warning">
+    <li class="icon-edit"></li> {% trans %}item.productgroup.action.Edit{% endtrans %}
+</a>
+<br/><br/>
+<form action="{{ path('productgroup_delete', { 'id': entity.id }) }}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />{{ form_widget(delete_form) }}
+    <button type="submit" class="btn btn-danger">
+        <li class="icon-remove"></li> {% trans %}item.productgroup.action.Delete{% endtrans %}
+    </button>
+</form>
 {% endblock %}
