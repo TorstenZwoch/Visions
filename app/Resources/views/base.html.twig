@@ -34,12 +34,7 @@
     </head>
 
     <body id="top" data-spy="scroll" data-target=".subnav" data-offset="0">
-        <div class="container-fluid" style="width: auto;">
-            <div class="pull-right">{{ locale_switcher() }}</div>        
-        </div>
-        <div class="container-fluid" style="width: auto;">
-            &nbsp;    
-        </div>            
+        
         <div class="container-fluid">
             <!-- Navbar
             ================================================== -->
@@ -60,18 +55,22 @@
                                     {{ knp_menu_render('LibettoCustomerBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
                                     {{ knp_menu_render('LibettoSupplierBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
                                 </div> 
-
+                                <div class="nav-collapse pull-right">{{ locale_switcher() }}</div>
+                                
                                 <div class="nav-collapse collapse navbar-responsive-collapse pull-right">   
                                 {{ knp_menu_render('LibettoUserBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
-                                    </div>                                
-                                    <form class="navbar-search pull-right" action="">
-                                        <input type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
-                                    </form>
+                                </div>
+                                
+                                <form class="navbar-search pull-right" action="">
+                                    <input type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
+                                </form>
                                 </div><!-- /.nav-collapse -->
+                               
                             </div>
                         </div><!-- /navbar-inner -->
                     </div><!-- /navbar -->
 
+      
                     <!--</section>-->
         {% for flashMessage in app.session.flashbag.get('error') %}
                     <div class="alert alert-error">

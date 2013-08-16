@@ -20,6 +20,12 @@ class DefaultController extends Controller
     **/
     public function indexAction()
     {
-        return array('leer'=>'Nix');
+        $usr= $this->get('security.context')->getToken()->getUser();
+        if($usr==null || $usr== "anon."){
+            $username = $usr;
+        }else{
+            $username = $usr->getUsername();
+        }
+        return array('username'=>$username);
     }
 }

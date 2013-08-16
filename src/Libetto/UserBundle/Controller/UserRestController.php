@@ -30,5 +30,5 @@ class UserRestController extends Controller
     {        
         $users = $this->getDoctrine()->getRepository('LibettoUserBundle:User')->find($user);
         return array('users' => $users);
-    }    
+    }
 }
