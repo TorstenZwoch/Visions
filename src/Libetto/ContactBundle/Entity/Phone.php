@@ -49,31 +49,17 @@ class Phone extends BASE
      */
     private $cType;
 
-    /**
-     * @var guid
-     *
-     * @ORM\Column(name="rPerson", type="guid")
-     *
-     */
-    private $rPerson;
-
-    /**
-     * @var guid
-     *
-     * @ORM\Column(name="rCompany", type="guid")
-     */
-    private $rCompany;
-    
    /**
+     * @var guid
      *
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="phones")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="phones", cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     protected $company;
     
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="phones")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="phones", cascade={"persist"})
      * @ORM\JoinColumn(name="rPerson", referencedColumnName="cId")
      */
     protected $person;
@@ -197,52 +183,6 @@ class Phone extends BASE
     }
 
     /**
-     * Set rPerson
-     *
-     * @param guid $rPerson
-     * @return Phone
-     */
-    public function setRPerson($rPerson)
-    {
-        $this->rPerson = $rPerson;
-    
-        return $this;
-    }
-
-    /**
-     * Get rPerson
-     *
-     * @return guid 
-     */
-    public function getRPerson()
-    {
-        return $this->rPerson;
-    }
-
-    /**
-     * Set rCompany
-     *
-     * @param guid $rCompany
-     * @return Phone
-     */
-    public function setRCompany($rCompany)
-    {
-        $this->rCompany = $rCompany;
-    
-        return $this;
-    }
-
-    /**
-     * Get rCompany
-     *
-     * @return guid 
-     */
-    public function getRCompany()
-    {
-        return $this->rCompany;
-    }
-
-    /**
      * Set company
      *
      * @param \Libetto\ContactBundle\Entity\Company $company
@@ -286,5 +226,24 @@ class Phone extends BASE
     public function getPerson()
     {
         return $this->person;
+    }
+    
+    /**
+     * Setzt die Telefonnummer, wobei die einzelnen Blöcke mit Leerzeichen
+     * getrennt sind
+     * 
+     * @param string $completeNr Vollständige Telefonnummer
+     */
+    public function setWholeNumber($completeNr) {
+        list($this->cCountryCode,$this->cRegion,$this->cNumber,$this->cOfficeNumber) = explode(" ",$completeNr);
+    }
+    
+    /**
+     * Gibt die Telefonnummer als String zurück (Leerzeichen getrennt)
+     * 
+     * @return string
+     */
+    public function getWholeNumber() {
+        return implode(" ",array($this->cCountryCode,$this->cRegion,$this->cNumber,$this->cOfficeNumber));
     }
 }

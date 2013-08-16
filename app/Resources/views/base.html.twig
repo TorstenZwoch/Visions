@@ -114,25 +114,26 @@
 
                             <!-- javascript
                             ================================================== -->
-            {% javascripts 
-              filter='?yui_js'
-              output='Resources/js/main.js'
-              combine=true
-              debug=false
-              "@LibettoCoreBundle/Resources/js/jquery.min.js" 
-              "@LibettoCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
-              "@LibettoCoreBundle/Resources/js/bootstrap.min.js" 
-              "@LibettoCoreBundle/Resources/js/bootswatch.js"
-            %}
-                            <script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
-            {% javascripts 
-              output='Resources/js/main2.js'
-              combine=false
-              "@LibettoCoreBundle/Resources/js/w2ui-1.2.min.js"
-            %}
-                            <script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
-
+                            {% block javascript %}                            
+                                {% javascripts 
+                                  filter='?yui_js'
+                                  output='Resources/js/main.js'
+                                  combine=true
+                                  debug=false
+                                  "@LibettoCoreBundle/Resources/js/jquery.min.js" 
+                                  "@LibettoCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
+                                  "@LibettoCoreBundle/Resources/js/bootstrap.min.js" 
+                                  "@LibettoCoreBundle/Resources/js/bootswatch.js"
+                                %}
+                                                <script src="{{ asset_url }}" type="text/javascript"></script>
+                                {% endjavascripts %}
+                                {% javascripts 
+                                  output='Resources/js/main2.js'
+                                  combine=false
+                                  "@LibettoCoreBundle/Resources/js/w2ui-1.2.min.js"
+                                %}
+                                                <script src="{{ asset_url }}" type="text/javascript"></script>
+                                {% endjavascripts %}
+                            {% endblock %}
                         </body>
                     </html>

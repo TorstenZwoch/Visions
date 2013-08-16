@@ -28,6 +28,7 @@ class UserRestController extends Controller
      */
     public function getUserAction(User $user)
     {        
+        $users = $this->getDoctrine()->getRepository('LibettoUserBundle:User')->find($user);
         return array('users' => $users);
     }    
 }

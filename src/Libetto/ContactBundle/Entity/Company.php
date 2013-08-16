@@ -26,45 +26,45 @@ class Company extends BASE
      * @ORM\Column(name="cEMail", type="string", length=255)
      */
     private $cEMail;
-
+    
     /**
-     * @var guid
+     * @var string
      *
-     * @ORM\Column(name="rCompany", type="guid", nullable=true)
+     * @ORM\Column(name="cHomepage", type="string", length=255)
      */
-    private $rCompany;
+    private $cHomepage;
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="company",cascade={"persist"})
      */
     protected $adresses;
     
     /**
      *
-     * @ORM\OneToMany(targetEntity="Person", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="Person", mappedBy="company",cascade={"persist"})
      */
     protected $employees;
    
     /**
      *
-     * @ORM\OneToMany(targetEntity="Phone", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="Phone", mappedBy="company",cascade={"persist"})
      */
     protected $phones;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     
     /**
-     * @ORM\OneToMany(targetEntity="Company", mappedBy="parent_company")
+     * @ORM\OneToMany(targetEntity="Company", mappedBy="parent_company",cascade={"persist"})
      */
     private $child_companies;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="child_companies")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="child_companies",cascade={"persist"})
      * @ORM\JoinColumn(name="rCompany", referencedColumnName="cId")
      */
     private $parent_company;
 
-  
+    
     
     
     /**
@@ -123,29 +123,6 @@ class Company extends BASE
     public function getCEMail()
     {
         return $this->cEMail;
-    }
-
-    /**
-     * Set rCompany
-     *
-     * @param guid $rCompany
-     * @return Company
-     */
-    public function setRCompany($rCompany)
-    {
-        $this->rCompany = $rCompany;
-    
-        return $this;
-    }
-
-    /**
-     * Get rCompany
-     *
-     * @return guid 
-     */
-    public function getRCompany()
-    {
-        return $this->rCompany;
     }
 
     /**
@@ -324,5 +301,28 @@ class Company extends BASE
     public function getContact()
     {
         return $this->contact;
+    }
+
+    /**
+     * Set cHomepage
+     *
+     * @param string $cHomepage
+     * @return Company
+     */
+    public function setCHomepage($cHomepage)
+    {
+        $this->cHomepage = $cHomepage;
+    
+        return $this;
+    }
+
+    /**
+     * Get cHomepage
+     *
+     * @return string 
+     */
+    public function getCHomepage()
+    {
+        return $this->cHomepage;
     }
 }
