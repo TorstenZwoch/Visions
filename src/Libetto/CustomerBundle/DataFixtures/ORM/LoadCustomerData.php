@@ -1,6 +1,6 @@
 <?php
 
-namespace Libetto\UserBundle\DataFixtures\ORM;
+namespace Libetto\CustomerBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\Doctrine;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -47,6 +47,7 @@ class LoadCustomerData implements FixtureInterface {
         $address->setCStreet("Mauerstraße 9");
         $address->setCZipCode("33235");
         $address->setCompany($company);
+        $address->setCCity("Borgentreich");
         $manager->persist($address);
         
         $address2 = new Address();
@@ -55,6 +56,7 @@ class LoadCustomerData implements FixtureInterface {
         $address2->setCStreet("Zur Mühle 92");
         $address2->setCZipCode("38837");
         $address2->setCompany($company);
+        $address2->setCCity("Berlin");
         $manager->persist($address2);
                 
         //$manager->flush();         

@@ -30,7 +30,7 @@ class Company extends BASE
     /**
      * @var string
      *
-     * @ORM\Column(name="cHomepage", type="string", length=255)
+     * @ORM\Column(name="cHomepage", type="string", length=255, nullable=true, options={"default":null})
      */
     private $cHomepage;
 
