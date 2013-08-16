@@ -17,12 +17,13 @@ class SupplierLeadType extends AbstractType
         $transPrafix = "supplier.supplier.form.label.";
         $builder
             ->add('cNumber',null, array('label' => $transPrafix . 'Number'))
-            ->add('rContact',null, array('label' => $transPrafix . 'Contact'))
-            ->add('cInfo',null, array('label' => $transPrafix . 'Info'))
-            ->add('rContactGroup',null, array('label' => $transPrafix . 'ContactGroup'))
-            ->add('rTermsOfPayment',null, array('label' => $transPrafix . 'TermsOfPayment'))
-            ->add('rPricelist',null, array('label' => $transPrafix . 'PriceList'));
-        
+                
+            ->add('contact', null, array('required' => false,'label' => $transPrafix . 'Contact'))
+                
+            ->add('cInfo',null, array('required' => false,'label' => $transPrafix . 'Info'))
+            ->add('rContactGroup',null, array('required' => false,'label' => $transPrafix . 'ContactGroup'))
+            ->add('rTermsOfPayment',null, array('required' => false,'label' => $transPrafix . 'TermsOfPayment'))
+            ->add('rPricelist',null, array('required' => false,'label' => $transPrafix . 'PriceList'));
         $builder
                 ->remove('cComp')
                 ->remove('cCreationDate')

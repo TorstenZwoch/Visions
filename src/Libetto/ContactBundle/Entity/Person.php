@@ -11,6 +11,10 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
  */
 class Person extends BASE
 {
+    public function __toString() {
+        return $this->getCFirstName() . " " . $this->getCLastName();
+    }
+    
     /**
      * @var string
      *

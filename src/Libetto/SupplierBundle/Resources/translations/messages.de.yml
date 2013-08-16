@@ -6,12 +6,12 @@ supplier: #the first key is always the bundle name
   supplier: #All messages for supplier controller or entity
     title: # titles (usually displayed in h1, h2, ... tags, or in a menu)
       Supplier creation: Lieferanten erstellen
-      Supplier list: Lieferantenliste   
-      Supplier edit: Lieferanten bearbeiten   
+      Supplier list: Lieferantenliste
+      Supplier edit: Lieferanten bearbeiten
       Supplier: Lieferanten
       SupplierLead creation: Lieferanten erstellen
       SupplierLead list: Lieferantenliste (Interessenten)
-      SupplierLead edit: Lieferanten bearbeiten   
+      SupplierLead edit: Lieferanten bearbeiten
       SupplierLead: Lieferanten (Interessenten)
     form: # here are the messages relative to a form 'question' (probably QuestionType class)
       help: #Choose the category which best describes your question
@@ -22,13 +22,13 @@ supplier: #the first key is always the bundle name
         PriceList: Preisliste
         Comp: Mandant
         CreationDate: Erstelldatum
-        CreationUser: Ersteller  
+        CreationUser: Ersteller
         ModifyDate: Bearbeitungsdatum
         ModifyUser: Bearbeiter
         IsDeleted: gelöscht
         InvoiceContact: Rechnungsadresse
         Contact: Adresse
-        Info: Info        
+        Info: Info
       placeholder:
         question: Type your question here
       action:
@@ -39,4 +39,4 @@ supplier: #the first key is always the bundle name
         CreateNewSupplier: Neuen Lieferanten erstellen
         CreateNewSupplierLead: Neuen Lieferanten (Interessenten) erstellen
     warn:
-      notFound: Der Lieferant existiert nicht   
+      notFound: Der Lieferant existiert nicht
