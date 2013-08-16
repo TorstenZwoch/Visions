@@ -6,8 +6,6 @@ item: #the first key is always the bundle name without 'bundle'
     ProductList: Artikelliste
     CategoryList: Kategorien
     ProductGroupList: Artikelgruppen
-    MediaList: Dateien
-    ProductTextList: Texte
   product:
     info:
     messages:
@@ -33,6 +31,8 @@ item: #the first key is always the bundle name without 'bundle'
       Create: Neuen Artikel erstellen
       Delete: Artikel löschen
       Edit: Artikel bearbeiten
+      ProductText: Texte
+      Media: Medien
   productgroup:
     title: 
       Show: Artikelgruppe
@@ -72,3 +72,35 @@ item: #the first key is always the bundle name without 'bundle'
       Create: Neue Kategorie erstellen
       Delete: Kategorie löschen
       Edit: Kategorie bearbeiten
+  producttext:
+    label:
+      Language: Sprache
+      Name: Bezeichnung
+      ShortName: Kurzbez.
+      Description: Beschreibung
+      DescriptionType: Typ
+    title:
+      List: Texte des Artikels %product%
+      Show: Artikeltext
+      Creation: Artikeltext erstellen
+      Edit: Artikeltext bearbeiten
+    action:
+      Create: Neuen Artikeltext erstellen
+      Save: Artikeltext speichern
+      Edit: Artikeltext bearbeiten
+      Delete: Artikeltext löschen
+  media:
+    label:
+      Path: Dateipfad
+      Text: Beschreibung
+      Type: Typ
+    title:
+      List: Medien des Artikels %product%
+      Show: Medien
+      Creation: Media erstellen
+      Edit: Media bearbeiten
+    action:
+      Create: Neues Media erstellen
+      Save: Media speichern
+      Edit: Media bearbeiten
+      Delete: Media löschen

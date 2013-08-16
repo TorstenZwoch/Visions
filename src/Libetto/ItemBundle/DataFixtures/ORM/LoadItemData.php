@@ -15,11 +15,13 @@ use Libetto\ItemBundle\Entity\Product;
  * @author dm
  */
 class LoadItemData implements FixtureInterface {
-    
+
     public function load(ObjectManager $manager) {
         $this->loadCategories($manager);
         $this->loadGroups($manager);
         $this->loadProducts($manager);
+        $this->loadProductTexts($manager);
+        $this->loadMedia($manager);
     }
 
     public function loadCategories(ObjectManager $manager) {
@@ -106,12 +108,64 @@ class LoadItemData implements FixtureInterface {
         $manager->persist($o);
 
         $o = new Product();
-        $o->setCNumber("2103");
+        $o->setCNumber("2104");
         $o->setCName("Wakeboard LIQUID FORCE S4 2010");
         $o->setCShortName("Wakeboard FORCE S4");
         $o->setCDescription("Das PRO-Modell von Phillip Soven");
         $o->setCategory($category);
         $o->setProductGroup($group);
+        $manager->persist($o);
+
+        $manager->flush();
+    }
+
+    public function loadProductTexts(ObjectManager $manager) {
+        $product = $manager->getRepository('Libetto\ItemBundle\Entity\Product')->findOneBy(array('cNumber' => '2102'));
+        $o = new \Libetto\ItemBundle\Entity\ProductText();
+        $o->setCLanguage("de-de");
+        $o->setCName("LIQUID FORCE S4 2010 MadeInGermany");
+        $o->setCShortName("LIQUID MadeInGermany");
+        $o->setCDescription("Wakeboard LIQUID FORCE S4 Hergestellt in Deutschland");
+        $o->setProduct($product);
+        $o->setCDescriptionType(1);
+        $manager->persist($o);
+
+        $o = new \Libetto\ItemBundle\Entity\ProductText();
+        $o->setCLanguage("en-us");
+        $o->setCName("LIQUID FORCE S4 2010 MadeInUSA");
+        $o->setCShortName("LIQUID MadeInUSA");
+        $o->setCDescription("Wakeboard LIQUID FORCE S4 Produced in USA");
+        $o->setProduct($product);
+        $o->setCDescriptionType(1);
+        $manager->persist($o);
+
+        $o = new \Libetto\ItemBundle\Entity\ProductText();
+        $o->setCLanguage("en-en");
+        $o->setCName("LIQUID FORCE S4 2010 MadeInUK");
+        $o->setCShortName("LIQUID MadeInUK");
+        $o->setCDescription("Wakeboard LIQUID FORCE S4 Produced in United Kingdom");
+        $o->setProduct($product);
+        $o->setCDescriptionType(1);
+        $manager->persist($o);
+
+        $manager->flush();
+    }
+    
+        public function loadMedia(ObjectManager $manager) {
+        $product = $manager->getRepository('Libetto\ItemBundle\Entity\Product')->findOneBy(array('cNumber' => '2102'));
+        
+        $o = new \Libetto\ItemBundle\Entity\Media();
+        $o->setCPath("\html\pictures\2102.jpg");
+        $o->setCText("Artikelgrafik");
+        $o->setCType("PIC");
+        $o->setProduct($product);
+        $manager->persist($o);
+
+        $o = new \Libetto\ItemBundle\Entity\Media();
+        $o->setCPath("\html\marketing\2102.pdf");
+        $o->setCText("Flyer");
+        $o->setCType("PDF");
+        $o->setProduct($product);
         $manager->persist($o);
 
         $manager->flush();

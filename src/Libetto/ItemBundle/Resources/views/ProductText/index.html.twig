@@ -1,63 +1,38 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>ProductText list</h1>
+{% block title %}
+{% trans with {'%product%': product} %} item.producttext.title.List{% endtrans%}
+{% endblock title  %}
 
-    <table class="records_list">
+{% block body -%}
+    <h1>{% trans with {'%product%': product} %} item.producttext.title.List{% endtrans%}</h1>
+
+    <table class="records_list table table-striped table-bordered table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Ccomp</th>
-                <th>Ccreationdate</th>
-                <th>Cmodifydate</th>
-                <th>Ccreationuser</th>
-                <th>Cmodifyuser</th>
-                <th>Isdeleted</th>
-                <th>Rproduct</th>
-                <th>Clanguage</th>
-                <th>Cname</th>
-                <th>Cshortname</th>
-                <th>Cdescription</th>
-                <th>Cdescriptiontype</th>
-                <th>Actions</th>
+                <th></th>
+                <th>{%trans%}item.producttext.label.Language{%endtrans%}</th>
+                <th>{%trans%}item.producttext.label.Name{%endtrans%}</th>
+                <th>{%trans%}item.producttext.label.ShortName{%endtrans%}</th>
+                <th>{%trans%}item.producttext.label.Description{%endtrans%}</th>
+                <th>{%trans%}item.producttext.label.DescriptionType{%endtrans%}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('producttext_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.cComp }}</td>
-                <td>{% if entity.cCreationDate %}{{ entity.cCreationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.cModifyDate %}{{ entity.cModifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.cCreationUser }}</td>
-                <td>{{ entity.cModifyUser }}</td>
-                <td>{{ entity.isDeleted }}</td>
-                <td>{{ entity.rProduct }}</td>
+                <td><a href="{{ path('producttext_show', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-zoom-in"></i></a></td>
                 <td>{{ entity.cLanguage }}</td>
                 <td>{{ entity.cName }}</td>
                 <td>{{ entity.cShortName }}</td>
                 <td>{{ entity.cDescription }}</td>
                 <td>{{ entity.cDescriptionType }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('producttext_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('producttext_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('producttext_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <a href="{{ path('producttext_new', { 'productid': product.id }) }}" class="btn btn-success">
+        <li class="icon-plus"></li>
+        {% trans %}item.producttext.action.Create{% endtrans %}
+    </a>
     {% endblock %}

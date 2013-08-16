@@ -13,6 +13,7 @@
             <th>{% trans %}item.product.label.Description{% endtrans %}</th>
             <th>{% trans %}item.product.label.Category{% endtrans %}</th>
             <th>{% trans %}item.product.label.ProductGroup{% endtrans %}</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,14 @@
                 <td>{{ entity.cDescription }}</td>
                 <td>{{ entity.category }}</td>
                 <td>{{ entity.productGroup }}</td>
+                <td>
+                    <a href="{{ path('producttext', { 'productid': entity.id }) }}" class="btn btn-primary">
+                        <li class="icon-list"></li> {% trans %}item.product.action.ProductText{% endtrans %}
+                    </a>
+                    <a href="{{ path('media', { 'productid': entity.id }) }}" class="btn btn-primary">
+                        <li class="icon-file"></li> {% trans %}item.product.action.Media{% endtrans %}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

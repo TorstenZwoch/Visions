@@ -15,17 +15,10 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cComp')
-            ->add('cCreationDate')
-            ->add('cModifyDate')
-            ->add('cCreationUser')
-            ->add('cModifyUser')
-            ->add('isDeleted')
-            ->add('rRefId')
-            ->add('cPath')
-            ->add('cType')
-            ->add('cText')
-            ->add('product');
+            ->add('rRefId','hidden')
+            ->add('cPath', null, array('label' => "item.media.label.Path"))
+            ->add('cType', null, array('label' => "item.media.label.Type"))
+            ->add('cText', null, array('label' => "item.media.label.Text"));
     }
 
     /**

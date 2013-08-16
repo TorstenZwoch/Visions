@@ -15,19 +15,12 @@ class ProductTextType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cComp')
-            ->add('cCreationDate')
-            ->add('cModifyDate')
-            ->add('cCreationUser')
-            ->add('cModifyUser')
-            ->add('isDeleted')
-            ->add('rProduct')
-            ->add('cLanguage')
-            ->add('cName')
-            ->add('cShortName')
-            ->add('cDescription')
-            ->add('cDescriptionType')
-            ->add('product');
+            ->add('cLanguage', null, array('label' => "item.producttext.label.Language"))
+            ->add('cName', null, array('label' => "item.producttext.label.Name"))
+            ->add('cShortName', null, array('label' => "item.producttext.label.ShortName"))
+            ->add('cDescription', null, array('label' => "item.producttext.label.Description"))
+            ->add('cDescriptionType', null, array('label' => "item.producttext.label.DescriptionType"))
+            ->add('rProduct','hidden');
     }
 
     /**
