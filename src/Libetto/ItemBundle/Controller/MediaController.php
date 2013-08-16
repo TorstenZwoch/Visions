@@ -15,26 +15,27 @@ use Libetto\ItemBundle\Form\MediaType;
  *
  * @Route("/media")
  */
-class MediaController extends Controller
-{
+class MediaController extends Controller {
 
     /**
      * Lists all Media entities.
      *
-     * @Route("/", name="media")
+     * @Route("/product/{productid}", name="media")
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
+    public function indexAction($productid) {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LibettoItemBundle:Media')->findAll();
+        $product = $em->getRepository('LibettoItemBundle:Product')->find($productid);
 
         return array(
             'entities' => $entities,
+            'product' => $product,
         );
     }
+
     /**
      * Creates a new Media entity.
      *
@@ -42,13 +43,16 @@ class MediaController extends Controller
      * @Method("POST")
      * @Template("LibettoItemBundle:Media:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new Media();
+    public function createAction(Request $request) {
+        $entity = new Media();
         $form = $this->createForm(new MediaType(), $entity);
         $form->submit($request);
 
         if ($form->isValid()) {
+
+            $product = $this->getDoctrine()->getRepository("LibettoItemBundle:Product")->find($entity->getRRefId());
+            $entity->setProduct($product);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -58,25 +62,25 @@ class MediaController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
     /**
      * Displays a form to create a new Media entity.
      *
-     * @Route("/new", name="media_new")
+     * @Route("/product/{productid}/new", name="media_new")
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction($productid) {
         $entity = new Media();
-        $form   = $this->createForm(new MediaType(), $entity);
+        $entity->setRRefId($productid);
+        $form = $this->createForm(new MediaType(), $entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -87,8 +91,7 @@ class MediaController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:Media')->find($id);
@@ -100,7 +103,7 @@ class MediaController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -112,8 +115,7 @@ class MediaController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:Media')->find($id);
@@ -126,8 +128,8 @@ class MediaController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -139,8 +141,7 @@ class MediaController extends Controller
      * @Method("PUT")
      * @Template("LibettoItemBundle:Media:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:Media')->find($id);
@@ -157,25 +158,27 @@ class MediaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('media_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('media_show', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Media entity.
      *
      * @Route("/{id}", name="media_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->submit($request);
+        
+        $url = $this->generateUrl('product');
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -185,11 +188,12 @@ class MediaController extends Controller
                 throw $this->createNotFoundException('Unable to find Media entity.');
             }
 
+            $url = $this->generateUrl('media', array('productid' => $entity->getRRefId()));
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('media'));
+        return $this->redirect($url);
     }
 
     /**
@@ -199,11 +203,11 @@ class MediaController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
     }
+
 }

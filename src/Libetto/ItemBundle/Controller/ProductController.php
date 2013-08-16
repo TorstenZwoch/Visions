@@ -29,7 +29,7 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LibettoItemBundle:Product')->findAll();
+        $entities = $em->getRepository('LibettoItemBundle:Product')->findBy(array(), array('cNumber' => 'asc'));;
 
         return array(
             'entities' => $entities,
@@ -91,7 +91,7 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LibettoItemBundle:Product')->find($id);
+        $entity = $em->getRepository('LibettoItemBundle:Product')->findWithUserData($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Product entity.');

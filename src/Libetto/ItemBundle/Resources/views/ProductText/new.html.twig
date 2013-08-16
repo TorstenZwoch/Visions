@@ -1,20 +1,17 @@
 {% extends '::base.html.twig' %}
-
+{% block title %}{% trans %}item.producttext.title.Creation{% endtrans %}{% endblock title  %}
 {% block body -%}
-    <h1>ProductText creation</h1>
 
-    <form action="{{ path('producttext_create') }}" method="post" {{ form_enctype(form) }}>
+<h1>{% trans %}item.producttext.title.Creation{% endtrans %}</h1>
+
+<form action="{{ path('producttext_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
-        <p>
-            <button type="submit">Create</button>
-        </p>
+        <button type="submit" class="btn btn-success">
+            <li class="icon-save"></li> {% trans %}item.producttext.action.Save{% endtrans %}
+        </button>
     </form>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('producttext') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <hr/>
+    <a href="{{ path('producttext', {'productid':entity.rProduct}) }}" class="btn">
+        <li class="icon-backward"></li> {% trans %}core.Back to the list{% endtrans %}
+    </a>
 {% endblock %}

@@ -48,14 +48,12 @@ abstract class BaseTable {
      * 
      */
     private $cCreationUser;
-    private $creationUser;
 
     /**
      * Änderungs-Benutzer
      * @ORM\Column(type="guid", nullable=false, length=36)
      */
     private $cModifyUser;
-    private $modifyUser;
 
     /**
      * Löschkennzeichen
@@ -64,7 +62,7 @@ abstract class BaseTable {
     private $isDeleted;
 
     /**
-     * 
+     * Konstruktor der BASE Klasse
      */
     public function __construct() {
         $this->setIsDeleted(false);
@@ -75,12 +73,13 @@ abstract class BaseTable {
      * @ORM\PreUpdate
      */
     public function setUpdatedValue() {
-        $userId = "auto generated";
+        $userId = "Generated-Without-Login";
         global $kernel;
         $securityToken = $kernel->getContainer()->get('security.context')->getToken();
         if ($securityToken != null) {
             $user = $securityToken->getUser();
-            $userId = $user->getId();
+            if (get_class($user) == "Libetto\UserBundle\Entity\User" && $user != null)
+                $userId = $user->getId();
         }
         $this->setCModifyUser($userId);
         $this->setCModifyDate(new \DateTime());
@@ -90,39 +89,18 @@ abstract class BaseTable {
      * @ORM\PrePersist
      */
     public function setPersistValue() {
-        $userId = "auto generated";
+        $userId = "Generated-Without-Login";
         global $kernel;
         $securityToken = $kernel->getContainer()->get('security.context')->getToken();
         if ($securityToken != null) {
             $user = $securityToken->getUser();
-            $userId = $user->getId();
+            if (get_class($user) == "Libetto\UserBundle\Entity\User" && $user != null)
+                $userId = $user->getId();
         }
         $this->setCCreationUser($userId);
         $this->setCModifyUser($userId);
         $this->setCCreationDate(new \DateTime());
         $this->setCModifyDate(new \DateTime());
-    }
-
-    public function getModifyUser() {
-        if ($this->modifyUser == null) {
-            $user = $this->getDoctrine()->getRepository('LibettoUserBundle:User')->find($this->getCModifyUser());
-            $this->modifyUser = $user;
-        }
-        return $this->modifyUser;
-    }
-
-    public function setModifyUser($user) {
-        $u = new \Libetto\UserBundle\Entity\User();
-        $u = null;
-        $u = $user;
-        if ($u != null) {
-            $this->cModifyUser = $u->getId();
-            $this->modifyUser = $u;
-        }
-        else
-            $this->cModifyUser = $user;
-
-        return $this;
     }
 
     /**
@@ -258,6 +236,40 @@ abstract class BaseTable {
      */
     public function getIsDeleted() {
         return $this->isDeleted;
+    }
+
+    private $creationUser;
+    private $modifyUser;
+
+    public function setCreationUser($user) {
+        $this->creationUser = $user;
+
+        $class = get_class($user);
+        if (get_class($user) == "Libetto\UserBundle\Entity\User" && $user != null)
+            $this->setCCreationUser($user->getId());
+
+        return $this;
+    }
+
+    public function getCreationUser() {
+        if ($this->creationUser == null)
+            return $this->getCCreationUser();
+        return $this->creationUser;
+    }
+
+    public function setModifyUser($user) {
+        $this->modifyUser = $user;
+
+        if (get_class($user) == "Libetto\UserBundle\Entity\User" && $user != null)
+            $this->setCModifyUser($user->getId());
+
+        return $this;
+    }
+
+    public function getModifyUser() {
+        if ($this->modifyUser == null)
+            return $this->getCModifyUser();
+        return $this->modifyUser;
     }
 
 }
