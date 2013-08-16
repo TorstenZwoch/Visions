@@ -28,3 +28,4 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/customer/$, role: ROLE_USER }
         - { path: ^/maintenace/$, role: ROLE_ADMIN }
+        
