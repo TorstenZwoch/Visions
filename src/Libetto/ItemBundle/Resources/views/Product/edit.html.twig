@@ -1,28 +1,25 @@
 {% extends '::base.html.twig' %}
-
+{% block title %}{{ entity }}{% endblock title  %}
 {% block body -%}
-    <h1>Product edit</h1>
+<h1>{% trans %}item.product.title.Edit{% endtrans %}: {{ entity }}</h1>
 
-    <form action="{{ path('product_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-        <input type="hidden" name="_method" value="PUT" />
+<form action="{{ path('product_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
-        <p>
-            <button type="submit">Edit</button>
-        </p>
-    </form>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('product') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('product_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+    <button type="submit" class="btn btn-success">
+        <li class="icon-save"></li> {% trans %}item.product.action.Save{% endtrans %}
+    </button>
+</form>
+<hr/>
+<form action="{{ path('product_delete', { 'id': entity.id }) }}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />{{ form_widget(delete_form) }}
+    <button type="submit" class="btn btn-danger">
+        <li class="icon-remove"></li> {% trans %}item.product.action.Delete{% endtrans %}
+    </button>
+</form>
+
+<a href="{{ path('product') }}" class="btn">
+    <li class="icon-backward"></li> {% trans %}core.Back to the list{% endtrans %}
+</a>
 {% endblock %}

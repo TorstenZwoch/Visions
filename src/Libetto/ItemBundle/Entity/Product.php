@@ -41,6 +41,10 @@ class Product extends BASE {
         $this->productTexts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->getCNumber() . " - " . $this->getCName();
+    }
+
     /**
      * @var string
      *
@@ -72,14 +76,14 @@ class Product extends BASE {
     /**
      * @var guid
      *
-     * @ORM\Column(name="rCategory", type="guid")
+     * @ORM\Column(name="rCategory", type="guid", nullable=false)
      */
     private $rCategory;
 
     /**
      * @var guid
      *
-     * @ORM\Column(name="rProductGroup", type="guid")
+     * @ORM\Column(name="rProductGroup", type="guid", nullable=false)
      */
     private $rProductGroup;
 
@@ -209,17 +213,15 @@ class Product extends BASE {
         return $this->rProductGroup;
     }
 
-
     /**
      * Set category
      *
      * @param \Libetto\ItemBundle\Entity\Category $category
      * @return Product
      */
-    public function setCategory(\Libetto\ItemBundle\Entity\Category $category = null)
-    {
+    public function setCategory(\Libetto\ItemBundle\Entity\Category $category = null) {
         $this->category = $category;
-    
+
         return $this;
     }
 
@@ -228,8 +230,7 @@ class Product extends BASE {
      *
      * @return \Libetto\ItemBundle\Entity\Category 
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 
@@ -239,10 +240,9 @@ class Product extends BASE {
      * @param \Libetto\ItemBundle\Entity\ProductGroup $productGroup
      * @return Product
      */
-    public function setProductGroup(\Libetto\ItemBundle\Entity\ProductGroup $productGroup = null)
-    {
+    public function setProductGroup(\Libetto\ItemBundle\Entity\ProductGroup $productGroup = null) {
         $this->productGroup = $productGroup;
-    
+
         return $this;
     }
 
@@ -251,8 +251,7 @@ class Product extends BASE {
      *
      * @return \Libetto\ItemBundle\Entity\ProductGroup 
      */
-    public function getProductGroup()
-    {
+    public function getProductGroup() {
         return $this->productGroup;
     }
 
@@ -262,10 +261,9 @@ class Product extends BASE {
      * @param \Libetto\ItemBundle\Entity\Media $medias
      * @return Product
      */
-    public function addMedia(\Libetto\ItemBundle\Entity\Media $medias)
-    {
+    public function addMedia(\Libetto\ItemBundle\Entity\Media $medias) {
         $this->medias[] = $medias;
-    
+
         return $this;
     }
 
@@ -274,8 +272,7 @@ class Product extends BASE {
      *
      * @param \Libetto\ItemBundle\Entity\Media $medias
      */
-    public function removeMedia(\Libetto\ItemBundle\Entity\Media $medias)
-    {
+    public function removeMedia(\Libetto\ItemBundle\Entity\Media $medias) {
         $this->medias->removeElement($medias);
     }
 
@@ -284,8 +281,7 @@ class Product extends BASE {
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getMedias()
-    {
+    public function getMedias() {
         return $this->medias;
     }
 
@@ -295,10 +291,9 @@ class Product extends BASE {
      * @param \Libetto\ItemBundle\Entity\ProductText $productTexts
      * @return Product
      */
-    public function addProductText(\Libetto\ItemBundle\Entity\ProductText $productTexts)
-    {
+    public function addProductText(\Libetto\ItemBundle\Entity\ProductText $productTexts) {
         $this->productTexts[] = $productTexts;
-    
+
         return $this;
     }
 
@@ -307,8 +302,7 @@ class Product extends BASE {
      *
      * @param \Libetto\ItemBundle\Entity\ProductText $productTexts
      */
-    public function removeProductText(\Libetto\ItemBundle\Entity\ProductText $productTexts)
-    {
+    public function removeProductText(\Libetto\ItemBundle\Entity\ProductText $productTexts) {
         $this->productTexts->removeElement($productTexts);
     }
 
@@ -317,8 +311,8 @@ class Product extends BASE {
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getProductTexts()
-    {
+    public function getProductTexts() {
         return $this->productTexts;
     }
+
 }

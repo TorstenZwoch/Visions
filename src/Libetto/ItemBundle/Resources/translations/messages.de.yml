@@ -18,16 +18,21 @@ item: #the first key is always the bundle name without 'bundle'
     placeholder:
     title:
       List: Artikelliste
+      Creation: Artikel erstellen
+      Show: Artikel
+      Edit: Artikel bearbeiten
     label:
       Number: Nr.
       Name: Bezeichnung
       ShortName: Kurzbez.
       Description: Beschreibung
-      Group: Gruppe
+      ProductGroup: Gruppe
       Category: Kategorie
     action:
+      Save: Artikel speichern
       Create: Neuen Artikel erstellen
       Delete: Artikel löschen
+      Edit: Artikel bearbeiten
   productgroup:
     title: 
       Show: Artikelgruppe

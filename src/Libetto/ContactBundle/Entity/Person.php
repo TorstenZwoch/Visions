@@ -84,6 +84,7 @@ class Person extends BASE
      */
     public function __construct()
     {
+        parent::__construct();
         $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
     }

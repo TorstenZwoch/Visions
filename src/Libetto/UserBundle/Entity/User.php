@@ -25,6 +25,10 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+    
+    public function __toString() {
+        return $this->getUsername();
+    }
 
     /**
      * Get id
