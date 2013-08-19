@@ -2,7 +2,8 @@
 
 {% block body -%}
 <h1>{% trans %}supplier.supplier.title.Supplier list{% endtrans %}</h1>
-
+{% set paths = "supplier.supplier.form.label" %}
+   
 <table class="records_list table table-striped table-bordered table-hover">
     <thead>
         <tr>
@@ -23,8 +24,8 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('supplier_show', { 'id': entity.id }) }}">{{ entity.cNumber }}</a></td>
-                <td>{{ entity.rContact }}</td>
-                <td>{{ entity.rInvoiceContact }}</td>
+                <td>{{ entity.contact }}</td>
+                <td>{{ entity.invoiceContact }}</td>
                 <td>{{ entity.rTermsOfPayment }}</td>
                 <td>{{ entity.rPricelist }}</td>
                 <td>{{ entity.cInfo }}</td>

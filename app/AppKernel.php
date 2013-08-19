@@ -34,7 +34,7 @@ class AppKernel extends Kernel {
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Libetto\SupplierBundle\LibettoSupplierBundle(),
             new Libetto\ItemBundle\LibettoItemBundle(),
-            new Libetto\APIBundle\LibettoAPIBundle(),
+            new Libetto\DashboardBundle\LibettoDashboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

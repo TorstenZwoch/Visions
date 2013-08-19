@@ -15,26 +15,27 @@ use Libetto\ItemBundle\Form\ProductTextType;
  *
  * @Route("/producttext")
  */
-class ProductTextController extends Controller
-{
+class ProductTextController extends Controller {
 
     /**
      * Lists all ProductText entities.
      *
-     * @Route("/", name="producttext")
+     * @Route("/product/{productid}", name="producttext")
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
+    public function indexAction($productid) {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LibettoItemBundle:ProductText')->findAll();
+        $entities = $em->getRepository('LibettoItemBundle:ProductText')->findBy(array("rProduct" => $productid));
+        $product = $em->getRepository('LibettoItemBundle:Product')->find($productid);
 
         return array(
             'entities' => $entities,
+            'product' => $product,
         );
     }
+
     /**
      * Creates a new ProductText entity.
      *
@@ -42,13 +43,17 @@ class ProductTextController extends Controller
      * @Method("POST")
      * @Template("LibettoItemBundle:ProductText:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new ProductText();
+    public function createAction(Request $request) {
+        
+        $entity = new ProductText();
         $form = $this->createForm(new ProductTextType(), $entity);
         $form->submit($request);
 
         if ($form->isValid()) {
+
+            $product = $this->getDoctrine()->getRepository("LibettoItemBundle:Product")->find($entity->getRProduct());
+            $entity->setProduct($product);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -58,25 +63,25 @@ class ProductTextController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
     /**
      * Displays a form to create a new ProductText entity.
      *
-     * @Route("/new", name="producttext_new")
+     * @Route("/product/{productid}/new", name="producttext_new")
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction($productid) {
         $entity = new ProductText();
-        $form   = $this->createForm(new ProductTextType(), $entity);
+        $entity->setRProduct($productid);
+        $form = $this->createForm(new ProductTextType(), $entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -87,8 +92,7 @@ class ProductTextController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:ProductText')->find($id);
@@ -100,7 +104,7 @@ class ProductTextController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -112,8 +116,7 @@ class ProductTextController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:ProductText')->find($id);
@@ -126,8 +129,8 @@ class ProductTextController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -139,8 +142,7 @@ class ProductTextController extends Controller
      * @Method("PUT")
      * @Template("LibettoItemBundle:ProductText:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LibettoItemBundle:ProductText')->find($id);
@@ -157,25 +159,27 @@ class ProductTextController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('producttext_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('producttext_show', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a ProductText entity.
      *
      * @Route("/{id}", name="producttext_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->submit($request);
+
+        $url = $this->generateUrl('product');
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -185,11 +189,12 @@ class ProductTextController extends Controller
                 throw $this->createNotFoundException('Unable to find ProductText entity.');
             }
 
+            $url = $this->generateUrl('producttext', array('productid' => $entity->getRProduct()));
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('producttext'));
+        return $this->redirect($url);
     }
 
     /**
@@ -199,11 +204,11 @@ class ProductTextController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
     }
+
 }

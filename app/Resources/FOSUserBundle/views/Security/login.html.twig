@@ -2,6 +2,7 @@
 
 {% block title %}Login{% endblock title  %}
 
+{#
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets 
@@ -12,13 +13,13 @@
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet"  />
     {% endstylesheets %}
 {% endblock %}
-
+#}
 {% block fos_user_content %}
 {% if error %}
 <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
 <div class="container">
-    <h2>Bitte melden Sie sich an</h2>
+    
     <form action="{{ path("fos_user_security_check") }}" method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
      

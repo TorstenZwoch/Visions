@@ -12,7 +12,9 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
  */
 class Company extends BASE
 {
-
+    public function __toString() {
+        return $this->getCName();
+    }
     /**
      * @var string
      *

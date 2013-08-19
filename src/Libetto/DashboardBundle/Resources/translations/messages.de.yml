@@ -1,0 +1,10 @@
+##Comment
+# Libetto\DashboardBundle\Resources\translations\messages.de.yml
+dashboard: #the first key is always the bundle name
+  default:
+    action:
+      login: Anmelden
+    messages:
+      no login: "Kein Benutzer angemeldet!"
+      please log in: "Bitte melden Sie sich hier an:"
+      welcome: Herzlich Willkommen %name%

@@ -11,68 +11,68 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
  * @ORM\Entity(repositoryClass="Libetto\SupplierBundle\Entity\SupplierRepository")
  */
 class Supplier extends BASE
-{
+{    
     /**
      * @var guid
      *
-     * @ORM\Column(name="rInvoiceContact", type="guid")
+     * @ORM\Column(name="rInvoiceContact", nullable=true, type="guid")
      */    
     private $rInvoiceContact;
     
     /**
      * @var Contact|null
      * 
-     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
+     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact",cascade={"persist"})
      * @ORM\JoinColumn(name="rInvoiceContact", referencedColumnName="cId")
      */
     private $invoiceContact;    
-    
+
      /**
      * @var string
      *
      * @ORM\Column(name="cNumber", type="string", length=255)
      */
     private $cNumber;
-
+  
     /**
      * @var guid
      *
-     * @ORM\Column(name="rContact", type="guid")
+     * @ORM\Column(name="rContact", nullable=true, type="guid")
      */
     private $rContact;
-    
+
     /**
      * @var Contact|null
      * 
-     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact")
+     * @ORM\OneToOne(targetEntity="Libetto\ContactBundle\Entity\Contact",cascade={"persist"})
      * @ORM\JoinColumn(name="rContact", referencedColumnName="cId")
      */
     private $contact;    
     /**
      * @var string
      *
-     * @ORM\Column(name="cInfo", type="text")
+     * @ORM\Column(name="cInfo", nullable=true, type="text")
      */
     private $cInfo;
 
     /**
      * @var guid
      *
-     * @ORM\Column(name="rContactGroup", type="guid")
+     * @ORM\Column(name="rContactGroup", nullable=true, type="guid")
      */
     private $rContactGroup;
 
     /**
      * @var guid
      *
-     * @ORM\Column(name="rTermsOfPayment", type="guid")
+     * @ORM\Column(name="rTermsOfPayment", nullable=true, type="guid")
      */
     private $rTermsOfPayment;
 
     /**
      * @var guid
      *
-     * @ORM\Column(name="rPricelist", type="guid")
+     * @ORM\Column(name="rPricelist", nullable=true, type="guid")
      */
     private $rPricelist;
     
@@ -241,7 +241,7 @@ class Supplier extends BASE
      * Set invoiceContact
      *
      * @param \Libetto\ContactBundle\Entity\Contact $invoiceContact
-     * @return Customer
+     * @return Supplier
      */
     public function setInvoiceContact(\Libetto\ContactBundle\Entity\Contact $invoiceContact = null)
     {

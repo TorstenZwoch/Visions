@@ -1,74 +1,60 @@
 {% extends '::base.html.twig' %}
-
+{% block title %}{% trans %}item.media.title.Show{% endtrans %}{% endblock title  %}
 {% block body -%}
-    <h1>Media</h1>
+<h1>{% trans %}item.media.title.Show{% endtrans %}</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Ccomp</th>
-                <td>{{ entity.cComp }}</td>
-            </tr>
-            <tr>
-                <th>Ccreationdate</th>
-                <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Cmodifydate</th>
-                <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Ccreationuser</th>
-                <td>{{ entity.cCreationUser }}</td>
-            </tr>
-            <tr>
-                <th>Cmodifyuser</th>
-                <td>{{ entity.cModifyUser }}</td>
-            </tr>
-            <tr>
-                <th>Isdeleted</th>
-                <td>{{ entity.isDeleted }}</td>
-            </tr>
-            <tr>
-                <th>Rrefid</th>
-                <td>{{ entity.rRefId }}</td>
-            </tr>
-            <tr>
-                <th>Cpath</th>
-                <td>{{ entity.cPath }}</td>
-            </tr>
-            <tr>
-                <th>Ctype</th>
-                <td>{{ entity.cType }}</td>
-            </tr>
-            <tr>
-                <th>Ctext</th>
-                <td>{{ entity.cText }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('media') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('media_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('media_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>{% trans %}core.label.Company{% endtrans %}</th>
+            <td>{{ entity.cComp }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.CreationDate{% endtrans %}</th>
+            <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.ModifyDate{% endtrans %}</th>
+            <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.CreationUser{% endtrans %}</th>
+            <td>{{ entity.cCreationUser }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.ModifyUser{% endtrans %}</th>
+            <td>{{ entity.cModifyUser }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.media.label.RefId{% endtrans %}</th>
+            <td>{{ entity.rRefId }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.media.label.Path{% endtrans %}</th>
+            <td>{{ entity.cPath }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.media.label.Type{% endtrans %}</th>
+            <td>{{ entity.cType }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.media.label.Text{% endtrans %}</th>
+            <td>{{ entity.cText }}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{{ path('media', { 'productid': entity.rRefId }) }}" class="btn">
+    <li class="icon-backward"></li> {% trans %}core.Back to the list{% endtrans %}
+</a>
+<hr/>
+<a href="{{ path('media_edit', { 'id': entity.id }) }}" class="btn btn-warning">
+    <li class="icon-edit"></li> {% trans %}item.media.action.Edit{% endtrans %}
+</a>
+<br/><br/>
+<form action="{{ path('media_delete', { 'id': entity.id }) }}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />{{ form_widget(delete_form) }}
+    <button type="submit" class="btn btn-danger">
+        <li class="icon-remove"></li> {% trans %}item.media.action.Delete{% endtrans %}
+    </button>
+</form>
 {% endblock %}

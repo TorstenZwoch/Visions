@@ -22,7 +22,7 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('supplierlead_show', { 'id': entity.id }) }}">{{ entity.cNumber }}</a></td>
-                <td>{{ entity.rContact }}</td>
+                <td>{{ entity.contact }}</td>
                 <td>{{ entity.rTermsOfPayment }}</td>
                 <td>{{ entity.rPricelist }}</td>
                 <td>{{ entity.cInfo }}</td>

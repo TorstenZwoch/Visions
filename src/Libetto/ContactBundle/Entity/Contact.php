@@ -13,8 +13,15 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
  */
 class Contact extends BASE
 {
-
-
+    public function __toString() {
+        if ($this->getPerson() != null) {
+            return $this->getPerson()->__toString();
+        }
+        else if ($this->getCompany() != null) {
+            return $this->getCompany()->__toString();
+        }
+        return $this->getId();
+    }
     /**
      * @var string
      *

@@ -1,82 +1,64 @@
 {% extends '::base.html.twig' %}
-
+{% block title %}{% trans %}item.producttext.title.Show{% endtrans %}{% endblock title  %}
 {% block body -%}
-    <h1>ProductText</h1>
+<h1>{% trans %}item.producttext.title.Show{% endtrans %}</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Ccomp</th>
-                <td>{{ entity.cComp }}</td>
-            </tr>
-            <tr>
-                <th>Ccreationdate</th>
-                <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Cmodifydate</th>
-                <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Ccreationuser</th>
-                <td>{{ entity.cCreationUser }}</td>
-            </tr>
-            <tr>
-                <th>Cmodifyuser</th>
-                <td>{{ entity.cModifyUser }}</td>
-            </tr>
-            <tr>
-                <th>Isdeleted</th>
-                <td>{{ entity.isDeleted }}</td>
-            </tr>
-            <tr>
-                <th>Rproduct</th>
-                <td>{{ entity.rProduct }}</td>
-            </tr>
-            <tr>
-                <th>Clanguage</th>
-                <td>{{ entity.cLanguage }}</td>
-            </tr>
-            <tr>
-                <th>Cname</th>
-                <td>{{ entity.cName }}</td>
-            </tr>
-            <tr>
-                <th>Cshortname</th>
-                <td>{{ entity.cShortName }}</td>
-            </tr>
-            <tr>
-                <th>Cdescription</th>
-                <td>{{ entity.cDescription }}</td>
-            </tr>
-            <tr>
-                <th>Cdescriptiontype</th>
-                <td>{{ entity.cDescriptionType }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('producttext') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('producttext_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('producttext_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>{% trans %}core.label.Company{% endtrans %}</th>
+            <td>{{ entity.cComp }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.CreationDate{% endtrans %}</th>
+            <td>{{ entity.cCreationDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.ModifyDate{% endtrans %}</th>
+            <td>{{ entity.cModifyDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.CreationUser{% endtrans %}</th>
+            <td>{{ entity.cCreationUser }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}core.label.ModifyUser{% endtrans %}</th>
+            <td>{{ entity.cModifyUser }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.producttext.label.Language{% endtrans %}</th>
+            <td>{{ entity.cLanguage }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.producttext.label.Name{% endtrans %}</th>
+            <td>{{ entity.cName }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.producttext.label.ShortName{% endtrans %}</th>
+            <td>{{ entity.cShortName }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.producttext.label.Description{% endtrans %}</th>
+            <td>{{ entity.cDescription }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}item.producttext.label.DescriptionType{% endtrans %}</th>
+            <td>{{ entity.cDescriptionType }}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{{ path('producttext', { 'productid': entity.rProduct }) }}" class="btn">
+    <li class="icon-backward"></li> {% trans %}core.Back to the list{% endtrans %}
+</a>
+<hr/>
+<a href="{{ path('producttext_edit', { 'id': entity.id }) }}" class="btn btn-warning">
+    <li class="icon-edit"></li> {% trans %}item.producttext.action.Edit{% endtrans %}
+</a>
+<br/><br/>
+<form action="{{ path('producttext_delete', { 'id': entity.id }) }}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />{{ form_widget(delete_form) }}
+    <button type="submit" class="btn btn-danger">
+        <li class="icon-remove"></li> {% trans %}item.producttext.action.Delete{% endtrans %}
+    </button>
+</form>
 {% endblock %}

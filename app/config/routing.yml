@@ -1,4 +1,11 @@
+_welcome:
+    pattern:   /
+    defaults:  { _controller: LibettoDashboardBundle:Default:index }
 
+libetto_dashboard:
+    resource: "@LibettoDashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 libetto_supplier:
     resource: "@LibettoSupplierBundle/Controller/"
@@ -27,9 +34,6 @@ libetto_maintenance:
     resource: "@LibettoMaintenanceBundle/Resources/config/routing.yml"
     prefix:   /maintenance
 
-_welcome:
-    pattern:   /
-    defaults:  { _controller: FOSUserBundle:Security:login }
 
 libetto_user:
     resource: "@LibettoUserBundle/Controller/"
@@ -37,8 +41,10 @@ libetto_user:
     prefix:   /login
 
 
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /profile
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
