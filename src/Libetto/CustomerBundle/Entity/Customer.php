@@ -10,7 +10,7 @@ use Libetto\ContactBundle\Entity\Contact as Contact;
  * Customer
  *
  * @ORM\Table(name="tCustomer")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Libetto\CustomerBundle\Entity\CustomerRepository")
  */
 class Customer extends BASE {
 

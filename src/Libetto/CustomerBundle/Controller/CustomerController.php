@@ -28,7 +28,6 @@ class CustomerController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LibettoCustomerBundle:Customer')->findAll();
-
         return array(
             'entities' => $entities,
         );

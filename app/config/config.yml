@@ -34,7 +34,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ 'FOSUserBundle', 'LibettoMaintenanceBundle', 'LibettoCustomerBundle', 'LibettoCoreBundle' ]
+    bundles:        [ 'FOSUserBundle', 'LibettoMaintenanceBundle', 'LibettoCustomerBundle', 'LibettoCoreBundle', 'LibettoAPIBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -63,7 +63,22 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
-
+#        mappings:
+#             LibettoAPIBundle: 
+#                mapping:              false
+#                type:                 ~
+#                dir:                  ~
+#                alias:                ~
+#                prefix:               ~
+#                is_bundle:            ~       
+#             LibettoSupplierBundle: 
+#                mapping:              false
+#                type:                 ~
+#                dir:                  ~
+#                alias:                ~
+#                prefix:               ~
+#                is_bundle:            ~                    
+                
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mailer_transport%
@@ -113,6 +128,15 @@ sensio_framework_extra:
     
 fos_rest:
   format_listener:
-    prefer_extension: false
+    prefer_extension: true
+    fallback_format: json
   view:
     view_response_listener: true
+    formats:
+        text: true
+        xml: true
+        html: false
+        json: true    
+  routing_loader:
+      default_format: json      
+      include_format: true      

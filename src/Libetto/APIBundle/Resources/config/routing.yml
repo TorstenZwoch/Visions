@@ -1,0 +1,9 @@
+api_customers:
+    type:     rest
+    prefix:   /
+    resource: Libetto\APIBundle\Controller\CustomersController   
+    
+api_users:
+    type:     rest
+    prefix:   /    
+    resource: Libetto\APIBundle\Controller\UsersController   
