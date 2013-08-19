@@ -34,7 +34,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ 'FOSUserBundle', 'LibettoMaintenanceBundle', 'LibettoCustomerBundle', 'LibettoCoreBundle', 'LibettoAPIBundle' ]
+    bundles:        [ 'FOSUserBundle', 'LibettoMaintenanceBundle', 'LibettoCustomerBundle', 'LibettoCoreBundle', 'LibettoAPIBundle', 'LibettoItemBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

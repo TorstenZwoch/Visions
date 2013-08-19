@@ -7,3 +7,8 @@ api_users:
     type:     rest
     prefix:   /    
     resource: Libetto\APIBundle\Controller\UsersController   
+    
+api_users:
+    type:     rest
+    prefix:   /    
+    resource: Libetto\APIBundle\Controller\ProductsController      

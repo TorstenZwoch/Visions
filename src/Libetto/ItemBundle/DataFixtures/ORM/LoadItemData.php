@@ -100,7 +100,7 @@ class LoadItemData implements FixtureInterface {
 
         $o = new Product();
         $o->setCNumber("2103");
-        $o->setCName("Wakeboard LIQUID FORCE GROOVE 2010");
+        $o->setCName("Wakeboard LIQUID FORCE GROOVE 2210");
         $o->setCShortName("Wakeboard GROOVE");
         $o->setCDescription("Stylisches Wakeboard mit traumhafter Performance");
         $o->setCategory($category);
@@ -109,7 +109,7 @@ class LoadItemData implements FixtureInterface {
 
         $o = new Product();
         $o->setCNumber("2104");
-        $o->setCName("Wakeboard LIQUID FORCE S4 2010");
+        $o->setCName("Wakeboard LIQUID FORCE S4 2016");
         $o->setCShortName("Wakeboard FORCE S4");
         $o->setCDescription("Das PRO-Modell von Phillip Soven");
         $o->setCategory($category);

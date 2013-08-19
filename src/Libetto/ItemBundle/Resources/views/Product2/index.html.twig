@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+{% block title %}{% trans %}item.product.title.List{% endtrans %}{% endblock title  %}
+{% block body -%}
+<h1>{% trans %}item.product.title.List{% endtrans %}</h1>
+
+<div id="grid" style="width: 100%; height: 350px;"></div>
+<br />
+    <a href="{{ path('product_new') }}" class="btn btn-success">
+        <li class="icon-plus"></li>
+        {% trans %}item.product.action.Create{% endtrans %}
+    </a>
+    {% endblock %}
+    
+{% block javascript %}
+            {{ parent() }}
+            {% javascripts 
+              filter='?yui_js'
+              output='Resources/js/product_index.js'
+              combine=true
+              debug=false
+              "@LibettoItemBundle/Resources/public/js/product_index.js"
+            %}
+                            <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+{% endblock %}
+ 

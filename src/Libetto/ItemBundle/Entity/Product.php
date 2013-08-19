@@ -12,7 +12,7 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
  * @ORM\Entity(repositoryClass="Libetto\ItemBundle\Entity\ProductRepository")
  */
 class Product extends BASE {
-
+      
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @ORM\JoinColumn(name="rCategory", referencedColumnName="cId")
@@ -87,6 +87,7 @@ class Product extends BASE {
      */
     private $rProductGroup;
 
+    
     /**
      * Set cNumber
      *
@@ -129,6 +130,7 @@ class Product extends BASE {
         return $this->cName;
     }
 
+    
     /**
      * Set cShortName
      *

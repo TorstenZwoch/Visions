@@ -1,4 +1,4 @@
-# messages.de.yml
+# messages.en.yml
 default: #the first key is always the bundle name
     action:
       Back to top: Nach oben
@@ -10,3 +10,5 @@ default: #the first key is always the bundle name
       action:
     warn:
       notFound: Eintrag nicht gefunen
+
+item.product.label.Number: Nummer
