@@ -2,8 +2,8 @@
 {% block title %}{% trans %}item.product.title.List{% endtrans %}{% endblock title  %}
 {% block body -%}
 <h1>{% trans %}item.product.title.List{% endtrans %}</h1>
+<table id="data_table" class="table table-striped table-bordered table-hover "></table>
 
-<div id="grid" style="width: 100%; height: 350px;"></div>
 <br />
     <a href="{{ path('product_new') }}" class="btn btn-success">
         <li class="icon-plus"></li>
@@ -15,12 +15,22 @@
             {{ parent() }}
             {% javascripts 
               filter='?yui_js'
-              output='Resources/js/product_index.js'
+              output='Resources/js/datatables.js'
               combine=true
               debug=false
-              "@LibettoItemBundle/Resources/public/js/product_index.js"
             %}
-                            <script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
+
+            <script type="text/javascript">
+            $(document).ready(function() {
+                /* Fill Datatable */
+                $.ajax( {
+                    "url": "{{ path('get_products') }}.json",
+                    "dataType": 'json',
+                    "success": function ( json ) {
+                        $('#data_table').dataTable( json );
+                    }
+                });
+            } );
+        </script>
+    {% endjavascripts %}     
 {% endblock %}
- 

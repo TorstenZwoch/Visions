@@ -136,7 +136,7 @@ fos_rest:
         text: true
         xml: true
         html: false
-        json: true    
+        json: true
   routing_loader:
       default_format: json      
       include_format: true      

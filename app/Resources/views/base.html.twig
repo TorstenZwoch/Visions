@@ -23,6 +23,8 @@
               '@LibettoCoreBundle/Resources/css/font-awesome.min.css'
               '@LibettoCoreBundle/Resources/css/bootswatch.css'
               '@LibettoCoreBundle/Resources/css/w2ui-1.2.css'
+              '@LibettoCoreBundle/Resources/js/jquery-ui-1.10.3/themes/base/minified/jquery-ui.min.css'
+              "@LibettoCoreBundle/Resources/js/datatables/media/css/jquery.dataTables_themeroller.css"
               '@LibettoCoreBundle/Resources/css/main.css'
             %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
@@ -34,7 +36,7 @@
     </head>
 
     <body id="top" data-spy="scroll" data-target=".subnav" data-offset="0">
-        
+
         <div class="container-fluid">
             <!-- Navbar
             ================================================== -->
@@ -56,21 +58,21 @@
                                     {{ knp_menu_render('LibettoSupplierBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
                                 </div> 
                                 <div class="nav-collapse pull-right">{{ locale_switcher() }}</div>
-                                
+
                                 <div class="nav-collapse collapse navbar-responsive-collapse pull-right">   
                                 {{ knp_menu_render('LibettoUserBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
-                                </div>
-                                
-                                <form class="navbar-search pull-right" action="">
-                                    <input type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
-                                </form>
+                                    </div>
+
+                                    <form class="navbar-search pull-right" action="">
+                                        <input type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
+                                    </form>
                                 </div><!-- /.nav-collapse -->
-                               
+
                             </div>
                         </div><!-- /navbar-inner -->
                     </div><!-- /navbar -->
 
-      
+
                     <!--</section>-->
         {% for flashMessage in app.session.flashbag.get('error') %}
                     <div class="alert alert-error">
@@ -121,17 +123,20 @@
                                   debug=false
                                   "@LibettoCoreBundle/Resources/js/jquery.min.js" 
                                   "@LibettoCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
+                                  "@LibettoCoreBundle/Resources/js/jquery-ui-1.10.3/ui/jquery-ui.js"
+                                  "@LibettoCoreBundle/Resources/js/datatables/media/js/jquery.dataTables.js"
                                   "@LibettoCoreBundle/Resources/js/bootstrap.min.js" 
                                   "@LibettoCoreBundle/Resources/js/bootswatch.js"
+                                  "@LibettoCoreBundle/Resources/js/main.js"
                                 %}
-                                                <script src="{{ asset_url }}" type="text/javascript"></script>
+                            <script src="{{ asset_url }}" type="text/javascript"></script>
                                 {% endjavascripts %}
                                 {% javascripts 
                                   output='Resources/js/main2.js'
                                   combine=false
                                   "@LibettoCoreBundle/Resources/js/w2ui-1.2.min.js"
                                 %}
-                                                <script src="{{ asset_url }}" type="text/javascript"></script>
+                            <script src="{{ asset_url }}" type="text/javascript"></script>
                                 {% endjavascripts %}
                             {% endblock %}
                         </body>

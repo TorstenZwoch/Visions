@@ -3,6 +3,7 @@ item: #the first key is always the bundle name without 'bundle'
   Back to top: Nach oben
   navigation:
     Product: Artikel
+    Product2: Artikel2    
     ProductList: Artikelliste
     CategoryList: Kategorien
     ProductGroupList: Artikelgruppen

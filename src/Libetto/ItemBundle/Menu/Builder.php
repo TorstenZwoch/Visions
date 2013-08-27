@@ -25,7 +25,7 @@ class Builder extends ContainerAware {
             $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.ProductList'),array('route' => 'product'))->setAttribute('icon', 'icon-thumbs-up'));
             $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.ProductGroupList'),array('route' => 'productgroup'))->setAttribute('icon', 'icon-thumbs-up'));
             $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.CategoryList'),array('route' => 'category'))->setAttribute('icon', 'icon-thumbs-up'));
-            //$itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.ProductTextList'),array('route' => 'producttext'))->setAttribute('icon', 'icon-thumbs-up'));
+            $itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.ProductList2'),array('route' => 'product2'))->setAttribute('icon', 'icon-thumbs-up'));
             //$itemMenu->addChild($factory->createItem($this->container->get('translator')->trans('item.navigation.MediaList'),array('route' => 'media'))->setAttribute('icon', 'icon-thumbs-up'));
             $menu->addChild($itemMenu);
 

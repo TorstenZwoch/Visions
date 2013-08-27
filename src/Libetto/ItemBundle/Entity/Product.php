@@ -14,24 +14,24 @@ use Libetto\CoreBundle\Entity\BaseTable as BASE;
 class Product extends BASE {
       
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products", fetch="LAZY")
      * @ORM\JoinColumn(name="rCategory", referencedColumnName="cId")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProductGroup", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="ProductGroup", inversedBy="products", fetch="LAZY")
      * @ORM\JoinColumn(name="rProductGroup", referencedColumnName="cId")
      */
     private $productGroup;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="product", fetch="LAZY")
      */
     private $medias;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProductText", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="ProductText", mappedBy="product", fetch="LAZY")
      */
     private $productTexts;
 

@@ -89,71 +89,73 @@ class LoadItemData implements FixtureInterface {
         $category = $manager->getRepository('Libetto\ItemBundle\Entity\Category')->findOneBy(array('cNumber' => '011'));
         $group = $manager->getRepository('Libetto\ItemBundle\Entity\ProductGroup')->findOneBy(array('cNumber' => '002'));
 
-        $o = new Product();
-        $o->setCNumber("2102");
-        $o->setCName("Wakeboard LIQUID FORCE SHANE 2010");
-        $o->setCShortName("Wakeboard SHANE");
-        $o->setCDescription("Das PRO-Modell von Shane Bonifay");
-        $o->setCategory($category);
-        $o->setProductGroup($group);
-        $manager->persist($o);
+        for ($i = 0; $i < 500; $i++) {
+            $o = new Product();
+            $o->setCNumber("2102-" . $i);
+            $o->setCName("Wakeboard LIQUID FORCE SHANE 201" . $i . "0");
+            $o->setCShortName("Wakeboard SHANE " . $i );
+            $o->setCDescription("Das PRO-Modell von Shane Bonifay");
+            $o->setCategory($category);
+            $o->setProductGroup($group);
+            $manager->persist($o);
 
-        $o = new Product();
-        $o->setCNumber("2103");
-        $o->setCName("Wakeboard LIQUID FORCE GROOVE 2210");
-        $o->setCShortName("Wakeboard GROOVE");
-        $o->setCDescription("Stylisches Wakeboard mit traumhafter Performance");
-        $o->setCategory($category);
-        $o->setProductGroup($group);
-        $manager->persist($o);
+            $o = new Product();
+            $o->setCNumber("2103-" . $i);
+            $o->setCName("Wakeboard LIQUID FORCE GROOVE 2" . $i . "210");
+            $o->setCShortName("Wakeboard GROOVE " . $i);
+            $o->setCDescription("Stylisches Wakeboard mit traumhafter Performance");
+            $o->setCategory($category);
+            $o->setProductGroup($group);
+            $manager->persist($o);
 
-        $o = new Product();
-        $o->setCNumber("2104");
-        $o->setCName("Wakeboard LIQUID FORCE S4 2016");
-        $o->setCShortName("Wakeboard FORCE S4");
-        $o->setCDescription("Das PRO-Modell von Phillip Soven");
-        $o->setCategory($category);
-        $o->setProductGroup($group);
-        $manager->persist($o);
-
-        $manager->flush();
+            $o = new Product();
+            $o->setCNumber("2104-" . $i);
+            $o->setCName("Wakeboard LIQUID FORCE S4 20" . $i . "16");
+            $o->setCShortName("Wakeboard FORCE S4" . $i);
+            $o->setCDescription("Das PRO-Modell von Phillip Soven");
+            $o->setCategory($category);
+            $o->setProductGroup($group);
+            $manager->persist($o);
+            
+        }$manager->flush();
     }
 
     public function loadProductTexts(ObjectManager $manager) {
-        $product = $manager->getRepository('Libetto\ItemBundle\Entity\Product')->findOneBy(array('cNumber' => '2102'));
-        $o = new \Libetto\ItemBundle\Entity\ProductText();
-        $o->setCLanguage("de-de");
-        $o->setCName("LIQUID FORCE S4 2010 MadeInGermany");
-        $o->setCShortName("LIQUID MadeInGermany");
-        $o->setCDescription("Wakeboard LIQUID FORCE S4 Hergestellt in Deutschland");
-        $o->setProduct($product);
-        $o->setCDescriptionType(1);
-        $manager->persist($o);
+        for ($i = 0; $i < 500; $i++) {
+            $product = $manager->getRepository('Libetto\ItemBundle\Entity\Product')->findOneBy(array('cNumber' => '2102-' . $i));
+            $o = new \Libetto\ItemBundle\Entity\ProductText();
+            $o->setCLanguage("de-de");
+            $o->setCName("LIQUID FORCE S4 2010 MadeInGermany");
+            $o->setCShortName("LIQUID MadeInGermany");
+            $o->setCDescription("Wakeboard LIQUID FORCE S4 Hergestellt in Deutschland");
+            $o->setProduct($product);
+            $o->setCDescriptionType(1);
+            $manager->persist($o);
 
-        $o = new \Libetto\ItemBundle\Entity\ProductText();
-        $o->setCLanguage("en-us");
-        $o->setCName("LIQUID FORCE S4 2010 MadeInUSA");
-        $o->setCShortName("LIQUID MadeInUSA");
-        $o->setCDescription("Wakeboard LIQUID FORCE S4 Produced in USA");
-        $o->setProduct($product);
-        $o->setCDescriptionType(1);
-        $manager->persist($o);
+            $o = new \Libetto\ItemBundle\Entity\ProductText();
+            $o->setCLanguage("en-us");
+            $o->setCName("LIQUID FORCE S4 2010 MadeInUSA");
+            $o->setCShortName("LIQUID MadeInUSA");
+            $o->setCDescription("Wakeboard LIQUID FORCE S4 Produced in USA");
+            $o->setProduct($product);
+            $o->setCDescriptionType(1);
+            $manager->persist($o);
 
-        $o = new \Libetto\ItemBundle\Entity\ProductText();
-        $o->setCLanguage("en-en");
-        $o->setCName("LIQUID FORCE S4 2010 MadeInUK");
-        $o->setCShortName("LIQUID MadeInUK");
-        $o->setCDescription("Wakeboard LIQUID FORCE S4 Produced in United Kingdom");
-        $o->setProduct($product);
-        $o->setCDescriptionType(1);
-        $manager->persist($o);
-
+            $o = new \Libetto\ItemBundle\Entity\ProductText();
+            $o->setCLanguage("en-en");
+            $o->setCName("LIQUID FORCE S4 2010 MadeInUK");
+            $o->setCShortName("LIQUID MadeInUK");
+            $o->setCDescription("Wakeboard LIQUID FORCE S4 Produced in United Kingdom");
+            $o->setProduct($product);
+            $o->setCDescriptionType(1);
+            $manager->persist($o);
+        }
         $manager->flush();
     }
-    
-        public function loadMedia(ObjectManager $manager) {
-        $product = $manager->getRepository('Libetto\ItemBundle\Entity\Product')->findOneBy(array('cNumber' => '2102'));
-        
+
+    public function loadMedia(ObjectManager $manager) {
+        $product = $manager->getRepository('Libetto\ItemBundle\Entity\Product')->findOneBy(array('cNumber' => '2102-1'));
+
         $o = new \Libetto\ItemBundle\Entity\Media();
         $o->setCPath("\html\pictures\2102.jpg");
         $o->setCText("Artikelgrafik");

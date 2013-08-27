@@ -58,5 +58,5 @@ $( document ).ready(function() {
         },            
         ]
     });	
-    w2ui['grid'].load('/projects/Libetto/web/app_dev.php/api/products.json');
+    //w2ui['grid'].load('/projects/Libetto/web/app_dev.php/api/products.json');
 });  
