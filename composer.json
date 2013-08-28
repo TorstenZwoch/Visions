@@ -31,7 +31,7 @@
         "knplabs/knp-menu-bundle":"*",
         "lunetics/locale-bundle": "2.2.*",        
         "jms/serializer-bundle": "dev-master",
-        "friendsofsymfony/rest-bundle": "0.13.*@dev",
+        "friendsofsymfony/rest-bundle": "0.13.1",
         "doctrine/doctrine-fixtures-bundle" : "dev-master",
         "doctrine/data-fixtures" : "dev-master",
         "twitter/bootstrap": "2.3.*"
