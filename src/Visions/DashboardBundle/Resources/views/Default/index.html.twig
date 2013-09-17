@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    {% if username == 'anon.' %}
+<h1>{% trans %}dashboard.default.messages.no login{% endtrans %}</h1>
+            {% trans %}dashboard.default.messages.please log in{% endtrans %} 
+<a href="{{ path('fos_user_security_login') }}">
+            {% trans %}dashboard.default.action.login{% endtrans %}</a>
+    {% else %}
+        {% trans with {'%name%': username} %} dashboard.default.messages.welcome{% endtrans%}
+    {%endif%}
+<br />
+
+
+<div class="row">
+    <div class="span4">
+        <div class="hero-unit">
+            <div class="preloader">
+                Loading...
+            </div> 
+{{ include(
+            'VisionsRedmineBundle:Projects:widgetProjectList.html.twig' 
+        ) }}      
+        </div>
+    </div>
+    <div class="span8">
+        <div class="hero-unit">
+            {{ render(controller('VisionsRedmineBundle:Projects:widgetProjectDetails')) }}
+       
+                
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block javascript %}
+            {{ parent() }}
+            {% javascripts 
+              filter='?yui_js'
+              output='Resources/js/dashboard_index.js'
+              combine=true
+              debug=false
+              "@VisionsCoreBundle/Resources/js/swiper/idangerous.swiper-2.1.min.js"
+              "@VisionsCoreBundle/Resources/js/swiper/idangerous.swiper.scrollbar-2.1.js"
+              "@VisionsDashboardBundle/Resources/js/dashboard.js"
+            %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+{% endblock %}        

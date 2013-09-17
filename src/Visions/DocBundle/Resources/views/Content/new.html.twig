@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+      filter='cssrewrite,yui_css'
+      output='css/page.css'
+      debug=false
+      '@VisionsCoreBundle/Resources/public/css/html-editor.css'
+    %}
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        filter='yui_js'
+        output='js/page.js'
+        combine=true
+        "@VisionsCoreBundle/Resources/public/js/bootstrap-wysiwyg.js" 
+        "@VisionsCoreBundle/Resources/public/js/jquery.hotkeys.js"
+        '@VisionsCoreBundle/Resources/public/js/html-editor.js'
+    %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+
+{% block body -%}
+    <h1>Content creation</h1>
+
+    <form action="{{ path('content_create') }}" class="form" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('content') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

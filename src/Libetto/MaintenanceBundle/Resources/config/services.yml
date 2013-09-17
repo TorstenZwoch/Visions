@@ -1,7 +1,0 @@
-parameters:
-#    libetto_maintenance.example.class: Libetto\MaintenanceBundle\Example
-
-services:
-#    libetto_maintenance.example:
-#        class: %libetto_maintenance.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

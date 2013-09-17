@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Content list</h1>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Modifydate</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Tags</th>
+                <th>Language</th>
+                <th>Format</th>
+                <th>Online</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.modifyDate|date('Y-m-d H:i:s') }}</td>
+                <td><a href="{{ path('content_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+                <td>{{ entity.text | raw }}</td>
+                <td>{{ entity.tags }}</td>
+                <td>{{ entity.language }}</td>
+                <td>{{ entity.format }}</td>
+                <td>{{ entity.online }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('content_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('content_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('content_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

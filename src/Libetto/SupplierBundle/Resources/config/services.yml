@@ -1,7 +1,0 @@
-parameters:
-#    libetto_supplier.example.class: Libetto\SupplierBundle\Example
-
-services:
-#    libetto_supplier.example:
-#        class: %libetto_supplier.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

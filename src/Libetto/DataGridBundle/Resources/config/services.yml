@@ -1,8 +1,0 @@
-parameters:
-      poe_grid.class: Libetto\DataGridBundle\Grid\Grid
-      
-services:
-      poe_grid:
-          class:  "%poe_grid.class%"
-          arguments: ["@service_container"]
-          

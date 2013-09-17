@@ -1,8 +1,0 @@
-#parameters:
-#    libettosecuritycontext.class: Libetto\CoreBundle\Entity\BaseTable
-
-#services:
-#    libettosecuritycontext:
-#        class:        "%libettosecuritycontext.class%"
-#        arguments:    ["@service_container"]
-        

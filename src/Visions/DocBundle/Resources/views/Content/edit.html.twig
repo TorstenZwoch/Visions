@@ -1,0 +1,68 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+      filter='cssrewrite,yui_css'
+      output='css/page.css'
+      debug=false
+      '@VisionsCoreBundle/Resources/public/css/bootstrap_extend.css'
+    %}
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        filter='yui_js'
+        output='js/page.js'
+        combine=true
+        "@VisionsCoreBundle/Resources/public/js/live-editor.js"
+    %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+
+{% block body -%}
+<h1>Content edit</h1>
+
+<form action="{{ path('content_update', { 'id': entity.id }) }}" class="form" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
+       
+    
+{{ form_start(edit_form) }}
+    {{ form_errors(edit_form) }}
+
+    {{ form_row(edit_form.title) }}
+    {{ form_row(edit_form.tags) }}
+    {{ form_row(edit_form.format) }}
+    {{ form_row(edit_form.language) }}
+    {{ form_row(edit_form.online) }}
+    {{ form_row(edit_form.text) }}
+    
+    <button type="submit">Save</button>
+{{ form_end(edit_form) }}
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('content') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('content_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+            <button type="button" id="resizeon">resize on</button>
+            <button type="button" id="resizeoff">resize off</button>
+            <button type="button" id="readcontent">readcontent</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

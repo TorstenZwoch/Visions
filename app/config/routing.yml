@@ -1,42 +1,30 @@
+visions_redmine:
+    resource: "@VisionsRedmineBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+api:
+    resource: "@VisionsAPIBundle/Resources/config/routing.yml"
+    prefix: /api     
+    type: rest
+    
+visions_api_redmine:
+    resource: "@VisionsAPIRedmineBundle/Resources/config/routing.yml"
+    type: rest
+    prefix:   /api  
+
 _welcome:
     pattern:   /
-    defaults:  { _controller: LibettoDashboardBundle:Default:index }
+    defaults:  { _controller: VisionsDashboardBundle:Default:index }
 
-libetto_dashboard:
-    resource: "@LibettoDashboardBundle/Controller/"
+visions_dashboard:
+    resource: "@VisionsDashboardBundle/Controller/"
     type:     annotation
     prefix:   /
 
-libetto_supplier:
-    resource: "@LibettoSupplierBundle/Controller/"
-    type:     annotation
-    prefix:   /
-    
-libetto_item:
-    resource: "@LibettoItemBundle/Controller/"
-    type:     annotation
-    prefix:   /
 
-libetto_customer:
-    resource: "@LibettoCustomerBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-libetto_contact:
-    resource: "@LibettoContactBundle/Resources/config/routing.yml"
-    prefix:   /contact
-
-libetto_core:
-    resource: "@LibettoCoreBundle/Resources/config/routing.yml"
-    prefix:   /core
-
-libetto_maintenance:
-    resource: "@LibettoMaintenanceBundle/Resources/config/routing.yml"
-    prefix:   /maintenance
-
-
-libetto_user:
-    resource: "@LibettoUserBundle/Controller/"
+visions_user:
+    resource: "@VisionsUserBundle/Controller/"
     type:     annotation
     prefix:   /login
 
@@ -61,8 +49,29 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
-    
-api:
-    resource: "@LibettoAPIBundle/Resources/config/routing.yml"
-    prefix: /api     
-    type: rest
+
+
+visions_content:
+    resource: "@VisionsContentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+visions_core:
+    resource: "@VisionsCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+visions_doc:
+    resource: "@VisionsDocBundle/Controller/"
+    type:     annotation
+    prefix:   /doc
+
+visions_vision:
+    resource: "@VisionsVisionBundle/Controller/"
+    type:     annotation
+    prefix:   /vision
+
+#Visions_user:
+#    resource: "@VisionsUserBundle/Controller/"
+#    type:     annotation
+#    prefix:   /

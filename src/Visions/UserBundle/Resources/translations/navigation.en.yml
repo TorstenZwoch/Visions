@@ -1,0 +1,11 @@
+# Visions\UserBundle\Resources\translations\navigation.en.yml
+user: #the first key is always the bundle name
+  default: #All navigations for customer controller
+    My account: My account
+    Change Password: Change Password
+    Profile: Profile
+    Edit Profile: Edit Profile
+    Register: Register
+    Logout: Logout
+    Login: Login
+    

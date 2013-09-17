@@ -1,0 +1,66 @@
+/* 
+    Document   : main
+    Created on : 24.07.2013, 12:35:44
+    Author     : torstenzwoch
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    padding-top: 5px;
+    padding-bottom: 40px;
+}
+
+table.record_properties {
+    margin-bottom: 20px;
+}
+
+table.record_properties tbody tr th {
+    text-align: left;
+    padding-right: 10px;
+}
+
+
+/* jQuery Datatables for Twitter Bootstrap */
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+ 
+table.table thead .sorting { background: url('images/sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('images/sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('images/sort_desc.png') no-repeat center right; }
+ 
+table.table thead .sorting_asc_disabled { background: url('images/sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('images/sort_desc_disabled.png') no-repeat center right; }
+
+
+/* Demo Styles */
+
+.preloader {
+  position: absolute;
+  left: 0;
+  top: -100px;
+  z-index: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 100px;
+  height: 100px;
+  width: 100%;
+  opacity: 0;
+  font-size: 25px;
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -ms-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms;
+  background: rgba(0,0,0,0.1);
+}
+.preloader.visible {
+  top: 0;
+  opacity: 1;
+}

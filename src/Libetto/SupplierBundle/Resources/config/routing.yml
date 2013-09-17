@@ -1,3 +1,0 @@
-libetto_supplier_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: LibettoSupplierBundle:Default:index }

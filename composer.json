@@ -34,7 +34,8 @@
         "friendsofsymfony/rest-bundle": "0.13.1",
         "doctrine/doctrine-fixtures-bundle" : "dev-master",
         "doctrine/data-fixtures" : "dev-master",
-        "twitter/bootstrap": "2.3.*"
+        "twitter/bootstrap": "2.3.*",
+        "kbsali/redmine-api": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",

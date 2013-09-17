@@ -1,3 +1,0 @@
-libetto_contact_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: LibettoContactBundle:Default:index }

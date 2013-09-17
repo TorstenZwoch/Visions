@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title> - jsFiddle demo</title>
+  
+  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+  <style type='text/css'>
+          *{margin:0;padding:0;border:0;}
+      html,body{width:100%;height:100%}
+ 
+      .box{
+        width: 50%;
+        height: 50%;        
+      }
+ 
+      #leftBox{
+        background-color: burlywood;
+        float: left;
+      }
+ 
+      #rightBox{
+        background-color: cadetblue;
+        float: right;
+      }
+  </style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){
+      $(document).ready(function(){
+        $('#leftBox').bind('refresh', 
+        function(event, argument){
+          this.innerHTML = 'Argument "'+argument+'" received at: '+event.timeStamp;
+        });
+ 
+        $('#rightBox').bind('myEvent', 
+        function(event, argument){
+          this.innerHTML = 'Argument "'+argument+'" received at: '+event.timeStamp;
+        });
+ 
+        //$('#leftBox,#rightBox').trigger('myEvent', 'Hello World');
+          
+        $('#testbutton').bind('click', 
+        function(event, argument){
+            $.event.trigger('myEvent', 'Hello World2');
+        }); 
+          
+        $('li a').bind('click', 
+        function(event, argument){
+            $.event.trigger('refresh', $(this).attr("data-id"));
+        });           
+      });
+});//]]>  
+
+</script>
+
+
+</head>
+<body>
+    <body>
+      <ul>
+          <li><a href="#" data-id="1">1</a></li>
+          <li><a href="#" data-id="2">2</a></li>
+          <li><a href="#" data-id="3">3</a></li>
+          <li><a href="#" data-id="4">4</a></li>
+          <li><a href="#" data-id="5">5</a></li>
+          <li><a href="#" data-id="6">6</a></li>
+      </ul>
+    <div class="box" id="leftBox"></div>
+    <div class="box" id="rightBox"></div>
+      <button id="testbutton">test</button>
+  </body>
+  
+</body>
+
+
+</html>
+

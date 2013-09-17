@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Bootstrap -->
-        <title>{% block title %}Welcome!{% endblock %} | Libetto</title>
+        <title>{% block title %}Welcome!{% endblock %} | Tests</title>
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -18,20 +18,32 @@
               output='Resources/css/main.css'
               combine=true
               debug=false
-              '@LibettoCoreBundle/Resources/css/bootstrap.css' 
-              '@LibettoCoreBundle/Resources/css/bootstrap-responsive.min.css' 
-              '@LibettoCoreBundle/Resources/css/font-awesome.min.css'
-              '@LibettoCoreBundle/Resources/css/bootswatch.css'
-              '@LibettoCoreBundle/Resources/css/w2ui-1.2.css'
-              '@LibettoCoreBundle/Resources/js/jquery-ui-1.10.3/themes/base/minified/jquery-ui.min.css'
-              "@LibettoCoreBundle/Resources/js/datatables/media/css/jquery.dataTables_themeroller.css"
-              '@LibettoCoreBundle/Resources/css/main.css'
+              '@VisionsCoreBundle/Resources/css/bootstrap.css' 
+              '@VisionsCoreBundle/Resources/css/bootstrap-responsive.min.css' 
+              '@VisionsCoreBundle/Resources/css/font-awesome.min.css'
+              '@VisionsCoreBundle/Resources/css/bootswatch.css'
+              '@VisionsCoreBundle/Resources/css/w2ui-1.2.css'
+              '@VisionsCoreBundle/Resources/js/jquery-ui-1.10.3/themes/base/minified/jquery-ui.min.css'
+              "@VisionsCoreBundle/Resources/js/datatables/media/css/jquery.dataTables_themeroller.css"
+              '@VisionsCoreBundle/Resources/css/main.css'
             %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
 
-
+        {% block javascript_head %}                            
+            {% javascripts 
+              filter='?yui_js'
+              output='Resources/js/main_head.js'
+              combine=true
+              debug=false
+              "@VisionsCoreBundle/Resources/js/jquery.min.js" 
+              "@VisionsCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
+              "@VisionsCoreBundle/Resources/js/jquery-ui-1.10.3/ui/jquery-ui.js"
+            %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
@@ -49,95 +61,90 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="{{ app.request.getBaseURL() }}" title="Libetto" alt="Libetto">Libetto</a>
+                        <a class="brand" href="{{ app.request.getBaseURL() }}" title="Visions" alt="Visions">Visions</a>
                         <div class="nav-collapse">
                             <div class="nav-collapse collapse navbar-responsive-collapse pull-left">   
-                                    {{ knp_menu_render('LibettoMaintenanceBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
-                                    {{ knp_menu_render('LibettoItemBundle:Builder:mainMenu', {'currentClass': 'active'}) }}                                    
-                                    {{ knp_menu_render('LibettoCustomerBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
-                                    {{ knp_menu_render('LibettoSupplierBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
-                                </div> 
-                                <div class="nav-collapse pull-right">{{ locale_switcher() }}</div>
 
-                                <div class="nav-collapse collapse navbar-responsive-collapse pull-right">   
-                                {{ knp_menu_render('LibettoUserBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
-                                    </div>
+                                &nbsp;
+                            </div> 
+                            <div class="nav-collapse pull-right">{{ locale_switcher() }}</div>
 
-                                    <form class="navbar-search pull-right" action="">
-                                        <input type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
-                                    </form>
-                                </div><!-- /.nav-collapse -->
+                            <div class="nav-collapse collapse navbar-responsive-collapse pull-right">   
+                                {{ knp_menu_render('VisionsUserBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                                </div>
 
-                            </div>
-                        </div><!-- /navbar-inner -->
-                    </div><!-- /navbar -->
+                                <form class="navbar-search pull-right" action="">
+                                    <input type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
+                                </form>
+                            </div><!-- /.nav-collapse -->
+
+                        </div>
+                    </div><!-- /navbar-inner -->
+                </div><!-- /navbar -->
 
 
-                    <!--</section>-->
+                <!--</section>-->
         {% for flashMessage in app.session.flashbag.get('error') %}
-                    <div class="alert alert-error">
+                <div class="alert alert-error">
+                {{ flashMessage }}
+                    </div>
+        {% endfor %}  
+        {% for flashMessage in app.session.flashbag.get('warning') %}
+                    <div class="alert alert-warning">
                 {{ flashMessage }}
                         </div>
         {% endfor %}  
-        {% for flashMessage in app.session.flashbag.get('warning') %}
-                        <div class="alert alert-warning">
+        {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success">
                 {{ flashMessage }}
                             </div>
-        {% endfor %}  
-        {% for flashMessage in app.session.flashbag.get('success') %}
-                            <div class="alert alert-success">
-                {{ flashMessage }}
-                                </div>
         {% endfor %}  
         {% block body %}
 
         {% endblock %}
-                                <br><br><br><br>
+                            <br><br><br><br>
 
-                                <!-- Footer
-                                 ================================================== -->
-                                <hr>
+                            <!-- Footer
+                             ================================================== -->
+                            <hr>
 
-                                <footer id="footer">
-                                    <p class="pull-right"><a href="#top">{% trans %}default.action.Back to top{% endtrans %}</a></p>
-                                    <!--  <div class="links">
-                                          <a href="">Link 1</a>
-                                          <a href="">Link 2</a>
-                                          <a href="">Link 3</a>
-                                          </div>
-                                          test -->
-                                    </p>
-                                </footer>
+                            <footer id="footer">
+                                <p class="pull-right"><a href="#top">{% trans %}default.action.Back to top{% endtrans %}</a></p>
+                                <!--  <div class="links">
+                                      <a href="">Link 1</a>
+                                      <a href="">Link 2</a>
+                                      <a href="">Link 3</a>
+                                      </div>
+                                      test -->
+                                </p>
+                            </footer>
 
-                            </div><!-- /container -->
+                        </div><!-- /container -->
 
 
 
-                            <!-- javascript
-                            ================================================== -->
+                        <!-- javascript
+                        ================================================== -->
                             {% block javascript %}                            
                                 {% javascripts 
                                   filter='?yui_js'
                                   output='Resources/js/main.js'
                                   combine=true
                                   debug=false
-                                  "@LibettoCoreBundle/Resources/js/jquery.min.js" 
-                                  "@LibettoCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
-                                  "@LibettoCoreBundle/Resources/js/jquery-ui-1.10.3/ui/jquery-ui.js"
-                                  "@LibettoCoreBundle/Resources/js/datatables/media/js/jquery.dataTables.js"
-                                  "@LibettoCoreBundle/Resources/js/bootstrap.min.js" 
-                                  "@LibettoCoreBundle/Resources/js/bootswatch.js"
-                                  "@LibettoCoreBundle/Resources/js/main.js"
+                                  "@VisionsCoreBundle/Resources/js/datatables/media/js/jquery.dataTables.js"
+                                  "@VisionsCoreBundle/Resources/js/bootstrap.min.js" 
+                                  "@VisionsCoreBundle/Resources/js/bootswatch.js"
+                                  "@VisionsCoreBundle/Resources/js/main.js"
                                 %}
-                            <script src="{{ asset_url }}" type="text/javascript"></script>
+                        <script src="{{ asset_url }}" type="text/javascript"></script>
                                 {% endjavascripts %}
                                 {% javascripts 
                                   output='Resources/js/main2.js'
                                   combine=false
-                                  "@LibettoCoreBundle/Resources/js/w2ui-1.2.min.js"
+                                  "@VisionsCoreBundle/Resources/js/w2ui-1.2.min.js"
                                 %}
-                            <script src="{{ asset_url }}" type="text/javascript"></script>
+                        <script src="{{ asset_url }}" type="text/javascript"></script>
                                 {% endjavascripts %}
                             {% endblock %}
-                        </body>
-                    </html>
+                    </body>
+                </html>

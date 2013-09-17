@@ -7,7 +7,7 @@
                 "version_normalized": "1.0.0.0",
                 "source": {
                     "type": "git",
-                    "url": "http://composer:composer@192.168.18.220:8090/scm/git/Libetto",
+                    "url": "http://composer:composer@192.168.18.220:8090/scm/git/Visions",
                     "reference": "1.0.0"
                 },
                 "require": {
@@ -65,7 +65,7 @@
                 "version_normalized": "9999999-dev",
                 "source": {
                     "type": "git",
-                    "url": "http://composer:composer@192.168.18.220:8090/scm/git/Libetto",
+                    "url": "http://composer:composer@192.168.18.220:8090/scm/git/Visions",
                     "reference": "a3374b789568d3f35dc3b0841bb56c2d9e2581a4"
                 },
                 "require": {

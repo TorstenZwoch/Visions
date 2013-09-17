@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Libetto" default="">
+<project name="Visions" default="">
     
     <target name="1_InitEnviroment" depends="CopyParameters, GetComposer, GetPHP-CS-Fixer"/>
     <target name="2_InstallDependencies" depends="ComposerInstall, DropCreateUpdateDatabase"/>
@@ -34,7 +34,7 @@
         <exec executable="php" failonerror="true">
             <arg value="php-cs-fixer.phar" />
             <arg value="fix" />
-            <arg value="${basedir}\src\Libetto" />
+            <arg value="${basedir}\src\Visions" />
             <arg value="--level=psr0" />
         </exec>
     </target>
@@ -43,7 +43,7 @@
         <exec executable="php" failonerror="true">
             <arg value="php-cs-fixer.phar" />
             <arg value="fix" />
-            <arg value="${basedir}\src\Libetto" />
+            <arg value="${basedir}\src\Visions" />
             <arg value="--level=psr1" />
         </exec>
     </target>
@@ -52,7 +52,7 @@
         <exec executable="php" failonerror="true">
             <arg value="php-cs-fixer.phar" />
             <arg value="fix" />
-            <arg value="${basedir}\src\Libetto" />
+            <arg value="${basedir}\src\Visions" />
             <arg value="--level=psr2" />
         </exec>
     </target>
@@ -61,7 +61,7 @@
         <exec executable="php" failonerror="true">
             <arg value="php-cs-fixer.phar" />
             <arg value="fix" />
-            <arg value="${basedir}\src\Libetto" />
+            <arg value="${basedir}\src\Visions" />
             <arg value="--level=all" />
         </exec>
     </target>
@@ -70,7 +70,7 @@
         <exec executable="php" failonerror="true">
             <arg value="php-cs-fixer.phar" />
             <arg value="fix" />
-            <arg value="${basedir}\src\Libetto" />
+            <arg value="${basedir}\src\Visions" />
             <arg value="--dry-run" />
         </exec>
     </target>

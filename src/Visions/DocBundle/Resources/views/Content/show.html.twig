@@ -1,0 +1,74 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Content</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Creationuser</th>
+                <td>{{ entity.creationUser }}</td>
+            </tr>
+            <tr>
+                <th>Creationdate</th>
+                <td>{{ entity.creationDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Modifyuser</th>
+                <td>{{ entity.modifyUser }}</td>
+            </tr>
+            <tr>
+                <th>Modifydate</th>
+                <td>{{ entity.modifyDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ entity.text | raw }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ entity.tags }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ entity.language }}</td>
+            </tr>
+            <tr>
+                <th>Format</th>
+                <td>{{ entity.format }}</td>
+            </tr>
+            <tr>
+                <th>Online</th>
+                <td>{{ entity.online }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('content') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('content_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('content_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

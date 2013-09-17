@@ -1,0 +1,16 @@
+
+<div id="widgetProjectDetails">
+</div>
+
+{% block javascript %}
+         
+            {% javascripts 
+              filter='?yui_js'
+              output='Resources/js/widgetProjectDetails.js'
+              combine=true
+              debug=false
+              "@VisionsRedmineBundle/Resources/public/js/widgetProjectDetails.js"
+            %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+{% endblock %}  

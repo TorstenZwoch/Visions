@@ -1,0 +1,7 @@
+{# src/Visions/CoreBundle/Resources/views/Form/liveEditor.html.twig #}
+{% block liveEditor_widget %}
+{% spaceless %}
+{% set attr = attr|merge({'class': 'live_editor'}) %}
+ <textarea id="content" {{ block('widget_attributes') }} data-liveEditor="{{ id }}">{{ value }}</textarea>
+{% endspaceless %}
+{% endblock liveEditor_widget %}

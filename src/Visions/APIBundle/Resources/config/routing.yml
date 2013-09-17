@@ -1,0 +1,9 @@
+#api_users:
+#    type:     rest
+#    prefix:   /    
+#    resource: Visions\APIBundle\Controller\UsersController   
+#
+#api_redmine_projects:
+#    type:     rest
+#    prefix:   /    
+#    resource: Visions\APIBundle\Controller\RedmineProjectsController 

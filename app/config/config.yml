@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: "@LibettoCoreBundle/Resources/config/services.yml" }
+    - { resource: "@VisionsCoreBundle/Resources/config/services.yml" }
 
 framework:
     #esi:             ~
@@ -34,7 +34,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ 'FOSUserBundle', 'LibettoMaintenanceBundle', 'LibettoCustomerBundle', 'LibettoCoreBundle', 'LibettoAPIBundle', 'LibettoItemBundle' ]
+    bundles:        [ 'FOSUserBundle', 'VisionsCoreBundle', 'VisionsDashboardBundle' , 'VisionsAPIBundle', 'VisionsDocBundle', 'VisionsContentBundle', 'VisionsVisionBundle', 'VisionsRedmineBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -64,14 +64,14 @@ doctrine:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
 #        mappings:
-#             LibettoAPIBundle: 
+#             VisionsAPIBundle: 
 #                mapping:              false
 #                type:                 ~
 #                dir:                  ~
 #                alias:                ~
 #                prefix:               ~
 #                is_bundle:            ~       
-#             LibettoSupplierBundle: 
+#             VisionsSupplierBundle: 
 #                mapping:              false
 #                type:                 ~
 #                dir:                  ~
@@ -91,18 +91,21 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Libetto\UserBundle\Entity\User
+    user_class: Visions\UserBundle\Entity\User
     group:
-        group_class: Libetto\UserBundle\Entity\Group
+        group_class: Visions\UserBundle\Entity\Group
+    profile:
+        form:
+            type: visions_user_profile       
         
 # knp menu bundle
 knp_menu:
    twig:
-       template: "LibettoCoreBundle:Menu:menu.html.twig"
+       template: "VisionsCoreBundle:Menu:menu.html.twig"
        
 bc_bootstrap:
     less_filter: lessphp
-    jquery_path: "@LibettoCoreBundle/Resources/js/jquery.min.js"
+    jquery_path: "@VisionsCoreBundle/Resources/js/jquery.min.js"
 
 # lunetics/locale-bundle
 lunetics_locale:

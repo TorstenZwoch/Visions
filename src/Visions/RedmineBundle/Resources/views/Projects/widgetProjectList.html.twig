@@ -1,0 +1,23 @@
+<div id="widgetProjectList">
+    <button id="redmineLoadProjects" class="btn">Projekte laden</button>
+    <input id="search" />
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide red-slide">
+                <ul id="project-list" class="nav nav-tabs nav-stacked"></ul>  
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascript %}
+            {% javascripts 
+              filter='?yui_js'
+              output='Resources/js/widgetProjectList.js'
+              combine=true
+              debug=false
+              "@VisionsRedmineBundle/Resources/public/js/widgetProjectList.js"
+            %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+{% endblock %}  
