@@ -1,20 +1,24 @@
 $(document).ready(function(){
+    var widgetProjects= "widgetProjects";
     $('#widgetProjectDetails').bind('selectedproject', 
     function(event, argument){      
         alert($(this).attr('data-id'));
-      this.innerHTML = id;
+        this.innerHTML = id;
     });
     
     // load projects from local storage
     var redmineProjects = localStorage.getItem('redmine_projects');
     if(redmineProjects !== null && redmineProjects !== undefined){
         var data = JSON.parse(redmineProjects);
-        var output = "";
-        for (var i in data.project) {
-            //alert(data.project[i].name);
-            output += '<li><a href="#" data-id="' + data.project[i].id + '" onclick="alert(\'x\');$.event.trigger(\'selected-project\', $(this).attr(\'data-id\'))">' + data.project[i].name + '</a></li>';
+        $('#project-list').empty();
+        if (typeof(data.project) == 'undefined'){
+            $('#project-list').append('<li>' + data.Message + '</li>');
+        }else {
+            for (var i in data.project) {
+                //alert(data.project[i].name);
+                $('#project-list').append('<li><a href="#" data-id="' + data.project[i].id + '" onclick="alert(\'' + data.project[i].id + '\');$.event.trigger(\'selected-project\', $(this).attr(\'data-id\'))">' + data.project[i].name + '</a></li>');
+            }
         }
-        $('#project-list').html(output);      
     }
     
     // reload projects
@@ -75,12 +79,15 @@ function getProjects(){
         url: "http://localhost/projects/Visions/web/app_dev.php/api/redmine/projects.json?limit=2",
         success: function(data){            
             localStorage.setItem('redmine_projects', JSON.stringify(data));
-            //alert(JSON.parse(localStorage.getItem('projects')));
-            var output = "";           
-            for (var i in data.project) {
-                output += '<li><a href="#" data-id="' + data.project[i].id + '" onclick="alert(\'test2\')">' + data.project[i].name + '</a></li>';
-            }
-            $('#project-list').html(output);            
+            $('#project-list').empty();
+            if (typeof(data.project) == 'undefined'){
+                $('#project-list').append('<li>' + data.Message + '</li>');
+            }else {
+                for (var i in data.project) {
+                    //alert(data.project[i].name);
+                    $('#project-list').append('<li><a href="#" data-id="' + data.project[i].id + '" onclick="alert(\'' + data.project[i].id + '\');$.event.trigger(\'selected-project\', $(this).attr(\'data-id\'))">' + data.project[i].name + '</a></li>');
+                }
+            }            
 
             // enable button
             $("#redmineLoadProjects").removeClass("disabled").attr("disabled", false);            

@@ -41,7 +41,7 @@ $(window).load(function(){
           this.innerHTML = 'Argument "'+argument+'" received at: '+event.timeStamp;
         });
  
-        $('#rightBox').bind('myEvent', 
+        $('#rightBox').bind('VisionsTestBundle:Product', 
         function(event, argument){
           this.innerHTML = 'Argument "'+argument+'" received at: '+event.timeStamp;
         });
@@ -50,7 +50,7 @@ $(window).load(function(){
           
         $('#testbutton').bind('click', 
         function(event, argument){
-            $.event.trigger('myEvent', 'Hello World2');
+            $.event.trigger('VisionsTestBundle:Product', 'Hello World2');
         }); 
           
         $('li a').bind('click', 

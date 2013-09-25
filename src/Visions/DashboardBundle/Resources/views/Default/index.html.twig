@@ -1,4 +1,5 @@
 {% extends '::base.html.twig' %}
+{% use 'VisionsRedmineBundle:Projects:widgetProjectList.html.twig' with javascript as widgetProjectList_styles %}
 
 {% block body -%}
     {% if username == 'anon.' %}
@@ -18,34 +19,31 @@
             <div class="preloader">
                 Loading...
             </div> 
-{{ include(
-            'VisionsRedmineBundle:Projects:widgetProjectList.html.twig' 
-        ) }}      
+     {{ block('widget1') }}
         </div>
     </div>
     <div class="span8">
         <div class="hero-unit">
-            {{ render(controller('VisionsRedmineBundle:Projects:widgetProjectDetails')) }}
-       
-                
+ 
         </div>
     </div>
 </div>
 {% endblock %}
 
 
-
-{% block javascript %}
-            {{ parent() }}
-            {% javascripts 
-              filter='?yui_js'
-              output='Resources/js/dashboard_index.js'
-              combine=true
-              debug=false
-              "@VisionsCoreBundle/Resources/js/swiper/idangerous.swiper-2.1.min.js"
-              "@VisionsCoreBundle/Resources/js/swiper/idangerous.swiper.scrollbar-2.1.js"
-              "@VisionsDashboardBundle/Resources/js/dashboard.js"
-            %}
-<script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
+{% block javascript -%}
+    {{ parent() }}
+    {{ block('widgetProjectList_styles') }}
+    {{ block('widgetProjectDetails_styles') }}
+    {% javascripts 
+      filter=''
+      output='Resources/js/dashboard_index.js'
+      combine=true
+      debug=false
+      "@VisionsCoreBundle/Resources/js/swiper/idangerous.swiper-2.1.min.js"
+      "@VisionsCoreBundle/Resources/js/swiper/idangerous.swiper.scrollbar-2.1.js"
+      "@VisionsDashboardBundle/Resources/js/dashboard.js"
+    %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
 {% endblock %}        

@@ -2,6 +2,11 @@
 <!DOCTYPE html>
 <html lang="de">
     <head>
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Bootstrap -->
         <title>{% block title %}Welcome!{% endblock %} | Tests</title>
@@ -22,37 +27,51 @@
               '@VisionsCoreBundle/Resources/css/bootstrap-responsive.min.css' 
               '@VisionsCoreBundle/Resources/css/font-awesome.min.css'
               '@VisionsCoreBundle/Resources/css/bootswatch.css'
-              '@VisionsCoreBundle/Resources/css/w2ui-1.2.css'
               '@VisionsCoreBundle/Resources/js/jquery-ui-1.10.3/themes/base/minified/jquery-ui.min.css'
-              "@VisionsCoreBundle/Resources/js/datatables/media/css/jquery.dataTables_themeroller.css"
+              '@VisionsCoreBundle/Resources/js/datatables/media/css/jquery.dataTables_themeroller.css'
+              '@VisionsCoreBundle/Resources/js/snapjs/snap.css'
               '@VisionsCoreBundle/Resources/css/main.css'
             %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
 
-        {% block javascript_head %}                            
-            {% javascripts 
-              filter='?yui_js'
-              output='Resources/js/main_head.js'
-              combine=true
-              debug=false
-              "@VisionsCoreBundle/Resources/js/jquery.min.js" 
-              "@VisionsCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
-              "@VisionsCoreBundle/Resources/js/jquery-ui-1.10.3/ui/jquery-ui.js"
-            %}
-            <script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
-        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
     <body id="top" data-spy="scroll" data-target=".subnav" data-offset="0">
-
-        <div class="container-fluid">
+        {% block snapdrawers %}
+            <div class="snap-drawers">
+                <div class="snap-drawer snap-drawer-left">
+                    <div>
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Navigation</li>
+                            <li class="active"><a href="{{ app.request.getBaseURL() }}">Home</a></li>
+                            <li><a href="#">Noch ein Link</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="snap-drawer snap-drawer-right">
+                    <div class="navbar navbar-inverse navbar-fixed-top">
+                        <div class="navbar-inner" style="padding-right: 50px;">
+                            <form class="navbar-search pull-right" action="">
+                                <input id="matchcode-search" type="text" class="search-query span2" placeholder="{% trans %}default.form.placeholder.Search{% endtrans %}">
+                            </form>
+                        </div> 
+                    </div>
+                    <div style="padding-top: 40px;">    
+                        <ul id="matchcode-results">
+                            <li><a href="#">Keine Ergebnisse.</a></li>                              
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        <div id="content" class="container-fluid snap-content">
             <!-- Navbar
             ================================================== -->
             <!--<section id="navbar">-->
+            {% block navigation %}
             <div class="navbar navbar-inverse ">
                 <div class="navbar-inner">
                     <div class="container-fluid" style="width: auto;">
@@ -81,28 +100,29 @@
                         </div>
                     </div><!-- /navbar-inner -->
                 </div><!-- /navbar -->
-
-
-                <!--</section>-->
-        {% for flashMessage in app.session.flashbag.get('error') %}
-                <div class="alert alert-error">
-                {{ flashMessage }}
-                    </div>
-        {% endfor %}  
-        {% for flashMessage in app.session.flashbag.get('warning') %}
-                    <div class="alert alert-warning">
-                {{ flashMessage }}
-                        </div>
-        {% endfor %}  
-        {% for flashMessage in app.session.flashbag.get('success') %}
-                        <div class="alert alert-success">
-                {{ flashMessage }}
-                            </div>
-        {% endfor %}  
-        {% block body %}
-
         {% endblock %}
-                            <br><br><br><br>
+        {% block messages %}
+                    <!--</section>-->
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-error">
+                    {{ flashMessage }}
+                        </div>
+            {% endfor %}  
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                        <div class="alert alert-warning">
+                    {{ flashMessage }}
+                            </div>
+            {% endfor %}  
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                            <div class="alert alert-success">
+                    {{ flashMessage }}
+                                </div>
+            {% endfor %} 
+        {% endblock %}
+           <div id="content">
+            {% block body %}
+            {% endblock %}
+        </div>
 
                             <!-- Footer
                              ================================================== -->
@@ -125,26 +145,30 @@
 
                         <!-- javascript
                         ================================================== -->
-                            {% block javascript %}                            
+                            {% block javascript %}                                                                
                                 {% javascripts 
                                   filter='?yui_js'
                                   output='Resources/js/main.js'
-                                  combine=true
+                                  combine=false
                                   debug=false
+                                  package='assetic'
+                                  "@VisionsCoreBundle/Resources/js/jquery.min.js" 
+                                  "@VisionsCoreBundle/Resources/js/jquery.smooth-scroll.min.js"
+                                  "@VisionsCoreBundle/Resources/js/jquery-ui-1.10.3/ui/jquery-ui.js"
                                   "@VisionsCoreBundle/Resources/js/datatables/media/js/jquery.dataTables.js"
                                   "@VisionsCoreBundle/Resources/js/bootstrap.min.js" 
                                   "@VisionsCoreBundle/Resources/js/bootswatch.js"
+                                  "@VisionsCoreBundle/Resources/js/snapjs/snap.js"
+                                  "@VisionsCoreBundle/Resources/js/angular.min.js"
+                                  '@VisionsCoreBundle/Resources/js/mainDatatables.js'
                                   "@VisionsCoreBundle/Resources/js/main.js"
                                 %}
-                        <script src="{{ asset_url }}" type="text/javascript"></script>
-                                {% endjavascripts %}
-                                {% javascripts 
-                                  output='Resources/js/main2.js'
-                                  combine=false
-                                  "@VisionsCoreBundle/Resources/js/w2ui-1.2.min.js"
-                                %}
-                        <script src="{{ asset_url }}" type="text/javascript"></script>
+                                <script src="{{ asset_url }}" type="text/javascript"></script>
+
+                                <script type="text/javascript">
+                                    var baseUrl = "{{ app.request.getBaseURL() }}";
+                                </script>                                    
                                 {% endjavascripts %}
                             {% endblock %}
-                    </body>
-                </html>
+                        </body>
+                    </html>

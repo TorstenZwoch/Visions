@@ -1,3 +1,4 @@
+{% block widget1 %}
 <div id="widgetProjectList">
     <button id="redmineLoadProjects" class="btn">Projekte laden</button>
     <input id="search" />
@@ -9,15 +10,16 @@
         </div>
     </div>
 </div>
+{% endblock %}  
 
 {% block javascript %}
-            {% javascripts 
-              filter='?yui_js'
-              output='Resources/js/widgetProjectList.js'
-              combine=true
-              debug=false
-              "@VisionsRedmineBundle/Resources/public/js/widgetProjectList.js"
-            %}
-<script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
+    {% javascripts 
+            filter='?yui_js'
+            output='Resources/js/widgetProjectList.js'
+            combine=true
+            debug=false
+            "@VisionsRedmineBundle/Resources/public/js/widgetProjectList.js"
+        %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
 {% endblock %}  

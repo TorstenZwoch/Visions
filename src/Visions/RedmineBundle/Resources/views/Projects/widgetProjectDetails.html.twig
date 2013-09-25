@@ -1,6 +1,11 @@
+{% block widget2 %}
+    <div id="widgetProjectDetails">
+        details:
+        {{ app.request.get('_template').get('bundle') }}<br />
+{{ app.request.get('_template').get('name') }}
+    </div>
+{% endblock %}  
 
-<div id="widgetProjectDetails">
-</div>
 
 {% block javascript %}
          
@@ -13,4 +18,4 @@
             %}
 <script src="{{ asset_url }}" type="text/javascript"></script>
             {% endjavascripts %}
-{% endblock %}  
+{% endblock %} 

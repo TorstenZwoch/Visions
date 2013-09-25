@@ -1,12 +1,12 @@
 $(document).ready(function(){
-
+var widgetDetails= "widgetDetails";
 });
 
 function getProjectDetails(){
     $.ajax({ 
         type: "GET",
         dataType: "json",
-        url: "http://localhost/projects/Visions/web/app_dev.php/api/redmine/projects/.json?limit=2",
+        url: "http://localhost/projects/Visions/web/app_dev.php/api/redmine/projects.json?limit=2",
         success: function(data){            
             localStorage.setItem('redmine_projects', JSON.stringify(data));
             //alert(JSON.parse(localStorage.getItem('projects')));
