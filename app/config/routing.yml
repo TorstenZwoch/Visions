@@ -1,7 +1,7 @@
-visions_redmine:
-    resource: "@VisionsRedmineBundle/Controller/"
-    type:     annotation
-    prefix:   /
+#visions_redmine:
+#    resource: "@VisionsRedmineBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
 
 api:
     resource: "@VisionsAPIBundle/Resources/config/routing.yml"

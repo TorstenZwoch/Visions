@@ -151,7 +151,7 @@ $(document).ready(function(){
 
 
 /* AngularJS - change standard placeholder */
-angular.module('libetto', [])
+angular.module('visions', [])
   .config(['$interpolateProvider', function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');

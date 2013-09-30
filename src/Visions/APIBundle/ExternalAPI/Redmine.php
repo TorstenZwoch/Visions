@@ -167,7 +167,7 @@ class Redmine {
             curl_setopt($this->curl, CURLOPT_HEADER, 0);
             curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_HTTPHEADER, array("Content-Type: text/xml", "Content-length: " . strlen($data)));
-
+            
             $response = curl_exec($this->curl);
 
             if (!curl_errno($this->curl)) {

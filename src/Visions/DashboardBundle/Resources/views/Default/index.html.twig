@@ -1,5 +1,6 @@
 {% extends '::base.html.twig' %}
 {% use 'VisionsRedmineBundle:Projects:widgetProjectList.html.twig' with javascript as widgetProjectList_styles %}
+{% use 'VisionsRedmineBundle:Projects:widgetProjectDetails.html.twig' with javascript as widgetProjectDetails_styles %}
 
 {% block body -%}
     {% if username == 'anon.' %}
@@ -19,12 +20,12 @@
             <div class="preloader">
                 Loading...
             </div> 
-     {{ block('widget1') }}
+            {{ block('redmineProjectList') }}
         </div>
     </div>
     <div class="span8">
         <div class="hero-unit">
- 
+            {{ block('redmineProjectDetails') }}
         </div>
     </div>
 </div>

@@ -1,10 +1,5 @@
 $(document).ready(function(){
     var widgetProjects= "widgetProjects";
-    $('#widgetProjectDetails').bind('selectedproject', 
-    function(event, argument){      
-        alert($(this).attr('data-id'));
-        this.innerHTML = id;
-    });
     
     // load projects from local storage
     var redmineProjects = localStorage.getItem('redmine_projects');
@@ -15,10 +10,10 @@ $(document).ready(function(){
             $('#project-list').append('<li>' + data.Message + '</li>');
         }else {
             for (var i in data.project) {
-                //alert(data.project[i].name);
-                $('#project-list').append('<li><a href="#" data-id="' + data.project[i].id + '" onclick="alert(\'' + data.project[i].id + '\');$.event.trigger(\'selected-project\', $(this).attr(\'data-id\'))">' + data.project[i].name + '</a></li>');
+                $('#project-list').append('<li><a href="#" data-id="' + data.project[i].id + '" data-event-click="redmineProjectShow">' + data.project[i].name + '</a></li>');
             }
         }
+        refreshDataEventBinding();
     }
     
     // reload projects
@@ -84,11 +79,11 @@ function getProjects(){
                 $('#project-list').append('<li>' + data.Message + '</li>');
             }else {
                 for (var i in data.project) {
-                    //alert(data.project[i].name);
-                    $('#project-list').append('<li><a href="#" data-id="' + data.project[i].id + '" onclick="alert(\'' + data.project[i].id + '\');$.event.trigger(\'selected-project\', $(this).attr(\'data-id\'))">' + data.project[i].name + '</a></li>');
+
+                    $('#project-list').append('<li><a href="#" data-id="' + data.project[i].id + '" data-event-click="redmineProjectShow">' + data.project[i].name + '</a></li>');
                 }
             }            
-
+            refreshDataEventBinding();
             // enable button
             $("#redmineLoadProjects").removeClass("disabled").attr("disabled", false);            
             //Hide loader

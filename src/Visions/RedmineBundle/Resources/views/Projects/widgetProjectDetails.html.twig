@@ -1,8 +1,9 @@
-{% block widget2 %}
-    <div id="widgetProjectDetails">
+{% block redmineProjectDetails %}
+    <div id="widgetProjectDetails" ng-controller="widgetProjectDetails">
         details:
-        {{ app.request.get('_template').get('bundle') }}<br />
-{{ app.request.get('_template').get('name') }}
+        [[project]]<br />
+        [[project.id]]<br />
+        [[project.name]]
     </div>
 {% endblock %}  
 

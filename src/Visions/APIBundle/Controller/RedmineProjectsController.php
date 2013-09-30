@@ -17,11 +17,9 @@ class RedmineProjectsController extends Controller {
     public function getProjectsAction() {
         $usr = $this->get('security.context')->getToken()->getUser();
         if ($usr != "anon.") {
-            $redmineAPIKey = $usr->getRedmineAPIKey();
-
-            $config['url'] = "http://194.25.215.166/redmine";
-            $config['apikey'] = $usr->getRedmineAPIKey();
-            $config['port'] = "10024";
+            $config['url'] = $usr->getRedmineAPIUrl();
+            $config['apikey'] = $usr->getRedmineAPIKey();//"c8a6362925a742f793945d92bb61282b64ecd874";
+            $config['port'] = $usr->getRedmineAPIPort();
             $config['offset'] = "0";
             $config['limit'] = "100";
 
@@ -39,13 +37,31 @@ class RedmineProjectsController extends Controller {
     }
 
     /**
-     * @param Array $issue
+     * @param $projectId
      * @return array
      * @View()
      */
-    public function getProjectAction(Array $issue) {
-        //$issues = $this->getDoctrine()->getRepository('VisionsUserBundle:User')->find($user);
-        return array('records' => $issues);
+    public function getProjectAction($projectId) {
+        
+        $usr = $this->get('security.context')->getToken()->getUser();
+
+        if ($usr != "anon.") {
+            $config['url'] = $usr->getRedmineAPIUrl();
+            $config['apikey'] = $usr->getRedmineAPIKey();//"c8a6362925a742f793945d92bb61282b64ecd874";
+            $config['port'] = $usr->getRedmineAPIPort();
+            $config['offset'] = "0";
+            $config['limit'] = "100";
+     
+            $_redmine = new Redmine($config);
+
+            // Get one Projects
+            $result =  $_redmine->getProjects($projectId);
+            $project = json_decode( json_encode($result) , 1);
+            
+            return $project;
+        }else{
+            return array("Message" => "Please login.");   
+        }
     }
 
 }
