@@ -1,22 +1,19 @@
 {% block redmineProjectDetails %}
-    <div id="widgetProjectDetails" ng-controller="widgetProjectDetails">
-        details:
-        [[project]]<br />
-        [[project.id]]<br />
-        [[project.name]]
+    <div class="widgetRedmineProjectDetail" data-api="{{ path('get_projects') }}">
+        Id: [[result.id]]<br />
+        Name: [[result.name]]
     </div>
 {% endblock %}  
 
 
 {% block javascript %}
-         
-            {% javascripts 
-              filter='?yui_js'
-              output='Resources/js/widgetProjectDetails.js'
-              combine=true
-              debug=false
-              "@VisionsRedmineBundle/Resources/public/js/widgetProjectDetails.js"
-            %}
-<script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
+    {% javascripts 
+      filter='?yui_js'
+      output='Resources/js/widgetProjectDetails.js'
+      combine=true
+      debug=false
+      "@VisionsRedmineBundle/Resources/public/js/widgetProjectDetails.js"
+    %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
 {% endblock %} 
